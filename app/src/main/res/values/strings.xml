@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">金陀螺</string>
+    <!--首页Fragment-->
+    <string name="home_fragment_title">信用管家</string>
+</resources>

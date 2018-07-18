@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<include layout="@layout/base_title_layout"/>
+    <View
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:background="@mipmap/chenggong"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dip"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="提交成功"
+        android:textColor="#ff333333"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="214dip"
+        />
+    <TextView
+        android:id="@+id/succeeded_text"
+        android:layout_width="245dp"
+        android:layout_height="72dp"
+        android:text="卡尾号（2142）代还款设置成功！ 代还款期间，请确保卡余额保持不变否则会影响还款成功率！"
+        android:textColor="#ff888888"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="292dip"
+        />
+    <TextView
+        android:id="@+id/succeeded_wancheng"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:text="完成"
+        android:textColor="#ff000000"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginLeft="25dip"
+        android:layout_marginRight="25dip"
+        android:background="@drawable/home_repay_r"
+        android:layout_marginTop="458dip"
+        />
+    <TextView
+        android:id="@+id/succeeded_chakan"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:text="查看详情"
+        android:textColor="#ff000000"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginLeft="25dip"
+        android:layout_marginRight="25dip"
+        android:background="@drawable/home_repay_r"
+        android:layout_marginTop="539dip"
+        />
+
+</RelativeLayout>

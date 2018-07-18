@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include layout="@layout/base_title_layout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="133dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:background="@color/white"
+        >
+
+        <EditText
+            android:id="@+id/install_exdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:hint="请输入金额"
+            android:textSize="24sp"
+            android:layout_marginTop="72dp"
+            android:layout_marginLeft="71dip"
+            android:inputType="number"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账单金额"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:layout_marginTop="19dip"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="#ff333333"
+            android:textSize="46sp"
+            android:layout_marginTop="52dip"
+            android:layout_marginLeft="15dip"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dip"
+        android:text="服务费率0.5%，总计50元。"
+        android:textColor="#ffcacaca"
+        android:textSize="12sp"
+        />
+    <RelativeLayout
+        android:id="@+id/install_xuanze"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:background="@color/white"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="还款日期"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择 >"
+            android:textColor="#ff888888"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:background="@color/white"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="还款天数"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/install_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="14dp"
+            android:text="3天"
+            android:textColor="#ff888888"
+            android:textSize="15sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:background="@color/white"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预留金额"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/install_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00元"
+            android:textColor="#ff888888"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+
+    </RelativeLayout>
+        <TextView
+            android:id="@+id/install_submit"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/home_repay_r"
+            android:layout_marginRight="25dip"
+            android:layout_marginLeft="25dip"
+            android:text="生成计划"
+            android:textColor="#ff000000"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="147dip"
+            />
+</LinearLayout>

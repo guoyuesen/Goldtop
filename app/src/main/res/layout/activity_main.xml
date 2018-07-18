@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.goldtop.gys.crdeit.goldtop.acticity.MainActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Main_img"
+        />
+<com.goldtop.gys.crdeit.goldtop.view.DateButton
+    android:id="@+id/Main_btn"
+    android:layout_width="60dip"
+    android:layout_height="35dip"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="30dip"
+    android:layout_marginRight="20dip"
+    android:background="@drawable/button_transparent_gray"
+    android:scaleType="fitXY"
+    />
+</RelativeLayout>

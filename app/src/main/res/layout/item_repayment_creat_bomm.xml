@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    android:id="@+id/creat_btn"
+    android:layout_width="match_parent"
+    android:layout_height="48dip"
+    android:background="@drawable/home_repay_r"
+    android:text="完成"
+    android:textColor="#ff000000"
+    android:textSize="20sp"
+    android:gravity="center"
+    android:layout_marginTop="40dip"
+    android:layout_marginBottom="40dip"
+    android:layout_marginRight="25dip"
+    android:layout_marginLeft="25dip"
+    />
+</RelativeLayout>

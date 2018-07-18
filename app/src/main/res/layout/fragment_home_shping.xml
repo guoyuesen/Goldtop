@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.goldtop.gys.crdeit.goldtop.view.HeaderGridView
+        android:id="@+id/home_shping_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:dividerHeight="18dip"
+        android:scrollbars="none"
+        ></com.goldtop.gys.crdeit.goldtop.view.HeaderGridView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dip"
+        android:paddingTop="22dip"
+        android:background="#80ffffff"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="商城"
+            android:textColor="#ff000000"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/jf_mx"
+            android:layout_width="63dp"
+            android:layout_height="match_parent"
+            android:text="积分明细"
+            android:textColor="#ff000000"
+            android:textSize="15sp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_marginRight="14dip"
+            />
+    </RelativeLayout>
+</RelativeLayout>

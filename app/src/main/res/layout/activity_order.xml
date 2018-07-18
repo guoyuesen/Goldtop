@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#f9f9f9"
+    android:layout_height="match_parent">
+    <include layout="@layout/base_title_layout"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="44dip"
+    android:background="@color/white"
+    android:layout_marginTop="62dip"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+
+        >
+
+            <TextView
+                android:id="@+id/order_tabhost1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="全部"
+                android:textColor="#ff000000"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/order_tabhost2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="代发货"
+                android:textColor="#ff000000"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <TextView
+                android:id="@+id/order_tabhost3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="待收货"
+                android:textColor="#ff000000"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <TextView
+                android:id="@+id/order_tabhost4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="已完成"
+                android:textColor="#ff000000"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+    </LinearLayout>
+    <View
+        android:id="@+id/order_tabb"
+        android:layout_width="60dp"
+        android:layout_height="4dp"
+        android:background="#fffece00"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-42dip"
+    />
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-42dip"
+        />
+</RelativeLayout>
+<ListView
+    android:id="@+id/order_tab1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="108dip"
+    android:visibility="visible"
+    android:padding="10dip"
+    android:divider="@color/transparent"
+    android:dividerHeight="10dip"
+    android:scrollbars="none"
+    ></ListView>
+    <ListView
+        android:id="@+id/order_tab2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="108dip"
+        android:visibility="gone"
+        android:padding="10dip"
+        android:divider="@color/transparent"
+        android:dividerHeight="10dip"
+        android:scrollbars="none"
+        ></ListView>
+    <ListView
+        android:id="@+id/order_tab3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="108dip"
+        android:visibility="gone"
+        android:padding="10dip"
+        android:divider="@color/transparent"
+        android:dividerHeight="10dip"
+        android:scrollbars="none"
+        ></ListView>
+    <ListView
+        android:id="@+id/order_tab4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="108dip"
+        android:visibility="gone"
+        android:padding="10dip"
+        android:divider="@color/transparent"
+        android:dividerHeight="10dip"
+        android:scrollbars="none"
+        ></ListView>
+
+</RelativeLayout>

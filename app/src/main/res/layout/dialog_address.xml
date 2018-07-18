@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dip">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="配送至"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="19dip"
+        />
+</RelativeLayout>
+    <ScrollView
+        android:id="@+id/dialog_address_scroll"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:layout_height="0dip">
+        <LinearLayout
+            android:id="@+id/dialog_address_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:orientation="vertical"
+            ></LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/add_adderss"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="40dip"
+        android:text="+ 新增收货地址"
+        android:textColor="#ff333333"
+        android:textSize="15sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:layout_margin="20dip"
+        android:background="@drawable/home_repay_r"
+        android:text="确认"
+        android:textColor="#ff000000"
+        android:textSize="18sp"
+        android:gravity="center"
+        />
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="106dip"
+    android:layout_margin="10dip"
+    android:background="@drawable/item_t_w"
+    >
+    <ImageView
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:background="@mipmap/home_activity_11"
+        android:scaleType="fitXY"
+        android:alpha="0.1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="-30dip"
+        android:layout_marginBottom="-40dip"
+        />
+<ImageView
+    android:layout_width="29dip"
+    android:layout_height="32dip"
+    android:layout_marginLeft="22dip"
+    android:layout_marginTop="14dip"
+    android:src="@mipmap/home_activity_11"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="招商银行"
+        android:textColor="#ff000000"
+        android:textSize="16sp"
+        android:layout_marginLeft="68dip"
+        android:layout_marginTop="10dip"
+        />
+    <TextView
+        android:layout_width="89dp"
+        android:layout_height="20dp"
+        android:text="储蓄卡"
+        android:textColor="#ff000000"
+        android:textSize="13sp"
+        android:layout_marginLeft="68dip"
+        android:layout_marginTop="32dip"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="**** **** **** 0526"
+        android:textColor="#ff333333"
+        android:textSize="30sp"
+        android:layout_marginLeft="68dip"
+        android:layout_marginTop="49dip"
+        />
+    <View
+        android:layout_width="13dip"
+        android:layout_height="26dip"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dip"
+        android:background="@mipmap/next"
+        />
+</RelativeLayout>

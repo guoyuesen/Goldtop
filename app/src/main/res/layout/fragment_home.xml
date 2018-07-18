@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+android:background="@color/white"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dip"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        android:background="@drawable/home_title_color"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dip"
+            android:paddingTop="22dip"
+            >
+           <!-- <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/home_fragment_title"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:textSize="16sp"
+                />-->
+            <ImageButton
+                android:id="@+id/home_frame_add"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="5dip"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/home_activity_05"
+                android:background="@color/transparent"
+                />
+            <ImageButton
+                android:id="@+id/home_frame_msg"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="5dip"
+                android:layout_toLeftOf="@+id/home_frame_add"
+                android:src="@mipmap/home_activity_06"
+                android:background="@color/transparent"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/home_frame_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="66dip"
+        android:divider="#eeeeee"
+        android:dividerHeight="0dp"
+        android:background="#eeeeee"
+        android:scrollbars="none"
+        ></ListView>
+</RelativeLayout>

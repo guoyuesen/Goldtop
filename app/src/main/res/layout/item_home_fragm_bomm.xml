@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingBottom="150dip"
+    >
+<LinearLayout
+    android:id="@+id/home_add_card"
+    android:layout_width="match_parent"
+    android:layout_height="42dip"
+    android:layout_marginTop="5dip"
+    android:background="@color/white"
+    android:gravity="center"
+    >
+    <ImageView
+        android:layout_width="13dip"
+        android:layout_height="13dip"
+        android:src="@mipmap/home_activity_05"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加信用卡"
+        android:layout_marginLeft="5dip"
+        android:textSize="13sp"
+        />
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/home_baoxian"
+        android:layout_width="match_parent"
+        android:layout_height="42dip"
+        android:layout_marginTop="50dip"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="10dip"
+            android:layout_height="11dip"
+            android:src="@mipmap/activity_home_anquan"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#C4C4C4"
+            android:textSize="11sp"
+            android:text="账户安全由保险公司承保"
+            android:layout_marginLeft="5dip"
+            />
+    </LinearLayout>
+</RelativeLayout>
