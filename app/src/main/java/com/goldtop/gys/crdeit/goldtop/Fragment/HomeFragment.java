@@ -33,14 +33,6 @@ public class HomeFragment extends Fragment {
     ImageButton homeFrameAdd;
     @Bind(R.id.home_frame_msg)
     ImageButton homeFrameMsg;
-   /* @Bind(R.id.home_frame_btn1)
-    RelativeLayout homeFrameBtn1;
-    @Bind(R.id.home_frame_btn2)
-    RelativeLayout homeFrameBtn2;
-    @Bind(R.id.home_frame_btn3)
-    RelativeLayout homeFrameBtn3;
-    @Bind(R.id.home_frame_btn4)
-    RelativeLayout homeFrameBtn4;*/
     @Bind(R.id.home_frame_list)
     ListView homeFrameList;
     private View view;

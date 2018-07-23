@@ -12,23 +12,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <!--头像-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="196dip"
+                android:layout_height="164dip"
                 android:background="@color/white"
                 >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="-25dip"
-                    android:background="@mipmap/fragment_background"
+                    android:background="@drawable/home_title_color"
                     ></View>
                 <ImageView
                     android:id="@+id/fragment_me_icon"
-                    android:layout_width="78dip"
-                    android:layout_height="78dip"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="37dip"
+                    android:layout_width="44dip"
+                    android:layout_height="44dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="21dip"
                     android:src="@mipmap/fragment_me_01"
                     />
                 <ImageView
@@ -39,6 +39,7 @@
                     android:layout_marginRight="20dip"
                     android:layout_alignParentRight="true"
                     android:src="@mipmap/fragment_me02"
+                    android:visibility="gone"
                     />
                 <ImageView
                     android:layout_width="24dip"
@@ -47,16 +48,21 @@
                     android:layout_marginRight="56dip"
                     android:layout_alignParentRight="true"
                     android:src="@mipmap/fragment_me03"
+                    android:visibility="gone"
                     />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="78dip"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="陈成:经理"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/fragment_me_icon"
-                    android:layout_marginTop="12dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,17 +70,18 @@
                     android:text="18888888888"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/fragment_me_icon"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="5dp"
                     />
+                </LinearLayout>
             </RelativeLayout>
+            <!--横-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dip"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:background="@color/white"
+                android:layout_marginTop="15dip"
                 >
                 <LinearLayout
                     android:id="@+id/me_f_wallet_l"
@@ -221,6 +228,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <!--实名认证-->
             <RelativeLayout
                 android:id="@+id/me_f_authentication_l"
                 android:layout_width="match_parent"
@@ -230,19 +238,20 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="16dp"
-                    android:src="@mipmap/real"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/real"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="实名认证"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -259,6 +268,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--我的银行卡-->
             <RelativeLayout
                 android:id="@+id/me_f_card_l"
                 android:layout_width="match_parent"
@@ -267,19 +277,20 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="15dp"
-                    android:src="@mipmap/card"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/card"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的银行卡"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -296,6 +307,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--会员特权-->
             <RelativeLayout
                 android:id="@+id/me_f_vip_l"
                 android:layout_width="match_parent"
@@ -304,19 +316,20 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/vip"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/vip"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="会员特权"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -333,6 +346,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--邀请有奖-->
             <RelativeLayout
                 android:id="@+id/me_f_invite_l"
                 android:layout_width="match_parent"
@@ -341,19 +355,20 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="21dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/recom"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/recom"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="邀请有奖"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -370,6 +385,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--团队业绩-->
             <RelativeLayout
                 android:id="@+id/me_f_tema_l"
                 android:layout_width="match_parent"
@@ -378,19 +394,20 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/team"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/team"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="团队业绩"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -407,6 +424,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--新手指南-->
             <RelativeLayout
                 android:id="@+id/me_f_process_l"
                 android:layout_width="match_parent"
@@ -415,19 +433,59 @@
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
                 >
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="16dp"
-                    android:src="@mipmap/newme"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/newme"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="新手指南"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/more"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f0f0f0"
+                    />
+            </RelativeLayout>
+            <!--我的客服-->
+            <RelativeLayout
+                android:id="@+id/me_f_process_l0"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:paddingRight="20dip"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/newme"
+                    android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的客服"
+                    android:textColor="#ff333333"
+                    android:textSize="14sp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -438,6 +496,7 @@
                     android:layout_centerVertical="true"
                     />
             </RelativeLayout>
+            <!--我的订单-->
             <RelativeLayout
                 android:id="@+id/me_f_order_l"
                 android:layout_width="match_parent"
@@ -447,19 +506,20 @@
                 android:paddingRight="20dip"
                 android:layout_marginTop="14dp"
                 >
+
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/dingdan"
                     android:layout_centerVertical="true"
-                    />
+                    android:src="@mipmap/dingdan"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的订单"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -476,6 +536,7 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--地址管理-->
             <RelativeLayout
                 android:id="@+id/me_f_address_l"
                 android:layout_width="match_parent"
@@ -483,21 +544,22 @@
                 android:background="@color/white"
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
-                android:layout_marginBottom="40dip"
+
                 >
                 <ImageView
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     android:src="@mipmap/fragment_me_address"
                     android:layout_centerVertical="true"
-                    />
+                    android:visibility="gone"
+                    android:id="@+id/imageView2" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="地址管理"
                     android:textColor="#ff333333"
                     android:textSize="14sp"
-                    android:layout_marginLeft="33dp"
+
                     android:layout_centerVertical="true"
                     />
                 <ImageView
@@ -507,7 +569,47 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f0f0f0"
+                    />
+            </RelativeLayout>
+            <!--设置-->
+            <RelativeLayout
+                android:id="@+id/me_f_process_l1"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imageView2"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:layout_marginBottom="40dip"
+                android:paddingRight="20dip">
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/newme"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="设置"
+                    android:textColor="#ff333333"
+
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/more" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

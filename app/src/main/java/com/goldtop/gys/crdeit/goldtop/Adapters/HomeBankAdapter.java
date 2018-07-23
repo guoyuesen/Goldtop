@@ -38,7 +38,7 @@ public class HomeBankAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return array.length()+1;
+        return array.length();
     }
 
     @Override
