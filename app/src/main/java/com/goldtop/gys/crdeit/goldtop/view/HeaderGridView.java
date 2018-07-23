@@ -169,6 +169,9 @@ public class HeaderGridView extends GridView {
     }
 
     public void addFooterView(View v) {
+        if (mFooterViewInfos.size() > 0){
+            return;
+        }
         addFooterView(v, null, true);
     }
 

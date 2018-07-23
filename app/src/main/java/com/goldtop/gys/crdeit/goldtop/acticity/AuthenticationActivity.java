@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonRequest;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
@@ -76,15 +77,20 @@ public class AuthenticationActivity extends BaseActivity {
             return;
         }
         final Map<String, String> params = new HashMap<String, String>();
-        params.put("custId", "13527586651");
+        params.put("custId", UserModel.custId);
         params.put("custName", name);
         params.put("idCardNo", idnumber);
         params.put("custMobile", phone);
-        //params.put("bankCards", "[{\"bankCardCode\":\"567890\", \"openningBankAddress\":\"uytrefdffd\"}]");
-        params.put("identifyingCode",cardnumber);
         final Map<String, String> map = new HashMap<String, String>();
-        map.put("accountCode","567890");
-        map.put("openningBankAddress","567890");
+        map.put("custId",UserModel.custId);
+        map.put("accountCode",cardnumber);
+            map.put("accountName",name);
+            map.put("bankName","兴业银行");
+            map.put("openingSubBankName",adderss);
+            map.put("openningBankProvince","四川");
+            map.put("openningBankCity","成都");
+            map.put("mobileNo",phone);
+            map.put("bankCardType","D");
         JSONObject object = new JSONObject(map);
         JSONArray array = new JSONArray();
         array.put(object);
@@ -102,7 +108,7 @@ public class AuthenticationActivity extends BaseActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("错误参数：==》",error.getMessage());
+                Log.d("错误参数：==》","error.getMessage()");
                 Httpdismiss();
             }
         }));

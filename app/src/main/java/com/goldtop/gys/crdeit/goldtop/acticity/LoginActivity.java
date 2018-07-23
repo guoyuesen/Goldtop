@@ -91,6 +91,7 @@ public class LoginActivity extends BaseActivity {
                             if (jsonObject.getString("code").equals("1")) {
                                 UserModel.setInfo(jsonObject.getJSONObject("data"));
                                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                             }

@@ -60,6 +60,7 @@
                     android:visibility="gone"
                     >
                 <TextView
+                    android:id="@+id/me_f_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="陈成:经理"
@@ -67,6 +68,7 @@
                     android:textSize="15sp"
                     />
                 <TextView
+                    android:id="@+id/me_f_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="18888888888"

@@ -3,6 +3,7 @@ package com.goldtop.gys.crdeit.goldtop.acticity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,6 +113,7 @@ public class RegisterActivity extends BaseActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d("返回错误结果：==》","");
                         Httpdismiss();
                     }
                 }));

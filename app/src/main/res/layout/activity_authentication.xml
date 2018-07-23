@@ -78,7 +78,7 @@
             android:background="@color/white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
-            android:hint="请填写银行卡号"
+            android:hint="请填写储蓄卡卡号"
             android:textSize="16sp"
             android:inputType="number"
             />
