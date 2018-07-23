@@ -162,7 +162,6 @@ public class HomeActivity extends AppCompatActivity {
                 homeBottomImg3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.img_click));
                 break;
             case 3:
-                if (AppUtil.isLogin(this)) {
                     if (meFragment == null) {
                         //实例化fragment2
                         meFragment = new MeFragment();
@@ -174,9 +173,6 @@ public class HomeActivity extends AppCompatActivity {
                     fragment = meFragment;
                     homeBottomImg4.setImageResource(R.mipmap.activity_home_01_1);
                     homeBottomImg4.startAnimation(AnimationUtils.loadAnimation(this, R.anim.img_click));
-                }else {
-                    return;
-                }
                 break;
         }
         settup(v);

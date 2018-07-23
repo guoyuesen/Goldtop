@@ -9,13 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddressActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
-import com.goldtop.gys.crdeit.goldtop.acticity.LoginActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.OrderActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
@@ -23,6 +23,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.RedEnvelopesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.SettionsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WalletActivity;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,6 +42,10 @@ public class MeFragment extends Fragment {
     TextView meFRed;
     @Bind(R.id.me_f_integral)
     TextView meFIntegral;
+    @Bind(R.id.fragment_me_name)
+    LinearLayout fragmentMeName;
+    @Bind(R.id.fragment_me_login)
+    LinearLayout fragmentMeLogin;
     private View view;
 
     @Nullable
@@ -57,13 +62,30 @@ public class MeFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (UserModel.id.isEmpty()){
+            fragmentMeName.setVisibility(View.GONE);
+            fragmentMeLogin.setVisibility(View.VISIBLE);
+        }else {
+            fragmentMeName.setVisibility(View.VISIBLE);
+            fragmentMeLogin.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.me_f_wallet_l, R.id.me_f_red_l, R.id.me_f_integral_l, R.id.me_f_authentication_l, R.id.me_f_card_l, R.id.me_f_vip_l, R.id.me_f_invite_l, R.id.me_f_tema_l, R.id.me_f_process_l, R.id.me_f_order_l, R.id.me_f_address_l,R.id.fragment_mi_settiongs})
+    @OnClick({R.id.me_f_wallet_l, R.id.me_f_red_l, R.id.me_f_integral_l, R.id.me_f_authentication_l, R.id.me_f_card_l,
+            R.id.me_f_vip_l, R.id.me_f_invite_l, R.id.me_f_tema_l, R.id.me_f_process_l, R.id.me_f_order_l,
+            R.id.me_f_address_l, R.id.fragment_mi_settiongs,R.id.me_f_login,R.id.me_f_register})
     public void onClick(View view) {
+        if (!AppUtil.isLogin(getContext())){
+            return;
+        }
         switch (view.getId()) {
             case R.id.me_f_wallet_l://钱包
                 getActivity().startActivity(new Intent(getContext(), WalletActivity.class));
@@ -86,8 +108,8 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), RecommendedAwardsActivity.class));
                 break;
             case R.id.me_f_tema_l://团队业绩
-                if (AppUtil.isLogin(getContext())){
-                break;
+                if (AppUtil.isLogin(getContext())) {
+                    break;
                 }
                 break;
             case R.id.me_f_process_l://新手指南
