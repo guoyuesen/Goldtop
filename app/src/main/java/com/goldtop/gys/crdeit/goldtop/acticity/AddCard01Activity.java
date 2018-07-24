@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import butterknife.Bind;
@@ -31,6 +33,7 @@ public class AddCard01Activity extends BaseActivity {
         setContentView(R.layout.activity_add_card01);
         ButterKnife.bind(this);
         hiedBar(this);
+        addCard0Name.setText(UserModel.custName);
         new TitleBuder(this).setTitleText("添加银行卡").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +48,14 @@ public class AddCard01Activity extends BaseActivity {
             case R.id.add_card01_aq:
                 break;
             case R.id.add_card01_submit:
-                startActivity(new Intent(this,AddCard02Activity.class));
+                String number = addCard0Number.getText().toString().trim();
+                if (number.isEmpty()){
+                    Toast.makeText(this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Intent intent = new Intent(this,AddCard02Activity.class);
+                intent.putExtra("number",number);
+                startActivity(new Intent(intent));
                 break;
         }
     }

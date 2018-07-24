@@ -47,6 +47,12 @@ public class AuthenticationActivity extends BaseActivity {
     EditText authenCardnumber;
     @Bind(R.id.authen_adderss)
     EditText authenAdderss;
+    @Bind(R.id.authen_sheng)
+    EditText authensheng;
+    @Bind(R.id.authen_shi)
+    EditText authenshi;
+    @Bind(R.id.authen_yhmc)
+    EditText authenyhmc;
     @Bind(R.id.authen_phone)
     EditText authenPhone;
 
@@ -72,7 +78,10 @@ public class AuthenticationActivity extends BaseActivity {
         String cardnumber = authenCardnumber.getText().toString().trim();
         String adderss = authenAdderss.getText().toString().trim();
         String phone = authenPhone.getText().toString().trim();
-        if (name.isEmpty()||idnumber.isEmpty()||cardnumber.isEmpty()||adderss.isEmpty()||phone.isEmpty()){
+        String sheng = authensheng.getText().toString().trim();
+        String shi = authenshi.getText().toString().trim();
+        String yhmc = authenyhmc.getText().toString().trim();
+        if (name.isEmpty()||idnumber.isEmpty()||cardnumber.isEmpty()||adderss.isEmpty()||phone.isEmpty()||sheng.isEmpty()||shi.isEmpty()||yhmc.isEmpty()){
             Toast.makeText(this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
             return;
         }
@@ -85,10 +94,10 @@ public class AuthenticationActivity extends BaseActivity {
         map.put("custId",UserModel.custId);
         map.put("accountCode",cardnumber);
             map.put("accountName",name);
-            map.put("bankName","兴业银行");
+            map.put("bankName",yhmc);
             map.put("openingSubBankName",adderss);
-            map.put("openningBankProvince","四川");
-            map.put("openningBankCity","成都");
+            map.put("openningBankProvince",sheng);
+            map.put("openningBankCity",shi);
             map.put("mobileNo",phone);
             map.put("bankCardType","D");
         JSONObject object = new JSONObject(map);

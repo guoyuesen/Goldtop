@@ -29,9 +29,9 @@
             />
         <TextView
             android:id="@+id/add_card0_name"
-            android:layout_width="32dp"
+            android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:text="王刚"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="16sp"
             android:layout_marginLeft="16dip"

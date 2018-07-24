@@ -18,4 +18,6 @@ public class Action {
     public static String check = url+"/identify";
     //获取银行卡列表
     public static String queryBankCard = url+"/cust/queryBankCard";
+    //添加银行卡
+    public static String addcard = url+"/payment/addCard";
 }

@@ -20,8 +20,34 @@
         android:gravity="center_vertical"
         >
         <TextView
-            android:layout_width="48dp"
-            android:layout_height="22dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="所属银行"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="14dip"
+            />
+        <EditText
+            android:id="@+id/add_card02_yh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="XXX银行"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dip"
+            android:background="@color/white"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:text="开户行"
             android:textColor="#ff333333"
             android:textSize="16sp"
@@ -31,7 +57,7 @@
             android:id="@+id/add_card02_adderss"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="顺德农商银行 - 储蓄卡"
+            android:hint="XXX支行"
             android:textColor="#ff333333"
             android:textSize="16sp"
             android:layout_marginLeft="16dip"
@@ -47,7 +73,61 @@
         android:layout_marginTop="1dip"
         >
         <TextView
-            android:layout_width="48dp"
+            android:layout_width="80dip"
+            android:layout_height="22dp"
+            android:text="开户行省"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="14dip"
+            />
+        <EditText
+            android:id="@+id/add_card02_sheng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="开户所在省"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dip"
+            android:background="@color/white"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="1dip"
+        >
+        <TextView
+            android:layout_width="80dip"
+            android:layout_height="22dp"
+            android:text="开户行市"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="14dip"
+            />
+        <EditText
+            android:id="@+id/add_card02_shi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="开户所在市"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dip"
+            android:background="@color/white"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="1dip"
+        >
+        <TextView
+            android:layout_width="80dp"
             android:layout_height="22dp"
             android:text="手机号码"
             android:textColor="#ff333333"
