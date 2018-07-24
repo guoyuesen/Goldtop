@@ -12,14 +12,25 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeBankAdapter;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +47,7 @@ public class HomeFragment extends Fragment {
     @Bind(R.id.home_frame_list)
     ListView homeFrameList;
     private View view;
+    HomeBankAdapter adapter;
 
     @Nullable
     @Override
@@ -59,10 +71,8 @@ public class HomeFragment extends Fragment {
             }
         });
         JSONArray array = new JSONArray();
-        array.put(1);
-        array.put(1);
-        array.put(1);
-        homeFrameList.setAdapter(new HomeBankAdapter(getContext(),array));
+        adapter = new HomeBankAdapter(getContext(),array);
+        homeFrameList.setAdapter(adapter);
         View hview = LayoutInflater.from(getContext()).inflate(R.layout.item_home_top,null);
         hview.findViewById(R.id.home_frame_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +119,25 @@ public class HomeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), NewsActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("custId", UserModel.custId);
+        map.put("cardType","D");
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C", map, new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
+        super.onStart();
     }
 
     @Override

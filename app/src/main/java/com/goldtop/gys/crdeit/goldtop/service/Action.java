@@ -16,4 +16,6 @@ public class Action {
     public static String authentication = url+"/cust/cert";
     //获取验证码
     public static String check = url+"/identify";
+    //获取银行卡列表
+    public static String queryBankCard = url+"/cust/queryBankCard";
 }

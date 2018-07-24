@@ -34,6 +34,12 @@ public class VolleyRequest extends Request<String>{
         this.smap = smap;
         this.url = url1;
     }
+    public VolleyRequest(int method,String url1,Map<String, String> smap,MyVolleyCallback callback) {
+        super(method, url1, callback);
+        this.callback = callback;
+        this.smap = smap;
+        this.url = url1;
+    }
 
     public VolleyRequest(int method, String url, MyVolleyCallback listener) {
         super(method, url, listener);
