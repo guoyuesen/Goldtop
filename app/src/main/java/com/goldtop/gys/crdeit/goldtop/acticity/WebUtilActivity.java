@@ -6,7 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,9 +28,11 @@ public class WebUtilActivity extends BaseActivity {
     private static String title = "";
     private static String url = "";
     private WebView view;
+    String mHtml="";
     public static void InWeb(@NonNull Context context,String url, String title, Bundle bundle){
         WebUtilActivity.title = title;
         WebUtilActivity.url = url;
+        Log.d("url地址：==》",url);
         Intent intent = new Intent(context,WebUtilActivity.class);
         if (bundle!=null){
             intent.putExtra("bundle",bundle);
@@ -46,36 +52,34 @@ public class WebUtilActivity extends BaseActivity {
             });
         }
         view = findViewById(R.id.util_web);
-        /*view.setWebViewClient(new WebViewClient() {
+        view.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return super.shouldOverrideUrlLoading(view, request);
+            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                //该方法在Build.VERSION_CODES.LOLLIPOP以前有效，从Build.VERSION_CODES.LOLLIPOP起，建议使用shouldOverrideUrlLoading(WebView, WebResourceRequest)} instead
-                //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
-                //返回true，说明你自己想根据url，做新的跳转，比如在判断url符合条件的情况下，我想让webView加载http://ask.csdn.net/questions/178242
-
-
-                    view.loadUrl(url);
-                    return false;
-
+                view.loadUrl(url);
+                return true;
             }
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request)
-            {
-                //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
-                //返回true，说明你自己想根据url，做新的跳转，比如在判断url符合条件的情况下，我想让webView加载http://ask.csdn.net/questions/178242
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                        view.loadUrl(request.getUrl().toString());
-
+            public void onPageFinished(WebView view, String url) {
+                WebBackForwardList webBackForwardList=view.copyBackForwardList();        //       获取WebView 加载的历史数据
+                int index = webBackForwardList.getSize();                                    //       获取堆栈中的历史数据长度
+                if(view.getUrl().equals("about:blank")&&index>1&&!TextUtils.isEmpty(mHtml)) {  //       满足上述bug的条件
+                    view.clearHistory();                                                     //       恢复WebView到初始状态
+                    view.loadDataWithBaseURL(null, mHtml, "text/html", "utf-8", null);
                 }
-
-                return false;
-            }
-
-        });*/
-        view.loadUrl(url);
+                }
+        });
+        if (getIntent().getBundleExtra("bundle")!=null){
+            mHtml = getIntent().getBundleExtra("bundle").getString("html");
+            view.loadDataWithBaseURL(null, mHtml, "text/html", "utf-8",null);
+        }else {
+            view.loadUrl(url);
+        }
         initActivity();
     }
 
@@ -85,4 +89,16 @@ public class WebUtilActivity extends BaseActivity {
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK&&view.canGoBack()){
+            view.goBack();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 }

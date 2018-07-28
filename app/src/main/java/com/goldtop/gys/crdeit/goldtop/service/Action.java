@@ -20,4 +20,12 @@ public class Action {
     public static String queryBankCard = url+"/cust/queryBankCard";
     //添加银行卡
     public static String addcard = url+"/payment/addCard";
+    //同名卡开卡
+    public static String openCard = url+"/payment/openCard";
+    //获取计划手续费
+    public static String calcReserveMoney = url+"/payment/calcReserveMoney";
+    //还款申请
+    public static String paymentApply = url+"/payment/paymentApply";
+    //查看计划
+    public static String paymentPlanListByDate = url+"/payment/paymentPlanListByDate";
 }

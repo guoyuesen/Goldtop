@@ -42,11 +42,12 @@
 
     </RelativeLayout>
     <TextView
+        android:id="@+id/install_fee"
         android:layout_width="wrap_content"
         android:layout_height="25dip"
         android:gravity="center_vertical"
         android:paddingLeft="20dip"
-        android:text="服务费率0.5%，总计50元。"
+        android:text="服务费率0.68%，总计0元。"
         android:textColor="#ffcacaca"
         android:textSize="12sp"
         />
@@ -69,10 +70,13 @@
             android:layout_centerVertical="true"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/install_date"
+            android:layout_width="100dip"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="请选择 >"
             android:textColor="#ff888888"
+            android:gravity="right"
             android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -108,7 +112,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="14dp"
-            android:text="3天"
+            android:text="0天"
             android:textColor="#ff888888"
             android:textSize="15sp" />
         <View

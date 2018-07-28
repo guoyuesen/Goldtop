@@ -28,6 +28,7 @@ import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -72,6 +73,7 @@ public class HomeFragment extends Fragment {
             }
         });
         JSONArray array = new JSONArray();
+        array.put(0);
         adapter = new HomeBankAdapter(getContext(),array);
         homeFrameList.setAdapter(adapter);
         View hview = LayoutInflater.from(getContext()).inflate(R.layout.item_home_top,null);
@@ -132,6 +134,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void CallBack(JSONObject jsonObject) {
 
+                try {
+                    if (jsonObject.getString("code").equals("1")){
+                        JSONArray array = jsonObject.getJSONArray("data");
+                        adapter.notifyDataSetChanged(array);
+                        //Log.d("data==》",""+array.toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

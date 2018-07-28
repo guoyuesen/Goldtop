@@ -26,10 +26,5 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         />
-<com.goldtop.gys.crdeit.goldtop.view.CalendarChoice
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dip"
-    android:layout_alignParentBottom="true"
-    />
+
 </RelativeLayout>
