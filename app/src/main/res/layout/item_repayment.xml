@@ -13,7 +13,7 @@
         android:background="#FFF9E0"
         >
         <TextView
-            android:id="@+id/item_repayment_text010"
+            android:id="@+id/item_repayment_text01"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -194,6 +194,7 @@
                 android:layout_marginLeft="29dip"
                 />
             <TextView
+                android:id="@+id/item_repayment_text12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="22:00"
@@ -203,9 +204,10 @@
                 android:layout_marginLeft="95dip"
                 />
             <TextView
+                android:id="@+id/item_repayment_text13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="当日手续费：10"
+                android:text="当日手续费：0"
                 android:textColor="#ff888888"
                 android:textSize="13sp"
                 android:layout_centerVertical="true"
@@ -227,6 +229,7 @@
                 android:textSize="14sp"
                 />
             <TextView
+                android:id="@+id/item_repayment_text14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="290.00 "

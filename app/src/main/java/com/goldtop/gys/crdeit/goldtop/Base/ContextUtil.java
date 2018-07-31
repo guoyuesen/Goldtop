@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 
 import com.goldtop.gys.crdeit.goldtop.service.ThisApplication;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by 郭月森 on 2018/7/6.
  */
@@ -41,5 +43,8 @@ public class ContextUtil {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
-
+    public static String dataTostr(long time,String f){
+        SimpleDateFormat format =  new SimpleDateFormat(f);
+        return format.format(time);
+    }
 }

@@ -22,7 +22,7 @@
         android:id="@+id/item_repayment_bomm_bank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="广东银行股份有限公司（2142）"
+        android:text="XXXXXXXXX（****）"
         android:textColor="#ff888888"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dip"
@@ -40,17 +40,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="代还款提交时间"
+        android:text="代还款开始时间"
         android:textColor="#ff000000"
         android:layout_marginTop="40dip"
         android:layout_marginLeft="5dip"
         android:textSize="15sp"
         />
     <TextView
-
+        android:id="@+id/item_repayment_bomm_creattime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018-07-02 14:08:13"
+        android:text=""
         android:textColor="#ff888888"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dip"
@@ -67,9 +67,10 @@
         android:textSize="15sp"
         />
     <TextView
+        android:id="@+id/item_repayment_bomm_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="18070221530511579560"
+        android:text=""
         android:textColor="#ff888888"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dip"
@@ -85,6 +86,7 @@
         />
     </RelativeLayout>
     <Button
+        android:id="@+id/item_repayment_bomm_creatplay"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:background="@drawable/home_repay_r"
@@ -96,6 +98,19 @@
         android:layout_marginBottom="20dip"
         android:textSize="18sp"
         style="?android:attr/borderlessButtonStyle"
+        />
+    <Button
+        android:id="@+id/item_repayment_bomm_cloesplay"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:background="@drawable/home_repay_bommr"
+        android:layout_marginRight="50dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginTop="190dip"
+        android:text="取消还款计划"
+        android:textColor="#000000"
+        android:layout_marginBottom="20dip"
+        android:textSize="18sp"
         />
 
 </RelativeLayout>

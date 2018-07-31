@@ -1,5 +1,6 @@
 package com.goldtop.gys.crdeit.goldtop.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.HeaderViewListAdapter;
+import android.widget.ImageView;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.holder.Holder;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeShpingAdapter;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.DetailedActivity;
@@ -19,6 +24,9 @@ import com.goldtop.gys.crdeit.goldtop.view.ButtomDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.HeaderGridView;
 
 import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,9 +63,9 @@ public class ShpingFragment extends Fragment {
         array.put(0);
         array.put(0);
         array.put(0);
-        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
+        initHead();
+
         bommView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_bomm, null);
-        homeShpingGrid.addHeaderView(view1);
         homeShpingGrid.setAdapter(new HeaderViewListAdapter(null, null, new HomeShpingAdapter(getContext(), array)));
         homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,6 +119,31 @@ public class ShpingFragment extends Fragment {
         // homeShpingGrid.addView(view1,0);
     }
 
+    private void initHead() {
+        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
+        List<Integer> ins = new ArrayList<>();
+        ins.add(R.mipmap.fragment_shping_01);
+        ins.add(R.mipmap.fragment_shping_02);
+        ins.add(R.mipmap.fragment_shping_03);
+        ConvenientBanner<Integer> convenientBanner = view1.findViewById(R.id.shping_f_t_img);
+        convenientBanner.setPages(new CBViewHolderCreator<ImageViewHolder>() {
+            @Override
+            public ImageViewHolder createHolder() {
+                return new ImageViewHolder();
+            }
+        },ins).setPageIndicator(new int[]  {R.drawable.button_r_c,R.drawable.button_r_f})
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setPointViewVisible(true)
+                .startTurning(3000); //设置指示器的方向水平  居中
+        view1.findViewById(R.id.sp_top_jf).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(new Intent(getContext(), DetailedActivity.class));
+            }
+        });
+        homeShpingGrid.addHeaderView(view1);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -120,5 +153,19 @@ public class ShpingFragment extends Fragment {
     @OnClick(R.id.jf_mx)
     public void onClick() {
         getActivity().startActivity(new Intent(getContext(), DetailedActivity.class));
+    }
+    public class ImageViewHolder implements Holder<Integer> {
+        private ImageView imageView;
+        @Override
+        public View createView(Context context) {
+            imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            return imageView;
+        }
+        @Override
+        public void UpdateUI(Context context, int position, Integer data) {
+
+            imageView.setImageResource(data);
+        }
     }
 }

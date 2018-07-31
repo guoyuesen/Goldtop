@@ -45,9 +45,10 @@ public class SucceededActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.succeeded_chakan:
-                Intent intent = new Intent(this,RepaymentMsgActivity.class);
-                intent.putExtra("card",card);
+                Intent intent = getIntent();
+                intent.setClass(this,RepaymentMsgActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

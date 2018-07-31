@@ -46,6 +46,7 @@ public class AddCard01Activity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_card01_aq:
+                WebUtilActivity.InWeb(this,"https://m.zhongan.com/p/85132614","",null);
                 break;
             case R.id.add_card01_submit:
                 String number = addCard0Number.getText().toString().trim();
@@ -57,6 +58,7 @@ public class AddCard01Activity extends BaseActivity {
                 intent.putExtra("number",number);
                 startActivity(new Intent(intent));
                 break;
+
         }
     }
 }

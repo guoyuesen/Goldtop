@@ -18,6 +18,8 @@ public class Action {
     public static String check = url+"/identify";
     //获取银行卡列表
     public static String queryBankCard = url+"/cust/queryBankCard";
+    //查看还款详情
+    public static String paymentSchedule = url+"/payment/paymentSchedule";
     //添加银行卡
     public static String addcard = url+"/payment/addCard";
     //同名卡开卡
@@ -28,4 +30,6 @@ public class Action {
     public static String paymentApply = url+"/payment/paymentApply";
     //查看计划
     public static String paymentPlanListByDate = url+"/payment/paymentPlanListByDate";
+    //取消计划
+    public static String closePlan = url+"/payment/cancelPaymentPlan";
 }

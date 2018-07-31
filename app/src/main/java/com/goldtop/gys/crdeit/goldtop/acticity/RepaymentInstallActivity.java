@@ -63,6 +63,7 @@ public class RepaymentInstallActivity extends BaseActivity {
     DateDialogView dialogView;
     private String cardid = "";
     boolean s = true;
+    String daymoney="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -152,6 +153,9 @@ public class RepaymentInstallActivity extends BaseActivity {
                     if (response.getString("code").equals("1")){
                         Intent intent = new Intent(RepaymentInstallActivity.this,SucceededActivity.class);
                         intent.putExtra("card",cardid);
+                        intent.putExtra("Money1",money);
+                        intent.putExtra("Money2",daymoney);
+                        intent.putExtra("Day",""+day);
                         startActivity(intent);
                         finish();
                     }else {
@@ -190,7 +194,8 @@ public class RepaymentInstallActivity extends BaseActivity {
                     if (jsonObject.getString("code").equals("1")){
                         JSONObject object = jsonObject.getJSONObject("data");
                         installfee.setText("服务费率"+object.getDouble("rate")*10000d/100d+"%，总计"+object.getDouble("fee")+"元");
-                        installMoney.setText(object.getString("totalReserveMoney"));
+                        daymoney = object.getString("totalReserveMoney");
+                        installMoney.setText(daymoney);
                     }else {
 
                     }

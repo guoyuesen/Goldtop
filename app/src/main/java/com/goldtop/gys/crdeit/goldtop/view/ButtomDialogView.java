@@ -44,6 +44,12 @@ public class ButtomDialogView extends Dialog {
         this.jsonArray = array;
         this.context = context;
         this.view = LayoutInflater.from(context).inflate(R.layout.dialog_address,null);
+        view.findViewById(R.id.sp_dialog_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         scrollView = view.findViewById(R.id.dialog_address_scroll);
         linearLayout = view.findViewById(R.id.dialog_address_layout);
         //this.iscancelable = isCancelable;

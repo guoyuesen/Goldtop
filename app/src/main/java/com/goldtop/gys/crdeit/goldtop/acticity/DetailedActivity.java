@@ -2,11 +2,13 @@ package com.goldtop.gys.crdeit.goldtop.acticity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ListView;
 
 import com.goldtop.gys.crdeit.goldtop.Adapters.DetailedAdapter;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import org.json.JSONArray;
 
@@ -27,6 +29,12 @@ public class DetailedActivity extends BaseActivity {
         setContentView(R.layout.activity_detailed);
         ButterKnife.bind(this);
         hiedBar(this);
+        new TitleBuder(this).setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        }).setTitleText("积分明细");
         JSONArray array = new JSONArray();
         array.put(0);
         array.put(0);

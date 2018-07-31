@@ -35,4 +35,5 @@ dependencies {
     implementation project(':android-volley-master')
     implementation files('libs/gson-2.8.2.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
 }

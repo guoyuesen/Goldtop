@@ -2,10 +2,12 @@ package com.goldtop.gys.crdeit.goldtop.acticity;
 
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Adapters.FindAdapter;
 import com.goldtop.gys.crdeit.goldtop.Adapters.MsgAdapter;
@@ -35,7 +37,7 @@ public class NewsActivity extends BaseActivity{
     @Bind(R.id.news_tab3)
     ListView newTab3;
     private ListView listView;
-    private View view;
+    private TextView view;
     private FindAdapter adapter1;
     private int Vx;
     private int Vy;
@@ -53,6 +55,7 @@ public class NewsActivity extends BaseActivity{
                 finish();
             }
         });
+        view = findViewById(R.id.news_tabhost1);
         newTab1.setVisibility(View.VISIBLE);
         JSONArray array = new JSONArray();
         array.put(1);
@@ -74,19 +77,14 @@ public class NewsActivity extends BaseActivity{
         W = ContextUtil.getX(this)/8+ContextUtil.dip2px(this,20);
         newTabb.setTranslationX(W);
     }
-    /*@Override
-    public View onCreatea(@Nullable Bundle savedInstanceState) {
 
-        if (view != null) {
-            return view;
-        } else {
-            view = inflater.inflate(R.layout.news, container, false);
-
-            return view;
-        }
-    }*/
     @OnClick({R.id.news_tabhost1, R.id.news_tabhost2, R.id.news_tabhost3})
     public void onClick(View view) {
+        if (view.getId()==this.view.getId())
+            return;
+        this.view.setTextColor(Color.parseColor("#888888"));
+        this.view = (TextView) view;
+        this.view.setTextColor(Color.parseColor("#000000"));
         listView.setVisibility(View.GONE);
         newTabb.setTranslationX(W);
         switch (view.getId()){

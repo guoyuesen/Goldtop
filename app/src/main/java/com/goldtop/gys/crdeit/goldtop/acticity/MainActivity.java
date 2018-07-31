@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
         BaseActivity.hiedBar(this);
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.Main_img);
-        MyVolley.getImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530505201952&di=94c33304ac265b82d21fef0db81c19c8&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0149eb5907e5aca801214550866692.png%401280w_1l_2o_100sh.png",imageView);
+        //MyVolley.getImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530505201952&di=94c33304ac265b82d21fef0db81c19c8&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0149eb5907e5aca801214550866692.png%401280w_1l_2o_100sh.png",imageView);
         DateButton dateButton = findViewById(R.id.Main_btn);
         dateButton.setthisText("4S");
         dateButton.setNum(4);

@@ -5,64 +5,80 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dip"
         android:background="@color/white"
+        android:layout_margin="0.5dip"
         >
         <ImageView
-            android:layout_width="120dip"
-            android:layout_height="120dip"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
             android:src="@mipmap/fragment_shping_03"
-            android:layout_marginLeft="42dip"
+            android:layout_marginLeft="15dip"
             android:layout_marginTop="20dp"
             />
         <TextView
             android:layout_width="51dip"
             android:layout_height="16dip"
             android:background="@mipmap/fragment_shping_02"
-            android:layout_marginTop="9dip"
-            android:layout_marginLeft="9dip"
+            android:layout_marginTop="18dip"
+            android:layout_marginRight="10dip"
             android:text="热门推荐"
             android:textColor="#ffffffff"
             android:textSize="10sp"
             android:gravity="center"
+            android:layout_alignParentRight="true"
             />
         <ImageView
             android:layout_width="13dip"
             android:layout_height="13dip"
-            android:layout_marginLeft="8dip"
-            android:layout_marginTop="35dip"
+            android:layout_marginLeft="131dip"
+            android:layout_marginTop="102dip"
             android:background="@mipmap/fragment_shping_04"
+            />
+        <TextView
+            android:id="@+id/shping_jf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textColor="#ffff7f00"
+            android:textSize="20sp"
+            android:layout_marginTop="92dip"
+            android:layout_marginLeft="148dip"
+            android:textStyle="bold"
+
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9积分"
+            android:text="积分"
             android:textColor="#ffff7f00"
             android:textSize="13sp"
-            android:layout_marginTop="32dip"
-            android:layout_marginLeft="25dip"
-
+            android:layout_marginTop="100dip"
+            android:layout_toRightOf="@+id/shping_jf"
+            android:layout_marginLeft="2dip"
             />
         <TextView
-            android:layout_width="75dp"
-            android:layout_height="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dip"
             android:text="智能温度计"
             android:textColor="#ff686868"
             android:textSize="14sp"
-            android:layout_marginLeft="49dip"
-            android:layout_marginTop="150dip"
+            android:layout_marginLeft="130dip"
+            android:layout_marginTop="15dip"
+            android:layout_marginRight="79dip"
             />
         <TextView
             android:layout_width="74dip"
-            android:layout_height="20dip"
+            android:layout_height="24dip"
             android:gravity="center"
             android:text="立即兑换"
             android:textColor="#ffff7f00"
             android:textSize="12sp"
-            android:layout_marginLeft="46dip"
-            android:layout_marginTop="179dip"
+            android:layout_marginTop="98dip"
             android:layout_marginBottom="15dip"
+            android:layout_marginRight="10dip"
             android:background="@drawable/button_transparent_ff7f00"
+            android:layout_alignParentRight="true"
             />
     </RelativeLayout>
 

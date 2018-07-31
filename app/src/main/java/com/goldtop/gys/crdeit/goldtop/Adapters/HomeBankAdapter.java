@@ -85,6 +85,8 @@ public class HomeBankAdapter extends BaseAdapter {
             item.bankName = view.findViewById(R.id.home_bank_name);
             item.userName = view.findViewById(R.id.home_card_name);
             item.bankNumber = view.findViewById(R.id.home_card_number);
+            item.money1 = view.findViewById(R.id.home_card_money1);
+            item.money2 = view.findViewById(R.id.home_card_money2);
             view.setTag(item);
         }else {
             item = (ThisItem) view.getTag();
@@ -102,7 +104,6 @@ public class HomeBankAdapter extends BaseAdapter {
                     public void onClick(View view) {
                         try {
                             WebUtilActivity.InWeb(context,Action.openCard+"?custId="+UserModel.custId+"&cardId="+object.getString("id"),"",null);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -112,12 +113,15 @@ public class HomeBankAdapter extends BaseAdapter {
 
                 if (object.getBoolean("havePaymentPlan")){
                     item.button.setText("查看详情");
+                    item.money1.setText(""+object.getDouble("applyAmt"));
+                    item.money2.setText(""+object.getDouble("balanceAmt"));
                     item.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             try {
                                 Intent intent = new Intent(context, RepaymentMsgActivity.class);
                                 intent.putExtra("card", object.getString("accountCode"));
+                                intent.putExtra("jsono",object.toString());
                                 context.startActivity(intent);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -129,9 +133,13 @@ public class HomeBankAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View view) {
                             try {
-                                Intent intent = new Intent(context, RepaymentInstallActivity.class);
-                                intent.putExtra("cardid", object.getString("accountCode"));
-                                context.startActivity(intent);
+                                if (object.getString("bindStatus").equals("INIT")){
+                                    Toast.makeText(context,"绑卡信息有误，暂不能设置计划",Toast.LENGTH_LONG).show();
+                                }else {
+                                    Intent intent = new Intent(context, RepaymentInstallActivity.class);
+                                    intent.putExtra("cardid", object.getString("accountCode"));
+                                    context.startActivity(intent);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -151,7 +159,8 @@ public class HomeBankAdapter extends BaseAdapter {
         TextView bankName;
         TextView userName;
         TextView bankNumber;
-        
+        TextView money1;
+        TextView money2;
 
     }
 }

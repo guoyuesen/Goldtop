@@ -9,6 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/Main_img"
+        android:src="@mipmap/main_img"
+        android:scaleType="fitXY"
         />
 <com.goldtop.gys.crdeit.goldtop.view.DateButton
     android:id="@+id/Main_btn"

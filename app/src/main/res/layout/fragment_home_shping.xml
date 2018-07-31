@@ -6,8 +6,8 @@
         android:id="@+id/home_shping_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:dividerHeight="18dip"
+        android:numColumns="1"
+        android:dividerHeight="1dip"
         android:scrollbars="none"
         ></com.goldtop.gys.crdeit.goldtop.view.HeaderGridView>
     <RelativeLayout
@@ -15,6 +15,7 @@
         android:layout_height="62dip"
         android:paddingTop="22dip"
         android:background="#80ffffff"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="match_parent"

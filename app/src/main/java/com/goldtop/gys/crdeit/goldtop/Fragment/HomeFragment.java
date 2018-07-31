@@ -16,16 +16,20 @@ import android.widget.RelativeLayout;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeBankAdapter;
+import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.ReceivablesActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.view.HttpsDialogView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +54,7 @@ public class HomeFragment extends Fragment {
     ListView homeFrameList;
     private View view;
     HomeBankAdapter adapter;
+    HttpsDialogView dialog;
 
     @Nullable
     @Override
@@ -80,13 +85,13 @@ public class HomeFragment extends Fragment {
         hview.findViewById(R.id.home_frame_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                WebUtilActivity.InWeb(getContext(),"https://h5.blackfish.cn/bill/credit-card-manager/page-index?channel=RZnfboTz&ID=015","",null);
             }
         });
         hview.findViewById(R.id.home_frame_btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),MyCardActivity.class));
+                startActivity(new Intent(getContext(),ReceivablesActivity.class));
             }
         });
         hview.findViewById(R.id.home_frame_btn3).setOnClickListener(new View.OnClickListener() {
@@ -98,7 +103,7 @@ public class HomeFragment extends Fragment {
         hview.findViewById(R.id.home_frame_btn4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getContext(),VipActivity.class));
             }
         });
         homeFrameList.addHeaderView(hview);
@@ -130,14 +135,20 @@ public class HomeFragment extends Fragment {
         map.put("custId", UserModel.custId);
         map.put("cardType","C");
         Log.d(Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C"+"==》","");
+        if (dialog==null){
+            dialog = new HttpsDialogView(getContext());
+            dialog.show();
+        }else if (!dialog.isShowing()){
+            dialog.show();
+        }
         MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C", map, new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
-
                 try {
                     if (jsonObject.getString("code").equals("1")){
                         JSONArray array = jsonObject.getJSONArray("data");
-                        adapter.notifyDataSetChanged(array);
+                        getcards(array);
+                        //adapter.notifyDataSetChanged(array);
                         //Log.d("data==》",""+array.toString());
                     }
                 } catch (JSONException e) {
@@ -147,7 +158,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                dialog.dismiss();
             }
         }));
         super.onStart();
@@ -157,5 +168,47 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+    public void getcards(final JSONArray a){
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.paymentSchedule+"?custId="+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getString("code").equals("1")){
+                        JSONArray array = jsonObject.getJSONArray("data");
+                        for (int i = 0;i<a.length();i++){
+                            String number = a.getJSONObject(i).getString("accountCode");
+                            for (int j = 0;j<array.length();j++){
+                                if (array.getJSONArray(0).length()>0){
+                                    JSONObject object = array.getJSONArray(0).getJSONObject(0);
+                                    if (number.equals(object.getString("cardNo"))){
+                                        a.getJSONObject(i).put("applyId",object.getString("applyId"));
+                                        a.getJSONObject(i).put("balanceAmt",object.getString("balanceAmt"));
+                                        a.getJSONObject(i).put("transFee",object.getString("transFee"));
+                                        a.getJSONObject(i).put("totalTerm",object.getString("totalTerm"));
+                                        a.getJSONObject(i).put("currPaymentAmt",object.getString("currPaymentAmt"));
+                                        a.getJSONObject(i).put("deadline",object.getString("deadline"));
+                                        a.getJSONObject(i).put("balanceTerm",object.getString("balanceTerm"));
+                                        a.getJSONObject(i).put("applyAmt",object.getString("applyAmt"));
+                                    }
+                                }
+                            }
+                        }
+                        adapter.notifyDataSetChanged(a);
+                        //Log.d("data==》",""+array.toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (dialog.isShowing())
+                    dialog.dismiss();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (dialog.isShowing())
+                    dialog.dismiss();
+            }
+        }));
     }
 }
