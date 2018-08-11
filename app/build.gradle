@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -36,4 +36,16 @@ dependencies {
     implementation files('libs/gson-2.8.2.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.bigkoo:convenientbanner:2.0.5'
+}
+MobSDK {
+    appKey "2754c48a1b426"
+    appSecret "f66937b6d970088ae28f37e99d1dd8ae"
+    ShareSDK {
+        devInfo {
+            Wechat {
+                appId "wx6ba6c1cfaec6442b"
+                appSecret "cbd386f122bfbc06fc1d6be240eff19a"
+            }
+        }
+    }
 }

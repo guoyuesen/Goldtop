@@ -32,4 +32,15 @@ public class Action {
     public static String paymentPlanListByDate = url+"/payment/paymentPlanListByDate";
     //取消计划
     public static String closePlan = url+"/payment/cancelPaymentPlan";
+    //实名认证状态
+    public static String smrz = url+"/app/registryStatus/";
+    //收款
+    public static String withdraw = url+"/tx/withdraw";
+    //钱包
+    public static String totalIncome = url+"/userProfit/totalIncome/";
+    //钱包
+    public static String tradeDetail = url+"/userProfit/tradeDetail";
+    //钱包
+    public static String customerAnalysis = url+"/userProfit/customerAnalysis?custId=";
+
 }

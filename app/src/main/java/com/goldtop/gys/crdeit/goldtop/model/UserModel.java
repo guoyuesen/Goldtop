@@ -30,10 +30,10 @@ public class UserModel {
     public static String identifyingCode="";//
     public static String roleList="";//
     public static String menuList="";//
+    public static String shiMrenz="REG_ING";//
 public static void setInfo(JSONObject object){
     try {
         id=object.getString("id")==null?"":object.getString("id");
-
     custId=object.getString("custId")==null?"":object.getString("custId");
     custPassword=object.getString("custPassword")==null?"":object.getString("custPassword");
     custName=object.getString("custName")==null?"":object.getString("custName");
@@ -45,14 +45,11 @@ public static void setInfo(JSONObject object){
     address=object.getString("address")==null?"":object.getString("address");
     custLevelSample=object.getString("custLevelSample")==null?"":object.getString("custLevelSample");
     introducerId=object.getString("introducerId")==null?"":object.getString("introducerId");
-    custStatus=object.getString("custStatus")==null?"":object.getString("custStatus");
+    custStatus=object.getString("custStatus")==null?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"REG_ING");
     lastLogin=object.getString("lastLogin")==null?"":object.getString("lastLogin");
     createdTime=object.getString("createdTime")==null?"":object.getString("createdTime");
     bankCards=object.getString("bankCards")==null?"":object.getString("bankCards");
-    op=object.getString("op")==null?"":object.getString("op");
     identifyingCode=object.getString("identifyingCode")==null?"":object.getString("identifyingCode");
-    roleList=object.getString("roleList")==null?"":object.getString("roleList");
-    menuList=object.getString("menuList")==null?"":object.getString("menuList");
     } catch (JSONException e) {
         Log.d("","json格式错误");
     }

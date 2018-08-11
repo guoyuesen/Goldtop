@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="59dip"
+        android:layout_marginBottom="53dip"
         >
         <FrameLayout
             android:layout_width="match_parent"
@@ -21,12 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="58dip"
+        android:layout_marginBottom="52dip"
         android:background="#cccccc"
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="58dip"
+        android:layout_height="52dip"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:background="#ffffff"
@@ -39,8 +39,8 @@
             >
             <ImageView
                 android:id="@+id/home_bottom_img1"
-                android:layout_width="28dip"
-                android:layout_height="28dip"
+                android:layout_width="21dip"
+                android:layout_height="22dip"
                 android:src="@mipmap/activity_home_01_1"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
@@ -65,8 +65,8 @@
             >
             <ImageView
                 android:id="@+id/home_bottom_img2"
-                android:layout_width="29dip"
-                android:layout_height="29dip"
+                android:layout_width="22dip"
+                android:layout_height="22dip"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="24dip"
@@ -90,8 +90,8 @@
             >
             <ImageView
                 android:id="@+id/home_bottom_img3"
-                android:layout_width="28dip"
-                android:layout_height="28dip"
+                android:layout_width="21dip"
+                android:layout_height="22dip"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="25dip"
@@ -117,12 +117,13 @@
             >
             <ImageView
                 android:id="@+id/home_bottom_img4"
-                android:layout_width="23dip"
-                android:layout_height="26dip"
+                android:layout_width="22dip"
+                android:layout_height="22dip"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="23dip"
                 android:src="@mipmap/activity_home_04_0"
+                android:scaleType="fitXY"
                 />
             <TextView
                 android:id="@+id/home_bottom_text4"

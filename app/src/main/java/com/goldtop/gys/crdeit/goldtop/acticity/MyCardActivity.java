@@ -7,12 +7,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Adapters.MyCardAdapter;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.view.ReceivablesDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,15 +50,36 @@ public class MyCardActivity extends BaseActivity {
             }
         });
         JSONArray array = new JSONArray();
-        array.put(0);
-        array.put(0);
-        array.put(0);
         myCardList.setAdapter(new MyCardAdapter(this,array));
         myCardList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MyCardActivity.this,ReceivablesActivity.class));
+                //startActivity(new Intent(MyCardActivity.this,ReceivablesActivity.class));
             }
         });
+        getcard();
+    }
+
+    public void getcard(){
+        Httpshow(this);
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard+"?custId="+ UserModel.custId+"&cardType=D", new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                Httpdismiss();
+                try {
+                    if (jsonObject.getString("code").equals("1")){
+                        JSONArray array = jsonObject.getJSONArray("data");
+                        myCardList.setAdapter(new MyCardAdapter(MyCardActivity.this,array));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Httpdismiss();
+            }
+        }));
     }
 }

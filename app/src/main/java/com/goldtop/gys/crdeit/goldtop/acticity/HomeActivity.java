@@ -171,7 +171,7 @@ public class HomeActivity extends AppCompatActivity {
                         fragmentTransaction.show(meFragment).commit();
                     }
                     fragment = meFragment;
-                    homeBottomImg4.setImageResource(R.mipmap.activity_home_01_1);
+                    homeBottomImg4.setImageResource(R.mipmap.activity_home_04_1);
                     homeBottomImg4.startAnimation(AnimationUtils.loadAnimation(this, R.anim.img_click));
                 break;
         }

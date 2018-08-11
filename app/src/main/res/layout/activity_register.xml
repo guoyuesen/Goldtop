@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/base_title_layout"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#80aaaaaa"
+        />
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="50dip"
@@ -24,11 +29,16 @@
         android:layout_height="match_parent"
        android:layout_marginLeft="14dip"
         android:text="手机号码"
-        android:textColor="#ffb1b1b1"
+        android:textColor="#A2A2A2"
         android:textSize="15sp"
         android:gravity="center_vertical"
         />
 </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#80aaaaaa"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -52,7 +62,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="14dip"
             android:text="验证码"
-            android:textColor="#ffb1b1b1"
+            android:textColor="#A2A2A2"
             android:textSize="15sp"
             android:gravity="center_vertical"
             />
@@ -64,11 +74,16 @@
             android:textColor="#fffece00"
             android:textSize="13sp"
             android:layout_alignParentRight="true"
-            android:background="@color/white"
+            android:background="@color/transparent"
             android:layout_centerVertical="true"
 
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#80aaaaaa"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -91,11 +106,16 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="14dip"
             android:text="输入密码"
-            android:textColor="#ffb1b1b1"
+            android:textColor="#A2A2A2"
             android:textSize="15sp"
             android:gravity="center_vertical"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#80aaaaaa"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -118,11 +138,16 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="14dip"
             android:text="确认密码"
-            android:textColor="#ffb1b1b1"
+            android:textColor="#A2A2A2"
             android:textSize="15sp"
             android:gravity="center_vertical"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#80aaaaaa"
+        />
     <RelativeLayout
         android:id="@+id/update_pass"
         android:layout_width="match_parent"
@@ -145,7 +170,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="14dip"
             android:text="邀请码"
-            android:textColor="#ffb1b1b1"
+            android:textColor="#A2A2A2"
             android:textSize="15sp"
             android:gravity="center_vertical"
             />
@@ -161,6 +186,7 @@
         android:text="立即注册"
         android:textColor="#ff000000"
         android:textSize="18sp"
+        android:elevation="3dip"
         />
 <RelativeLayout
     android:layout_width="match_parent"

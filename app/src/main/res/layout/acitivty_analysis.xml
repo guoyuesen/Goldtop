@@ -36,9 +36,10 @@
             android:layout_centerHorizontal="true"
             />
         <TextView
+            android:id="@+id/analysis_toonum"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:text="324"
+            android:text="0"
             android:textColor="#ff333333"
             android:textSize="40sp"
             android:layout_centerHorizontal="true"
@@ -58,9 +59,10 @@
                 android:layout_weight="1"
                 >
                 <TextView
+                    android:id="@+id/analysis_nex"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:text="21"
+                    android:text="0"
                     android:textColor="#fffece00"
                     android:textSize="17sp"
                     />
@@ -79,6 +81,7 @@
                 android:background="#80dcdcdc"
                 android:layout_marginTop="10dip"
                 android:layout_marginBottom="10dip"
+                android:visibility="gone"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,11 +89,12 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="1"
+                android:visibility="gone"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:text="21"
+                    android:text="0"
                     android:textColor="#fffece00"
                     android:textSize="17sp"
                     />
@@ -118,9 +122,10 @@
                 android:layout_weight="1"
                 >
                 <TextView
+                    android:id="@+id/analysis_vip"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:text="21"
+                    android:text="0"
                     android:textColor="#fffece00"
                     android:textSize="17sp"
                     />

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -66,6 +67,7 @@ public class MyVolley {
      * 加入请求队列
      */
     public static void addRequest(Request<?> request){
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0, 1.0f));
         getRequestQueue().add(request);
     }
 

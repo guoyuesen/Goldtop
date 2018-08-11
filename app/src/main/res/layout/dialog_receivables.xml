@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dip">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="请选择"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        />
+    <ImageView
+        android:id="@+id/receivables_dialog_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/close"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="19dip"
+        />
+    <ImageView
+        android:id="@+id/receivables_dialog_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/addc"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="19dip"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加"
+        android:textColor="#ffff7f00"
+        android:textSize="15sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="42dip"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>
+
+        <ListView
+            android:id="@+id/receivables_dialog_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:paddingLeft="40dip"
+            android:paddingRight="40dip"
+            ></ListView>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"/>
+</LinearLayout>

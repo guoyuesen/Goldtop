@@ -58,11 +58,7 @@ public class ShpingFragment extends Fragment {
 
     private void intActivity() {
         JSONArray array = new JSONArray();
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
+
         initHead();
 
         bommView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_bomm, null);

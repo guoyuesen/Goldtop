@@ -95,9 +95,9 @@ public class RepaymentMsgActivity extends BaseActivity {
             bommNumber = Footer.findViewById(R.id.item_repayment_bomm_bank);
             bommTime = Footer.findViewById(R.id.item_repayment_bomm_creattime);
             bommorder = Footer.findViewById(R.id.item_repayment_bomm_order);
-            bommNumber.setText("XXXXXXXXXX(" + card.substring(card.length() - 4) + ")");
             try {
-                bommTime.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
+            bommNumber.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
+            bommTime.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -143,7 +143,7 @@ public class RepaymentMsgActivity extends BaseActivity {
                 herdtext03.setText("/" + (cardobj.getInt("totalTerm") / 2));
                 herdtext04.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
                 herdtext05.setText("" + cardobj.getDouble("applyAmt"));
-                herdtext06.setText("XXXXXXXXXX(" + card.substring(card.length() - 4) + ")");
+                herdtext06.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

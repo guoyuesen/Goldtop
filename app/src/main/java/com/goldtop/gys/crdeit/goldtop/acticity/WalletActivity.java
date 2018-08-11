@@ -5,10 +5,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +50,28 @@ public class WalletActivity extends BaseActivity {
                 finish();
             }
         }).setTitleText("钱包");
+        MyVolley.addRequest(new VolleyRequest(Action.totalIncome+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getString("code").equals("1")){
+                        JSONObject object = jsonObject.getJSONObject("data");
+                        walletMoney.setText(""+object.getDouble("totalIncomeAmount"));
+                        walletMoneyNum.setText(""+object.getString("incomeCount"));
+                        walletUserNum.setText(object.getInt("custNum"));
+                    }else {
+                        Toast.makeText(WalletActivity.this,"message",Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
     }
 
     @OnClick({R.id.wallet_R_01, R.id.wallet_R_02, R.id.wallet_R_03, R.id.wallet_R_04})

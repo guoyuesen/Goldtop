@@ -62,13 +62,10 @@ public class NewsActivity extends BaseActivity{
         array.put(1);
         newTab1.setAdapter(new NewsAdapter(this, array));
         JSONArray array1 = new JSONArray();
-        array1.put(1);
-        array1.put(1);
+
         newTab2.setAdapter(new MsgAdapter(this, array1));
         JSONArray array2 = new JSONArray();
-        array2.put(1);
-        array2.put(1);
-        array2.put(1);
+
         newTab3.setAdapter(new MsgAdapter(this, array2));
 
         listView = newTab1;

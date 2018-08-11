@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebBackForwardList;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -19,6 +20,8 @@ import android.webkit.WebViewClient;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
+
+import java.lang.ref.WeakReference;
 
 /**
  * Created by 郭月森 on 2018/6/26.
@@ -52,6 +55,15 @@ public class WebUtilActivity extends BaseActivity {
             });
         }
         view = findViewById(R.id.util_web);
+        //view.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        WebSettings webSettings = view.getSettings();
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setLoadWithOverviewMode(true);
+        // 设置与Js交互的权限
+        webSettings.setJavaScriptEnabled(true);
+        // 设置允许JS弹窗
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         view.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -74,6 +86,7 @@ public class WebUtilActivity extends BaseActivity {
                 }
                 }
         });
+        view.addJavascriptInterface(new JavaFuckJSInterface(this), "App");
         if (getIntent().getBundleExtra("bundle")!=null){
             mHtml = getIntent().getBundleExtra("bundle").getString("html");
             view.loadDataWithBaseURL(null, mHtml, "text/html", "utf-8",null);
@@ -99,6 +112,17 @@ public class WebUtilActivity extends BaseActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+    public class JavaFuckJSInterface{
+        private WeakReference<WebUtilActivity> x5WebViewActivity;
 
+        public JavaFuckJSInterface(WebUtilActivity context) {
+            x5WebViewActivity = new WeakReference<>(context);
+        }
+        //通过这个@JavascriptInterface转化成绑定的“App”对象下的同名函数，js代码可以直接调用
+        @JavascriptInterface
+        public void close() {
+            x5WebViewActivity.get().finish();
+        }
+    }
 
 }

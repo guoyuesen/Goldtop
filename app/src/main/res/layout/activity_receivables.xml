@@ -36,6 +36,7 @@
             android:layout_marginLeft="63dip"
             android:layout_marginTop="76dip"
             android:background="@color/white"
+            android:inputType="number"
             />
 
 
@@ -64,6 +65,7 @@
             />
     </LinearLayout>
     <RelativeLayout
+        android:id="@+id/receivables_outcard"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="50dip">
@@ -80,7 +82,7 @@
             android:id="@+id/receivables_card01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="广东银行股份有限公司（2142）"
+            android:text="请选择"
             android:textColor="#ff888888"
             android:textSize="16sp"
             android:layout_centerVertical="true"
@@ -93,6 +95,7 @@
         android:background="#557A7A7A"
         />
     <RelativeLayout
+        android:id="@+id/receivables_incard"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="50dip">
@@ -109,7 +112,7 @@
             android:id="@+id/receivables_card02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="广东银行股份有限公司（2142）"
+            android:text="请选择"
             android:textColor="#ff888888"
             android:textSize="16sp"
             android:layout_centerVertical="true"

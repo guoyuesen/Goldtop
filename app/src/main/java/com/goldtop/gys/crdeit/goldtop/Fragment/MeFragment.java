@@ -1,6 +1,9 @@
 package com.goldtop.gys.crdeit.goldtop.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddressActivity;
@@ -25,7 +31,17 @@ import com.goldtop.gys.crdeit.goldtop.acticity.RegisterActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.SettionsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WalletActivity;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.view.RImageView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,6 +68,8 @@ public class MeFragment extends Fragment {
     TextView name;
     @Bind(R.id.me_f_phone)
     TextView phone;
+    @Bind(R.id.me_f_rz)
+    TextView me_f_rz;
     private View view;
 
     @Nullable
@@ -62,6 +80,9 @@ public class MeFragment extends Fragment {
         } else {
             view = inflater.inflate(R.layout.fragment_me, container, false);
             ButterKnife.bind(this, view);
+            RImageView imageView = view.findViewById(R.id.fragment_me_icon);
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.mipmap.fragment_me_01);
+            imageView.setStroke(Color.parseColor("#ffffff"),3).setImageBitmap(bm);
             return view;
         }
         //return super.onCreateView(inflater, container, savedInstanceState);
@@ -78,6 +99,48 @@ public class MeFragment extends Fragment {
             fragmentMeLogin.setVisibility(View.GONE);
             name.setText(UserModel.custName);
             phone.setText(UserModel.custMobile);
+        }
+        switch (UserModel.shiMrenz){
+            case "REG_SUCCESS":
+                me_f_rz.setText("已认证");
+                break;
+            case "REG_ING":
+                me_f_rz.setText("审核中");
+                break;
+            case "INIT":
+                me_f_rz.setText("未认证");
+                break;
+        }
+        if (UserModel.shiMrenz.equals("REG_ING")){
+            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.smrz+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+                @Override
+                public void CallBack(JSONObject jsonObject) {
+                    try {
+                        if (jsonObject.getString("code").equals("1")){
+                            JSONObject object = jsonObject.getJSONObject("data");
+                            UserModel.shiMrenz = object.getString("desciption");
+                            switch (UserModel.shiMrenz){
+                                case "REG_SUCCESS":
+                                    me_f_rz.setText("已认证");
+                                    break;
+                                case "REG_ING":
+                                    me_f_rz.setText("审核中");
+                                    break;
+                                case "INIT":
+                                    me_f_rz.setText("未认证");
+                                    break;
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }));
         }
     }
 
@@ -105,7 +168,9 @@ public class MeFragment extends Fragment {
             case R.id.me_f_integral_l://积分
                 break;
             case R.id.me_f_authentication_l://实名认证
-                getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
+                if (UserModel.shiMrenz.equals("INIT")){
+                    getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
+                }
                 break;
             case R.id.me_f_card_l://我的银行卡
                 getActivity().startActivity(new Intent(getContext(), MyCardActivity.class));

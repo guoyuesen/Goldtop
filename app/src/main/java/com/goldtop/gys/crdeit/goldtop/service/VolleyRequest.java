@@ -16,8 +16,11 @@ import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by 郭月森 on 2018/6/21.
@@ -67,7 +70,6 @@ public class VolleyRequest extends Request<String>{
             }
         }
     }
-
     @Override
     protected Response<String> parseNetworkResponse(NetworkResponse response) {
         String parsed;

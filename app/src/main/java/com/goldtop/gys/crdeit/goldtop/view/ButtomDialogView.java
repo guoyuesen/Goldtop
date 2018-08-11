@@ -52,6 +52,7 @@ public class ButtomDialogView extends Dialog {
         });
         scrollView = view.findViewById(R.id.dialog_address_scroll);
         linearLayout = view.findViewById(R.id.dialog_address_layout);
+
         //this.iscancelable = isCancelable;
 
     }

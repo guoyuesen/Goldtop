@@ -99,6 +99,7 @@ public class HomeBankAdapter extends BaseAdapter {
             item.bankNumber.setText(object.getString("accountCode").substring(object.getString("accountCode").length()-4));
 
             if (object.getString("openStatus").equals("INIT")){
+                item.button.setText("银联认证");
                 item.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -109,7 +110,9 @@ public class HomeBankAdapter extends BaseAdapter {
                         }
                     }
                 });
-            }else {
+            }else if(object.getString("openStatus").equals("OPEN_FAIL")){
+                item.button.setText("开卡失败");
+            }else{
 
                 if (object.getBoolean("havePaymentPlan")){
                     item.button.setText("查看详情");
@@ -127,11 +130,15 @@ public class HomeBankAdapter extends BaseAdapter {
                                 e.printStackTrace();
                             }
                         }});
-                }else {
+                }else{
                     item.button.setText("立即还款");
                     item.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            if (!UserModel.shiMrenz.equals("REG_SUCCESS")){
+                                Toast.makeText(context,"您还未实名认证，请先进行实名认证",Toast.LENGTH_LONG).show();
+                                return;
+                            }
                             try {
                                 if (object.getString("bindStatus").equals("INIT")){
                                     Toast.makeText(context,"绑卡信息有误，暂不能设置计划",Toast.LENGTH_LONG).show();

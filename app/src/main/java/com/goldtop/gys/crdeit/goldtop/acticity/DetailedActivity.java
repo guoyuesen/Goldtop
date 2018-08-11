@@ -36,12 +36,6 @@ public class DetailedActivity extends BaseActivity {
             }
         }).setTitleText("积分明细");
         JSONArray array = new JSONArray();
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
         detailedList.setAdapter(new DetailedAdapter(this,array));
     }
 }

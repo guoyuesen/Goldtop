@@ -16,7 +16,9 @@ import android.widget.RelativeLayout;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeBankAdapter;
+import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
+import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
@@ -78,7 +80,6 @@ public class HomeFragment extends Fragment {
             }
         });
         JSONArray array = new JSONArray();
-        array.put(0);
         adapter = new HomeBankAdapter(getContext(),array);
         homeFrameList.setAdapter(adapter);
         View hview = LayoutInflater.from(getContext()).inflate(R.layout.item_home_top,null);
@@ -91,13 +92,18 @@ public class HomeFragment extends Fragment {
         hview.findViewById(R.id.home_frame_btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
                 startActivity(new Intent(getContext(),ReceivablesActivity.class));
             }
         });
         hview.findViewById(R.id.home_frame_btn3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
             }
         });
         hview.findViewById(R.id.home_frame_btn4).setOnClickListener(new View.OnClickListener() {
@@ -111,6 +117,9 @@ public class HomeFragment extends Fragment {
         view.findViewById(R.id.home_add_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
                 startActivity(new Intent(getContext(), AddCard01Activity.class));
             }
         });
@@ -124,6 +133,9 @@ public class HomeFragment extends Fragment {
         homeFrameMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
                 getActivity().startActivity(new Intent(getContext(), NewsActivity.class));
             }
         });
@@ -175,6 +187,7 @@ public class HomeFragment extends Fragment {
             public void CallBack(JSONObject jsonObject) {
                 try {
                     if (jsonObject.getString("code").equals("1")){
+                        Log.d("===>",jsonObject.toString());
                         JSONArray array = jsonObject.getJSONArray("data");
                         for (int i = 0;i<a.length();i++){
                             String number = a.getJSONObject(i).getString("accountCode");

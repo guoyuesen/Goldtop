@@ -1,5 +1,7 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -123,8 +125,26 @@ public class RepaymentInstallActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.install_submit:
-                if (s)
-                submit();
+                if (s) {
+                    AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                    builder.setTitle("温馨提示");
+                    builder.setMessage("执行此计划需要卡余额"+daymoney+"元，请确保卡余额度充足，不足请充值");
+                    builder.setPositiveButton("取消",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                    builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            submit();
+                        }
+                    });
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
                 break;
             case R.id.install_xuanze:
                 dialogView.show();
