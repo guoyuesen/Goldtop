@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by 郭月森 on 2018/7/6.
@@ -46,8 +49,32 @@ public class HomeShpingAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view == null)
-            view = LayoutInflater.from(context).inflate(R.layout.item_home_shping,null);
+        ThisItem item = null;
+        if (view == null) {
+            item = new ThisItem();
+            view = LayoutInflater.from(context).inflate(R.layout.item_home_shping, null);
+            item.img = view.findViewById(R.id.item_sp_img);
+            item.text = view.findViewById(R.id.item_sp_text);
+            item.jf = view.findViewById(R.id.item_sp_jf);
+            view.setTag(item);
+        }else {
+            item = (ThisItem) view.getTag();
+        }
+        try {
+            JSONObject object = array.getJSONObject(i);
+            item.img.setImageResource(object.getInt("img"));
+            item.text.setText(object.getString("text"));
+            item.jf.setText(""+object.getInt("jf"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return view;
+    }
+    class ThisItem{
+        ImageView img;
+        TextView text;
+        TextView jf;
+
     }
 }

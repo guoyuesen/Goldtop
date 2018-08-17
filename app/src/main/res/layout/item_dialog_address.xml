@@ -7,14 +7,14 @@
         android:layout_height="wrap_content"
         android:text="王芳"
         android:textColor="#ffff7f00"
-        android:textSize="15sp"
+        android:textSize="15dip"
         />
     <TextView
         android:layout_width="102dp"
         android:layout_height="21dp"
         android:text="18823789797"
         android:textColor="#ffff7f00"
-        android:textSize="15sp"
+        android:textSize="15dip"
         android:layout_marginLeft="53dip"
         />
     <ImageView
@@ -28,7 +28,7 @@
         android:layout_height="50dip"
         android:text="四川省成都市青羊区武侯大道地铁口325号"
         android:textColor="#ffff7f00"
-        android:textSize="15sp"
+        android:textSize="15dip"
         android:layout_marginTop="25dip"
         />
 </RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@mipmap/rates1"
+    android:scaleType="fitXY"
+    />
+    <include layout="@layout/base_title_layout"/>
+    <ImageView
+        android:layout_width="135dip"
+        android:layout_height="144dip"
+        android:layout_marginTop="93dip"
+        android:layout_marginLeft="25dip"
+        android:src="@mipmap/rates3"
+        />
+    <ImageView
+        android:layout_width="136dip"
+        android:layout_height="35dip"
+        android:layout_marginTop="149dip"
+        android:layout_marginLeft="170dip"
+        android:src="@mipmap/rates5"
+        />
+    <TextView
+        android:layout_width="141dp"
+        android:layout_height="22dp"
+        android:text="您当前用户等级为"
+        android:textColor="#ffffffff"
+        android:textSize="16dip"
+        android:layout_marginTop="118dip"
+        android:layout_marginLeft="170dip"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/rates2"
+        />
+    <TextView
+        android:id="@+id/rates_submit"
+        android:layout_width="335dip"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="115dip"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/home_repay_r"
+        android:text="立即成为VIP会员"
+        android:textColor="#ff000000"
+        android:textSize="17sp"
+        android:gravity="center"
+        />
+</RelativeLayout>

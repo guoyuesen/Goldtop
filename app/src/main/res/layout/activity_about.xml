@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <include layout="@layout/base_title_layout"/>
+    <ImageView
+        android:layout_width="73dip"
+        android:layout_height="73dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dip"
+        android:src="@mipmap/login_icon"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dip"
+        android:text="金陀螺"
+        android:textColor="#ff333333"
+        android:textSize="19dip"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dip"
+        android:layout_marginRight="60dip"
+        android:layout_centerVertical="true"
+        android:text="金陀螺是一款高效、简便、实用、安全的账单管理APP，该产品通过移动端导入信用卡账单，还款提醒等功能保障用户个人征信，让用户轻松管理信用卡。珍爱信用记录，享受财富人生。"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version 1.0.0"
+        android:textColor="#ffb9b9b9"
+        android:textSize="14dip"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dip"
+        />
+</RelativeLayout>

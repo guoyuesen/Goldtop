@@ -13,13 +13,13 @@
         android:layout_centerHorizontal="true"
         android:text="配送至"
         android:textColor="#ff333333"
-        android:textSize="16sp"
+        android:textSize="16dip"
         />
     <ImageView
         android:id="@+id/sp_dialog_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/close"
+        android:src="@mipmap/close1"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="19dip"
@@ -48,7 +48,7 @@
         android:layout_marginLeft="40dip"
         android:text="+ 新增收货地址"
         android:textColor="#ff333333"
-        android:textSize="15sp"
+        android:textSize="15dip"
         />
     <TextView
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         android:background="@drawable/home_repay_r"
         android:text="确认"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         android:gravity="center"
         />
 </LinearLayout>

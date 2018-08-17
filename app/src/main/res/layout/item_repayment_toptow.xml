@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="计划已生成，本期应还款额度"
         android:textColor="#ff333333"
-        android:textSize="15sp"
+        android:textSize="15dip"
         android:layout_marginTop="17dip"
         />
     <TextView
@@ -23,9 +23,10 @@
         android:layout_height="wrap_content"
         android:text=" 0.00"
         android:textColor="#ff333333"
-        android:textSize="35sp"
+        android:textSize="35dip"
         android:textStyle="bold"
         android:layout_marginTop="20dip"
+        android:layout_marginBottom="15dip"
         />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,7 +38,7 @@
             android:layout_height="21dp"
             android:text="预留金额"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dip"
             />
@@ -47,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="0.00元"
             android:textColor="#ffcecccc"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dip"
@@ -68,7 +69,7 @@
             android:layout_height="21dp"
             android:text="还款天数"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dip"
             />
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="3天"
             android:textColor="#ffcecccc"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dip"

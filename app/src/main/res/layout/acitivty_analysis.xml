@@ -14,7 +14,7 @@
             android:layout_height="20dp"
             android:text="数据概括"
             android:textColor="#ff888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:layout_marginLeft="10dip"
             />
     </LinearLayout>
@@ -31,7 +31,7 @@
             android:layout_height="20dp"
             android:text="近90天用户总数"
             android:textColor="#ff888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             />
@@ -41,7 +41,7 @@
             android:layout_height="56dp"
             android:text="0"
             android:textColor="#ff333333"
-            android:textSize="40sp"
+            android:textSize="40dip"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dip"
             />
@@ -64,14 +64,14 @@
                     android:layout_height="24dp"
                     android:text="0"
                     android:textColor="#fffece00"
-                    android:textSize="17sp"
+                    android:textSize="17dip"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:text="直推"
                     android:textColor="#ff888888"
-                    android:textSize="13sp"
+                    android:textSize="13dip"
                     android:layout_marginTop="10dip"
                     />
             </LinearLayout>
@@ -96,14 +96,14 @@
                     android:layout_height="24dp"
                     android:text="0"
                     android:textColor="#fffece00"
-                    android:textSize="17sp"
+                    android:textSize="17dip"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:text="团队"
                     android:textColor="#ff888888"
-                    android:textSize="13sp"
+                    android:textSize="13dip"
                     android:layout_marginTop="10dip"
                     />
             </LinearLayout>
@@ -127,14 +127,14 @@
                     android:layout_height="24dp"
                     android:text="0"
                     android:textColor="#fffece00"
-                    android:textSize="17sp"
+                    android:textSize="17dip"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:text="VIP"
                     android:textColor="#ff888888"
-                    android:textSize="13sp"
+                    android:textSize="13dip"
                     android:layout_marginTop="10dip"
                     />
             </LinearLayout>
@@ -152,7 +152,7 @@
         android:layout_height="17dp"
         android:text="暂时没有其他内容"
         android:textColor="#ffb0adad"
-        android:textSize="12sp"
+        android:textSize="12dip"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="353dip"
         android:background="#f9f9f9f9"

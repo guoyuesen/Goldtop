@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="陈成:经理"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="15dip"
                     />
                 <TextView
                     android:id="@+id/me_f_phone"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="18888888888"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
                     android:layout_marginTop="5dp"
                     />
                 </LinearLayout>
@@ -91,7 +91,7 @@
                         android:layout_height="match_parent"
                         android:text="注册"
                         android:textColor="#ffffffff"
-                        android:textSize="14sp"
+                        android:textSize="14dip"
                         android:gravity="center"
                         android:layout_weight="1"
                         />
@@ -108,7 +108,7 @@
                         android:layout_height="match_parent"
                         android:text="登录"
                         android:textColor="#ffffffff"
-                        android:textSize="14sp"
+                        android:textSize="14dip"
                         android:gravity="center"
                         android:layout_weight="1"
                         />
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:text="0.00"
                         android:textColor="#ffffbb00"
-                        android:textSize="16sp"
+                        android:textSize="16dip"
                         android:visibility="gone"
                         />
                         <TextView
@@ -150,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:text="元"
                             android:textColor="#ffffbb00"
-                            android:textSize="12sp"
+                            android:textSize="12dip"
                             android:visibility="gone"
                             />
                     </LinearLayout>
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:text="钱包"
                         android:textColor="#ff333333"
-                        android:textSize="12sp"
+                        android:textSize="12dip"
                         android:layout_marginTop="10dip"
                         />
                 </LinearLayout>
@@ -189,14 +189,14 @@
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:textColor="#ffe40202"
-                        android:textSize="16sp"
+                        android:textSize="16dip"
                         />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="个"
                             android:textColor="#ffe40202"
-                            android:textSize="12sp"
+                            android:textSize="12dip"
                             />
                     </LinearLayout>
                     <ImageView
@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:text="红包"
                         android:textColor="#ff333333"
-                        android:textSize="12sp"
+                        android:textSize="12dip"
                         android:layout_marginTop="10dip"
                         />
                 </LinearLayout>
@@ -234,14 +234,14 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="#ffffbb00"
-                        android:textSize="16sp"
+                        android:textSize="16dip"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="分"
                         android:textColor="#ffffbb00"
-                        android:textSize="12sp"
+                        android:textSize="12dip"
                         />
                 </LinearLayout>
                     <ImageView
@@ -254,7 +254,7 @@
                         android:layout_height="wrap_content"
                         android:text="积分"
                         android:textColor="#ff333333"
-                        android:textSize="12sp"
+                        android:textSize="12dip"
                         android:layout_marginTop="10dip"
                         />
                 </LinearLayout>
@@ -282,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:text="实名认证"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
                     android:layout_centerVertical="true"
                     />
                 <TextView
@@ -291,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:text="未认证"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="30dip"
@@ -331,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:text="我的银行卡"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -370,7 +370,7 @@
                     android:layout_height="wrap_content"
                     android:text="会员特权"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -409,7 +409,7 @@
                     android:layout_height="wrap_content"
                     android:text="邀请有奖"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -448,7 +448,7 @@
                     android:layout_height="wrap_content"
                     android:text="团队业绩"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -487,7 +487,7 @@
                     android:layout_height="wrap_content"
                     android:text="新手指南"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -526,7 +526,7 @@
                     android:layout_height="wrap_content"
                     android:text="我的客服"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -560,7 +560,7 @@
                     android:layout_height="wrap_content"
                     android:text="我的订单"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -600,7 +600,7 @@
                     android:layout_height="wrap_content"
                     android:text="地址管理"
                     android:textColor="#ff333333"
-                    android:textSize="14sp"
+                    android:textSize="14dip"
 
                     android:layout_centerVertical="true"
                     />
@@ -644,7 +644,7 @@
                     android:text="设置"
                     android:textColor="#ff333333"
 
-                    android:textSize="14sp" />
+                    android:textSize="14dip" />
 
                 <ImageView
                     android:layout_width="24dp"

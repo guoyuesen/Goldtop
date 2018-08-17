@@ -10,7 +10,7 @@
         android:layout_marginLeft="12dip"
         android:text="请绑定持卡人本人的银行卡"
         android:textColor="#a3888888"
-        android:textSize="14sp"
+        android:textSize="14dip"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_height="22dp"
             android:text="持卡人"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="22dp"
             android:text=""
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             />
     </LinearLayout>
@@ -49,7 +49,7 @@
             android:layout_height="22dp"
             android:text="卡号"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:hint="请输入银行卡卡号"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             android:inputType="number"
@@ -74,7 +74,7 @@
             android:layout_height="50dip"
             android:text="金陀螺智能加密，保障你的用卡安全，"
             android:textColor="#a3888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:gravity="center_vertical"
             android:layout_marginLeft="14dip"
             />
@@ -84,7 +84,7 @@
             android:layout_height="50dip"
             android:text="了解安全保障"
             android:textColor="#FEC700"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:gravity="center_vertical"
             />
     </LinearLayout>
@@ -97,7 +97,7 @@
     android:layout_margin="25dip"
     android:text="下一步"
     android:textColor="#ff000000"
-    android:textSize="18sp"
+    android:textSize="17dip"
     />
     <LinearLayout
         android:id="@+id/addcard_anquan"
@@ -110,14 +110,15 @@
         <ImageView
             android:layout_width="13dip"
             android:layout_height="15dip"
-            android:src="@mipmap/anquan"
+            android:src="@mipmap/gantanhao1"
+            android:layout_marginTop="2dip"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账户安全保障中"
-            android:textColor="#a3888888"
-            android:textSize="14sp"
+            android:text="暂不支持交通银行"
+            android:textColor="#99888888"
+            android:textSize="14dip"
             android:layout_marginLeft="4dip"
             />
     </LinearLayout>

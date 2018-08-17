@@ -42,5 +42,15 @@ public class Action {
     public static String tradeDetail = url+"/userProfit/tradeDetail";
     //钱包
     public static String customerAnalysis = url+"/userProfit/customerAnalysis?custId=";
+    //支付宝创建订单
+    public static String createOrder=url+"/alipay/createOrder";
+    //设置手势密码
+    public static String createPatternPassword=url+"/createPatternPassword";
+    //红包
+    public static String myRedpack=url+"/income/myRedpack";
+    //红包
+    public static String transfer=url+"/income/transfer";
+    //手势密码登录
+    public static String loginByType = url+ "/loginByType";
 
 }

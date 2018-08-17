@@ -7,9 +7,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.service.formRequest;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,8 +39,9 @@ public class RedEnvelopesActivity extends BaseActivity {
     EditText envelopesOutMoney;
     @Bind(R.id.envelopes_ktx_money)
     TextView envelopesKtxMoney;
-    private float money = 300.00f;
-    private float ktx = 231.00f;
+    private float money = 0.00f;
+    private float ktx = 0.00f;
+    private Object m;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,8 +55,10 @@ public class RedEnvelopesActivity extends BaseActivity {
                 finish();
             }
         }).setTitleText("红包");
-        envelopesKtxMoney.setText(""+ktx);
-        envelopesMoney.setText(""+money);
+        envelopesKtxMoney.setText("" + ktx);
+        envelopesMoney.setText("" + money);
+        getM();
+
     }
 
     @OnClick({R.id.envelopes_money_all, R.id.envelopes_submit})
@@ -56,10 +72,57 @@ public class RedEnvelopesActivity extends BaseActivity {
                 if (m.isEmpty()){
                     Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
                     return;
+                }//http://47.106.103.104/income/transfer
+                if (Float.parseFloat(m)>ktx){
+                    Toast.makeText(this,"请输入有效金额",Toast.LENGTH_LONG).show();
+                    return;
                 }
-                Toast.makeText(this,"转入成功",Toast.LENGTH_LONG).show();
-                finish();
+                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"custId="+UserModel.custId+"&money="+m, new HashMap<String, String>(), new MyVolleyCallback() {
+                    @Override
+                    public void CallBack(JSONObject jsonObject) {
+                        try {
+                            if (jsonObject.getInt("code") == 1){
+                                Toast.makeText(RedEnvelopesActivity.this,"message",Toast.LENGTH_LONG).show();
+                                getM();
+                            }else {
+                                Toast.makeText(RedEnvelopesActivity.this,"message",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }));
+                /*Toast.makeText(this,"转入成功",Toast.LENGTH_LONG).show();
+                finish();*/
                 break;
         }
+    }
+
+    public void getM() {
+        MyVolley.addRequest(new formRequest(Request.Method.GET, Action.myRedpack+"?custId="+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getInt("code")==1){
+                        money = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
+                        ktx = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
+                        envelopesKtxMoney.setText(""+ktx);
+                        envelopesMoney.setText(""+money);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
     }
 }

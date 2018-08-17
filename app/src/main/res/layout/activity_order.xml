@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:text="全部"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:text="代发货"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:text="待收货"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:text="已完成"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />

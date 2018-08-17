@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class NewsActivity extends BaseActivity{
     ListView newTab2;
     @Bind(R.id.news_tab3)
     ListView newTab3;
+    @Bind(R.id.is_nonews)
+    LinearLayout lview;
     private ListView listView;
     private TextView view;
     private FindAdapter adapter1;
@@ -87,16 +90,17 @@ public class NewsActivity extends BaseActivity{
         switch (view.getId()){
             case R.id.news_tabhost1:
                 newTab1.setVisibility(View.VISIBLE);
+                lview.setVisibility(View.GONE);
                 listView = newTab1;
                 newTabb.setTranslationX(W);
                 break;
             case R.id.news_tabhost2:
-                newTab2.setVisibility(View.VISIBLE);
+                lview.setVisibility(View.VISIBLE);
                 listView = newTab2;
                 newTabb.setTranslationX(W+ContextUtil.getX(this)/3);
                 break;
             case R.id.news_tabhost3:
-                newTab3.setVisibility(View.VISIBLE);
+                lview.setVisibility(View.VISIBLE);
                 listView = newTab3;
                 newTabb.setTranslationX(W+ContextUtil.getX(this)/3*2);
                 break;

@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="姓名"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入真实姓名"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="身份证"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -52,7 +52,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入身份证号"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:inputType="number"
             />
     </RelativeLayout>
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="银行卡"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -79,7 +79,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请填写储蓄卡卡号"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:inputType="number"
             />
     </RelativeLayout>
@@ -88,13 +88,14 @@
         android:layout_height="50dip"
         android:background="@color/white"
         android:layout_marginTop="0.2dip"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开户行省"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -106,7 +107,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入开户行所在省"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -114,13 +115,14 @@
         android:layout_height="50dip"
         android:background="@color/white"
         android:layout_marginTop="0.2dip"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开户行市"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -132,7 +134,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入开户行所在市"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -146,11 +148,11 @@
             android:layout_height="wrap_content"
             android:text="银行名称"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
-        <EditText
+        <TextView
             android:id="@+id/authen_yhmc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,7 +160,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入银行名称"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -166,13 +168,14 @@
         android:layout_height="50dip"
         android:background="@color/white"
         android:layout_marginTop="0.2dip"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开户行"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -184,7 +187,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入开户行地址"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -198,7 +201,7 @@
             android:layout_height="wrap_content"
             android:text="手机号"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -210,7 +213,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入银行预留手机号"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:inputType="number"
             />
     </RelativeLayout>
@@ -225,6 +228,6 @@
         android:gravity="center"
         android:text="提交"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         />
 </LinearLayout>

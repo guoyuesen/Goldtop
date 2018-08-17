@@ -12,8 +12,8 @@
         <!--<item name="android:windowLightStatusBar">true</item>-->
     </style>
     <style name="MyEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">#aaeeeeee</item>
-        <item name="colorControlActivated">#aaaaaaaa</item>
+        <item name="colorControlNormal">#66FECE00</item>
+        <item name="colorControlActivated">#66FECE00</item>
     </style>
     <style name="MyDialog" parent="@android:style/Theme.Holo.Dialog">
         <!-- 是否有边框 -->

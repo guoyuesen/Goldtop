@@ -9,7 +9,7 @@
         android:gravity="center_vertical"
         android:text="收款进度"
         android:textColor="#a3888888"
-        android:textSize="14sp"
+        android:textSize="14dip"
         android:layout_marginLeft="16dip"
         />
     <RelativeLayout
@@ -29,7 +29,7 @@
             android:layout_height="22dip"
             android:text="1"
             android:textColor="#ffffffff"
-            android:textSize="13sp"
+            android:textSize="13dip"
             android:background="@drawable/home_repay_r"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -40,16 +40,17 @@
             android:layout_height="21dp"
             android:text="付款成功"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_marginLeft="51dip"
             android:layout_centerVertical="true"
             />
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:text="2018-07-10 00:35"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dip"
@@ -78,7 +79,7 @@
             android:layout_height="22dip"
             android:text="1"
             android:textColor="#ffffffff"
-            android:textSize="13sp"
+            android:textSize="13dip"
             android:background="@drawable/home_d8d8d8_r"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -87,18 +88,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="21dp"
-            android:text="付款成功"
-            android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:text="银行处理中"
+            android:textColor="#ff888888"
+            android:textSize="15dip"
             android:layout_marginLeft="51dip"
             android:layout_centerVertical="true"
             />
         <TextView
+            android:id="@+id/time1"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:text="2018-07-10 00:35"
             android:textColor="#ff888888"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dip"
@@ -120,7 +122,7 @@
             android:layout_height="22dip"
             android:text="1"
             android:textColor="#ffffffff"
-            android:textSize="13sp"
+            android:textSize="13dip"
             android:background="@drawable/home_d8d8d8_r"
             android:gravity="center"
             android:layout_centerVertical="true"
@@ -129,18 +131,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="21dp"
-            android:text="付款成功"
-            android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:text="收款成功"
+            android:textColor="#ff888888"
+            android:textSize="15dip"
             android:layout_marginLeft="51dip"
             android:layout_centerVertical="true"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="21dp"
-            android:text="2018-07-10 00:35"
+            android:text="今日到账"
             android:textColor="#ff888888"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dip"
@@ -149,7 +151,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:gravity="center_vertical"
         android:background="@color/white"
         android:layout_marginTop="20dip"
         >
@@ -158,43 +159,23 @@
             android:layout_height="21dp"
             android:text="收款金额"
             android:textColor="#ff888888"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_marginLeft="16dip"
+            android:layout_centerVertical="true"
             />
         <TextView
+            android:id="@+id/money"
             android:layout_width="wrap_content"
             android:layout_height="21dp"
             android:text="¥900.00"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_marginRight="17dip"
             android:layout_alignParentRight="true"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:layout_marginTop="0.5dip"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:text="收款金额"
-            android:textColor="#ff888888"
-            android:textSize="15sp"
-            android:layout_marginLeft="16dip"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:text="¥900.00"
-            android:textColor="#ff333333"
-            android:textSize="15sp"
-            android:layout_marginRight="17dip"
-            android:layout_alignParentRight="true"
-            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -203,15 +184,17 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
-            android:gravity="center_vertical">
+
+           >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:layout_marginLeft="16dip"
+                android:layout_marginLeft="15dip"
                 android:text="手续费"
                 android:textColor="#ff888888"
-                android:textSize="15sp" />
+                android:layout_centerVertical="true"
+                android:textSize="15dip" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -219,35 +202,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="17dip"
                 android:text="¥0.00"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
                 android:textColor="#ff333333"
-                android:textSize="15sp" />
+                android:textSize="15dip" />
         </RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:layout_marginTop="0.5dip"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:text="收款金额"
-            android:textColor="#ff888888"
-            android:textSize="15sp"
-            android:layout_marginLeft="16dip"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:text="¥900.00"
-            android:textColor="#ff333333"
-            android:textSize="15sp"
-            android:layout_marginRight="17dip"
-            android:layout_alignParentRight="true"
-            />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dip"
@@ -263,24 +222,26 @@
                 android:layout_marginLeft="16dip"
                 android:text="信用卡"
                 android:textColor="#ff888888"
-                android:textSize="15sp" />
+                android:textSize="15dip" />
 
             <TextView
+                android:id="@+id/card"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="17dip"
                 android:text="交通银行（1124）王凡"
                 android:textColor="#ff333333"
-                android:textSize="15sp" />
+                android:textSize="15dip" />
         </RelativeLayout>
-    </RelativeLayout>
+
     <TextView
+        android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:text="完成"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         android:background="@drawable/home_repay_r"
         android:gravity="center"
         android:layout_marginRight="25dip"

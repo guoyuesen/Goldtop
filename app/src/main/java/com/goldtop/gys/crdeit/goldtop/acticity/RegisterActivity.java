@@ -47,7 +47,7 @@ public class RegisterActivity extends BaseActivity {
     @Bind(R.id.register_activation)
     EditText registerActivation;
     @Bind(R.id.register_submit)
-    Button registerSubmit;
+    TextView registerSubmit;
     @Bind(R.id.register_login)
     TextView registerLogin;
     @Bind(R.id.register_datebtn)

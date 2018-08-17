@@ -27,7 +27,7 @@
                 android:layout_marginTop="70dip"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ff000000"
-                android:textSize="14sp"
+                android:textSize="14dip"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -48,7 +48,7 @@
                 android:layout_marginTop="70dip"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ff000000"
-                android:textSize="14sp"
+                android:textSize="14dip"
                 android:text="刷卡收款"
                 />
         </RelativeLayout>
@@ -71,8 +71,8 @@
                 android:layout_marginTop="70dip"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ff000000"
-                android:textSize="14sp"
-                android:text="签到有奖"
+                android:textSize="14dip"
+                android:text="邀请有奖"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -94,7 +94,7 @@
                 android:layout_marginTop="70dip"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ff000000"
-                android:textSize="14sp"
+                android:textSize="14dip"
                 android:text="会员特权"
                 />
         </RelativeLayout>

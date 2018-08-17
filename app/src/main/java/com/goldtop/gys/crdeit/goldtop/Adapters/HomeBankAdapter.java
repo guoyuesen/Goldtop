@@ -87,6 +87,7 @@ public class HomeBankAdapter extends BaseAdapter {
             item.bankNumber = view.findViewById(R.id.home_card_number);
             item.money1 = view.findViewById(R.id.home_card_money1);
             item.money2 = view.findViewById(R.id.home_card_money2);
+            item.imageView = view.findViewById(R.id.home_card_icon);
             view.setTag(item);
         }else {
             item = (ThisItem) view.getTag();
@@ -94,6 +95,7 @@ public class HomeBankAdapter extends BaseAdapter {
 
         try {
             final JSONObject object = array.getJSONObject(i);
+            MyVolley.getImage(object.getString("icon"),item.imageView);
             item.bankName.setText(object.getString("bankName"));
             item.userName.setText(object.getString("accountName"));
             item.bankNumber.setText(object.getString("accountCode").substring(object.getString("accountCode").length()-4));
@@ -111,7 +113,7 @@ public class HomeBankAdapter extends BaseAdapter {
                     }
                 });
             }else if(object.getString("openStatus").equals("OPEN_FAIL")){
-                item.button.setText("开卡失败");
+                item.button.setText("认证失败");
             }else{
 
                 if (object.getBoolean("havePaymentPlan")){
@@ -135,7 +137,7 @@ public class HomeBankAdapter extends BaseAdapter {
                     item.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (!UserModel.shiMrenz.equals("REG_SUCCESS")){
+                            if (!UserModel.custStatus.equals("AUTH")){
                                 Toast.makeText(context,"您还未实名认证，请先进行实名认证",Toast.LENGTH_LONG).show();
                                 return;
                             }

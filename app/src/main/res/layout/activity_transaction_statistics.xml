@@ -22,7 +22,7 @@
                 android:gravity="center"
                 android:text="日报"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:text="月报"
                 android:textColor="#ff000000"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
@@ -90,7 +90,7 @@
             android:layout_height="20dp"
             android:text="*月*日可用额度（元）"
             android:textColor="#ff888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
             />
@@ -99,7 +99,7 @@
             android:layout_height="56dp"
             android:text="0.00"
             android:textColor="#ff333333"
-            android:textSize="40sp"
+            android:textSize="40dip"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dip"
             />
@@ -121,14 +121,14 @@
                     android:layout_height="24dp"
                     android:text="0"
                     android:textColor="#fffece00"
-                    android:textSize="17sp"
+                    android:textSize="17dip"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:text="交易笔数"
                     android:textColor="#ff888888"
-                    android:textSize="13sp"
+                    android:textSize="13dip"
                     android:layout_marginTop="10dip"
                     />
             </LinearLayout>
@@ -151,14 +151,14 @@
                     android:layout_height="24dp"
                     android:text="0"
                     android:textColor="#fffece00"
-                    android:textSize="17sp"
+                    android:textSize="17dip"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:text="新增用户"
                     android:textColor="#ff888888"
-                    android:textSize="13sp"
+                    android:textSize="13dip"
                     android:layout_marginTop="10dip"
                     />
             </LinearLayout>

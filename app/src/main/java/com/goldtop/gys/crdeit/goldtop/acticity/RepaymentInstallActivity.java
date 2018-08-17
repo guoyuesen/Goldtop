@@ -215,7 +215,7 @@ public class RepaymentInstallActivity extends BaseActivity {
                         JSONObject object = jsonObject.getJSONObject("data");
                         installfee.setText("服务费率"+object.getDouble("rate")*10000d/100d+"%，总计"+object.getDouble("fee")+"元");
                         daymoney = object.getString("totalReserveMoney");
-                        installMoney.setText(daymoney);
+                        installMoney.setText(daymoney+"元");
                     }else {
 
                     }

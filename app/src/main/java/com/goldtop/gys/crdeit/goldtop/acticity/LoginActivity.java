@@ -1,8 +1,11 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,14 +41,18 @@ public class LoginActivity extends BaseActivity {
     @Bind(R.id.login_pass)
     EditText loginPass;
     @Bind(R.id.login_submit)
-    Button loginSubmit;
+    TextView loginSubmit;
     @Bind(R.id.login_getpass)
     TextView loginGetpass;
     @Bind(R.id.login_crate)
     TextView loginCrate;
+    @Bind(R.id.login_clear)
+    ImageView loginClear;
     @Bind(R.id.login_close)
     ImageView loginClose;
-
+    @Bind(R.id.login_show)
+    ImageView loginShow;
+     boolean show = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,11 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
+        //String peopleJson = sp.getString("KEY_LOGING_PASS","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
+        String people = sp.getString("KEY_LOGING_PHONE","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
+        loginPhone.setText(people);
+        loginClose.setAlpha(170);
         loginClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +81,7 @@ public class LoginActivity extends BaseActivity {
         loginSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = loginPhone.getText().toString().trim();
+                final String user = loginPhone.getText().toString().trim();
                 String pass = loginPass.getText().toString().trim();
                 if (user.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "请输入手机号", Toast.LENGTH_LONG).show();
@@ -91,6 +103,10 @@ public class LoginActivity extends BaseActivity {
                             if (jsonObject.getString("code").equals("1")) {
                                 UserModel.setInfo(jsonObject.getJSONObject("data"));
                                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                                SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("KEY_LOGING_PHONE", user) ; //存入json串
+                                editor.commit() ; //提交
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
@@ -114,6 +130,26 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 intent.putExtra("from", "pass");
                 startActivity(intent);
+            }
+        });
+        loginClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginPhone.setText("");
+            }
+        });
+        loginShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!show) {
+                    loginPass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    show = true;
+                    loginShow.setImageResource(R.mipmap.login4);
+                }else {
+                    loginPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    show = false;
+                    loginShow.setImageResource(R.mipmap.login5);
+                }
             }
         });
     }

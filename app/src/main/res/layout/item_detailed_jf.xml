@@ -16,7 +16,7 @@
         android:layout_marginTop="14dp"
         android:text="获得积分"
         android:textColor="#ff000000"
-        android:textSize="16sp"
+        android:textSize="16dip"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         android:layout_marginTop="6dp"
         android:text="2018-07-11 10:43:38"
         android:textColor="#ff888888"
-        android:textSize="12sp"
+        android:textSize="12dip"
         android:layout_marginBottom="14dip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detaile_jf_t1"
@@ -48,20 +48,20 @@
             android:layout_height="wrap_content"
             android:text="+ "
             android:textColor="#FF6A00"
-            android:textSize="15sp" />
+            android:textSize="15dip" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
             android:textColor="#FF6A00"
-            android:textSize="22sp" />
+            android:textSize="22dip" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="积分"
             android:textColor="#FF6A00"
-            android:textSize="15sp" />
+            android:textSize="15dip" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

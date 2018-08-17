@@ -16,18 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:hint="请输入金额"
-            android:textSize="24sp"
-            android:layout_marginTop="72dp"
+            android:hint="0.00"
+            android:textSize="35dip"
+            android:layout_marginTop="60dp"
             android:layout_marginLeft="71dip"
             android:inputType="number"
+            android:textStyle="bold"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="账单金额"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_marginTop="19dip"
             />
         <TextView
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="¥"
             android:textColor="#ff333333"
-            android:textSize="46sp"
+            android:textSize="46dip"
             android:layout_marginTop="52dip"
             android:layout_marginLeft="15dip"
             />
@@ -49,7 +50,7 @@
         android:paddingLeft="20dip"
         android:text="服务费率0.68%，总计0元。"
         android:textColor="#ffcacaca"
-        android:textSize="12sp"
+        android:textSize="12dip"
         />
     <RelativeLayout
         android:id="@+id/install_xuanze"
@@ -66,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="还款日期"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             />
         <TextView
@@ -74,10 +75,18 @@
             android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="请选择 >"
-            android:textColor="#ff888888"
+            android:text="请选择"
+            android:layout_marginRight="10dip"
+            android:textColor="#ee888888"
             android:gravity="right"
-            android:textSize="15sp"
+            android:textSize="15dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+        <ImageView
+            android:layout_width="6dip"
+            android:layout_height="12dip"
+            android:src="@mipmap/next"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             />
@@ -102,7 +111,7 @@
             android:layout_height="wrap_content"
             android:text="还款天数"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             />
         <TextView
@@ -113,8 +122,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="14dp"
             android:text="0天"
-            android:textColor="#ff888888"
-            android:textSize="15sp" />
+            android:textColor="#ee888888"
+            android:textSize="15dip" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -136,7 +145,7 @@
             android:layout_height="wrap_content"
             android:text="预留金额"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             />
         <TextView
@@ -144,8 +153,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.00元"
-            android:textColor="#ff888888"
-            android:textSize="15sp"
+            android:textColor="#ee888888"
+            android:textSize="15dip"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             />
@@ -161,7 +170,7 @@
             android:layout_marginLeft="25dip"
             android:text="生成计划"
             android:textColor="#ff000000"
-            android:textSize="18sp"
+            android:textSize="17dip"
             android:gravity="center"
             android:layout_marginTop="147dip"
             />

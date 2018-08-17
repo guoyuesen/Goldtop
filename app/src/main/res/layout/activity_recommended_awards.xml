@@ -17,7 +17,7 @@
             android:layout_height="22dip"
             android:text="规则 >"
             android:textColor="#ffffffff"
-            android:textSize="13sp"
+            android:textSize="13dip"
             android:gravity="center"
             android:layout_alignParentRight="true"
             android:layout_marginTop="74dip"
@@ -28,9 +28,10 @@
             android:layout_height="18dp"
             android:text="王丽 已获得10元现金"
             android:textColor="#ffffde94"
-            android:textSize="13sp"
+            android:textSize="13dip"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="441dp"
+            android:visibility="gone"
             />
         <Button
             android:id="@+id/fenxiangceshi"
@@ -41,7 +42,7 @@
             android:layout_marginTop="470dip"
             android:text="立即赚现金"
             android:textColor="#ff561b04"
-            android:textSize="18sp"
+            android:textSize="17dip"
             android:textStyle="bold"
             android:elevation="5dip"
             />
@@ -50,9 +51,10 @@
             android:layout_height="22dp"
             android:text="查看赚钱攻略"
             android:textColor="#ffffde94"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="546dip"
+            android:visibility="gone"
             />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -68,7 +70,7 @@
                 android:layout_height="39dp"
                 android:text="奖励进度"
                 android:textColor="#ff333333"
-                android:textSize="16sp"
+                android:textSize="16dip"
                 android:background="#f9f9f9"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
@@ -101,16 +103,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="42dp"
-                            android:text="10"
+                            android:text="0"
                             android:textColor="#ffc50f21"
-                            android:textSize="30sp"
+                            android:textSize="30dip"
                             />
                         <TextView
                             android:layout_width="17dp"
                             android:layout_height="22dp"
                             android:text="元"
                             android:textColor="#ffc50f21"
-                            android:textSize="16sp"
+                            android:textSize="16dip"
                             />
                     </LinearLayout>
                     <TextView
@@ -119,7 +121,7 @@
                         android:layout_height="20dp"
                         android:text="可提现金额"
                         android:textColor="#ff888888"
-                        android:textSize="14sp"
+                        android:textSize="14dip"
                         />
                 </LinearLayout>
                 <View
@@ -158,16 +160,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="42dp"
-                                android:text="20"
+                                android:text="0"
                                 android:textColor="#ffc50f21"
-                                android:textSize="30sp"
+                                android:textSize="30dip"
                                 />
                             <TextView
                                 android:layout_width="17dp"
                                 android:layout_height="22dp"
                                 android:text="元"
                                 android:textColor="#ffc50f21"
-                                android:textSize="16sp"
+                                android:textSize="16dip"
                                 />
                         </LinearLayout>
                         <TextView
@@ -176,7 +178,7 @@
                             android:layout_height="20dp"
                             android:text="待获得金额"
                             android:textColor="#ff888888"
-                            android:textSize="14sp"
+                            android:textSize="14dip"
                             />
                     </LinearLayout>
                     <View

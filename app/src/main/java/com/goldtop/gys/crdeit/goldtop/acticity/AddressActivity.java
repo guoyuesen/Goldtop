@@ -42,12 +42,6 @@ public class AddressActivity extends BaseActivity {
             }
         });
         JSONArray array = new JSONArray();
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
-        array.put(0);
         addressList.setAdapter(new AdderssAdapter(this,array));
     }
 }

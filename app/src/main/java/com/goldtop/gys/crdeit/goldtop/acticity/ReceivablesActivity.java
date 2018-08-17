@@ -61,7 +61,7 @@ public class ReceivablesActivity extends BaseActivity {
             public void onClick(View view) {
                 finish();
             }
-        }).setTitleText("收款");
+        }).setTitleText("刷卡收款");
     }
 
     @OnClick({R.id.receivables_submit,R.id.receivables_incard,R.id.receivables_outcard})
@@ -74,8 +74,9 @@ public class ReceivablesActivity extends BaseActivity {
                     Toast.makeText(this,"请选择储蓄卡",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(!objectin.getString("bindStatus").equals("REG_SUCCESS")){
+                if(!objectout.getString("bindStatus").equals("REG_SUCCESS")){
                     Toast.makeText(this,"储蓄卡未绑定商户，请联系客服",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 if (objectout==null){
                     Toast.makeText(this,"请选择信用卡",Toast.LENGTH_LONG).show();
@@ -83,13 +84,14 @@ public class ReceivablesActivity extends BaseActivity {
                 }
                     if(!objectin.getString("openStatus").equals("OPEN_SUCCESS")){
                         Toast.makeText(this,"信用卡未进行银联认证，请联系客服",Toast.LENGTH_LONG).show();
+                        return;
                     }
                 String money = receivablesMoney.getText().toString().trim();
                 if (money.isEmpty()){
                     Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
                     return;
                 }
-                double m = Double.parseDouble(money);
+                final double m = Double.parseDouble(money);
                 if (m>1000){
                     Toast.makeText(this,"为了您的资金安全请输入小于1000的金额",Toast.LENGTH_LONG).show();
                     return;
@@ -109,7 +111,10 @@ public class ReceivablesActivity extends BaseActivity {
                         public void CallBack(JSONObject jsonObject) {
                             try {
                                 if (jsonObject.getString("code").equals("1")){
-                                    startActivity(new Intent(ReceivablesActivity.this,ScheduleActivity.class));
+                                    Intent intent = new Intent(ReceivablesActivity.this,ScheduleActivity.class);
+                                    intent.putExtra("amount",m);
+                                    intent.putExtra("cardnum",objectin.getString("bankName") + " (" + objectin.getString("accountCode").substring(objectin.getString("accountCode").length() - 4) + ")");
+                                    startActivity(intent);
                                 }else {
                                     Toast.makeText(ReceivablesActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                                 }
@@ -151,10 +156,10 @@ public class ReceivablesActivity extends BaseActivity {
                             public void sercsse(String T, JSONObject object) {
                                 try {
                                     if (T.equals("C")) {
-                                        receivablesCard01.setText(object.getString("bankName") + "(" + object.getString("accountCode").substring(object.getString("accountCode").length() - 4) + ")");
+                                        receivablesCard01.setText(object.getString("bankName") + " (" + object.getString("accountCode").substring(object.getString("accountCode").length() - 4) + ")");
                                         objectout = object;
                                     }else {
-                                        receivablesCard02.setText(object.getString("bankName") + "(" + object.getString("accountCode").substring(object.getString("accountCode").length() - 4) + ")");
+                                        receivablesCard02.setText(object.getString("bankName") + " (" + object.getString("accountCode").substring(object.getString("accountCode").length() - 4) + ")");
                                         objectin = object;
                                     }
                                 } catch (JSONException e) {

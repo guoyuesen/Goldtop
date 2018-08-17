@@ -17,7 +17,7 @@
             android:layout_marginLeft="15dip"
             android:text="账户与安全"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
         <ImageView
             android:layout_width="24dip"
@@ -41,7 +41,7 @@
             android:layout_marginLeft="15dip"
             android:text="帮助与反馈"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
         <ImageView
             android:layout_width="24dip"
@@ -65,7 +65,7 @@
             android:layout_marginLeft="15dip"
             android:text="关于金陀螺"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
             android:layout_marginRight="43dip"
             android:text="版本1.0"
             android:textColor="#ffd4d4d4"
-            android:textSize="14sp"
+            android:textSize="14dip"
             />
         <ImageView
             android:layout_width="24dip"
@@ -93,7 +93,7 @@
         android:layout_marginTop="74dip"
         android:text="退出登录"
         android:textColor="#ffff7f00"
-        android:textSize="16sp"
+        android:textSize="16dip"
         >
 
     </TextView>

@@ -20,10 +20,13 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeShpingAdapter;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.DetailedActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
 import com.goldtop.gys.crdeit.goldtop.view.ButtomDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.HeaderGridView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +60,43 @@ public class ShpingFragment extends Fragment {
     }
 
     private void intActivity() {
+
         JSONArray array = new JSONArray();
 
+        try {
+            JSONObject object = new JSONObject();
+            object.put("img",R.mipmap.sp_show01);
+            object.put("text","创意夏日碎冰杯 韩国小清新冰杯水果饮料杯塑料制冷随手杯 ");
+            object.put("jf",9);
+            array.put(object);
+            object = new JSONObject();
+            object.put("img",R.mipmap.sp_show02);
+            object.put("text","创意夏日碎冰杯 韩国小清新冰杯水果饮料杯塑料制冷随手杯 ");
+            object.put("jf",20);
+            array.put(object);
+            object = new JSONObject();
+            object.put("img",R.mipmap.sp_show03);
+            object.put("text","全自动雨伞女韩国小清新晴雨两用折叠遮阳防晒防紫外线黑胶太阳伞 ");
+            object.put("jf",12);
+            array.put(object);
+            object = new JSONObject();
+            object.put("img",R.mipmap.sp_show04);
+            object.put("text","打字机真机械键盘青轴黑轴电脑吃鸡游戏电竞金属复古圆键蒸汽朋克笔记本台式外接usb有线办公网吧网咖外设 ");
+            object.put("jf",30);
+            array.put(object);
+            object = new JSONObject();
+            object.put("img",R.mipmap.sp_show05);
+            object.put("text","ZIPPO打火机正版 芝宝正品原装 贴章翅膀 ZPPO古银飞得更高 定制 ");
+            object.put("jf",42);
+            array.put(object);
+            object = new JSONObject();
+            object.put("img",R.mipmap.sp_show06);
+            object.put("text","资生堂FINO美容复合精华洗发水滋润型550mL 修复染烫受损发质进口 ");
+            object.put("jf",15);
+            array.put(object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         initHead();
 
         bommView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_bomm, null);
@@ -66,12 +104,12 @@ public class ShpingFragment extends Fragment {
         homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                JSONArray array1 = new JSONArray();
+                /*JSONArray array1 = new JSONArray();
                 for (int j = 0; j < i; j++) {
                     array1.put(0);
                 }
                 ButtomDialogView dialogView = new ButtomDialogView(getContext(), array1);
-                dialogView.show();
+                dialogView.show();*/
             }
         });
         homeShpingGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -118,9 +156,9 @@ public class ShpingFragment extends Fragment {
     private void initHead() {
         View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
         List<Integer> ins = new ArrayList<>();
-        ins.add(R.mipmap.fragment_shping_01);
-        ins.add(R.mipmap.fragment_shping_02);
-        ins.add(R.mipmap.fragment_shping_03);
+        ins.add(R.mipmap.sp_show07);
+        ins.add(R.mipmap.sp_show07);
+        ins.add(R.mipmap.sp_show07);
         ConvenientBanner<Integer> convenientBanner = view1.findViewById(R.id.shping_f_t_img);
         convenientBanner.setPages(new CBViewHolderCreator<ImageViewHolder>() {
             @Override
@@ -135,6 +173,12 @@ public class ShpingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().startActivity(new Intent(getContext(), DetailedActivity.class));
+            }
+        });
+        view1.findViewById(R.id.sp_heard_gz).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WebUtilActivity.InWeb(getContext(),"http://47.106.103.104/app/guide.png?fileName=point","积分规则",null);
             }
         });
         homeShpingGrid.addHeaderView(view1);

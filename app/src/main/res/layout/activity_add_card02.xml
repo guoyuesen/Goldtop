@@ -10,7 +10,7 @@
         android:layout_marginLeft="12dip"
         android:text="请绑定持卡人本人的银行卡"
         android:textColor="#a3888888"
-        android:textSize="14sp"
+        android:textSize="14dip"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,18 +22,18 @@
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="所属银行"
+            android:text="银行名称"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
-        <EditText
+        <TextView
             android:id="@+id/add_card02_yh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="XXX银行"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             />
@@ -44,13 +44,14 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="开户行"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content"
             android:hint="XXX支行"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             />
@@ -71,13 +72,14 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginTop="1dip"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="80dip"
             android:layout_height="22dp"
             android:text="开户行省"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -86,7 +88,7 @@
             android:layout_height="wrap_content"
             android:hint="开户所在省"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             />
@@ -98,13 +100,14 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginTop="1dip"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="80dip"
             android:layout_height="22dp"
             android:text="开户行市"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -113,7 +116,7 @@
             android:layout_height="wrap_content"
             android:hint="开户所在市"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             />
@@ -131,7 +134,7 @@
             android:layout_height="22dp"
             android:text="手机号码"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -140,7 +143,7 @@
             android:layout_height="wrap_content"
             android:hint="银行预留手机号码"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             android:inputType="number"
@@ -160,7 +163,7 @@
             android:layout_height="22dp"
             android:text="有效期"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             />
         <EditText
@@ -169,7 +172,7 @@
             android:layout_height="wrap_content"
             android:hint="月份/年份"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="16dip"
             android:background="@color/white"
             android:inputType="number"
@@ -186,7 +189,7 @@
             android:layout_height="50dip"
             android:text="查看"
             android:textColor="#a3888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:gravity="center_vertical"
             android:layout_marginLeft="14dip"
             />
@@ -195,7 +198,7 @@
             android:layout_height="50dip"
             android:text="《服务协议》"
             android:textColor="#FEC700"
-            android:textSize="14sp"
+            android:textSize="14dip"
             android:gravity="center_vertical"
             />
     </LinearLayout>
@@ -208,7 +211,7 @@
         android:layout_margin="25dip"
         android:text="同意协议并绑卡"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -227,7 +230,7 @@
             android:layout_height="wrap_content"
             android:text="账户安全保障中"
             android:textColor="#a3888888"
-            android:textSize="14sp"
+            android:textSize="14dip"
             />
     </LinearLayout>
 </LinearLayout>

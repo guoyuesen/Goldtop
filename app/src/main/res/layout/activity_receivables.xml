@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#f0f0f0"
     android:layout_height="match_parent">
 <include layout="@layout/base_title_layout"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="143dip"
-        android:background="@color/white"
+        android:background="@drawable/item_t_yy"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收款金额"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_marginTop="26dip"
             />
@@ -23,20 +24,21 @@
             android:layout_height="wrap_content"
             android:text="¥"
             android:textColor="#ff333333"
-            android:textSize="46sp"
+            android:textSize="46dip"
             android:layout_marginLeft="20dip"
             android:layout_marginTop="56dip"
             />
         <EditText
             android:id="@+id/receivables_money"
             android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:hint="请输入金额"
-            android:textSize="24sp"
+            android:layout_height="wrap_content"
+            android:hint="0.00"
+            android:textSize="35dip"
             android:layout_marginLeft="63dip"
-            android:layout_marginTop="76dip"
+            android:layout_marginTop="65dip"
             android:background="@color/white"
             android:inputType="number"
+            android:textStyle="bold"
             />
 
 
@@ -50,16 +52,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预计30分钟内到账，需支付10元手续费"
-            android:textColor="#ffdcdcdc"
-            android:textSize="14sp"
+            android:text="预计30分钟内到账，需支付*元手续费"
+            android:textColor="#ffd0d0d0"
+            android:textSize="14dip"
             android:layout_marginLeft="16dip"
             android:layout_marginTop="10dip"
             />
         <View
             android:layout_width="14dip"
             android:layout_height="14dip"
-            android:background="@color/white"
+            android:background="@mipmap/gantanhao"
             android:layout_marginTop="13dip"
             android:layout_marginLeft="5dip"
             />
@@ -74,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="信用卡"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dip"
             />
@@ -84,27 +86,35 @@
             android:layout_height="wrap_content"
             android:text="请选择"
             android:textColor="#ff888888"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="82dip"
             />
+        <View
+            android:layout_width="6dip"
+            android:layout_height="12dip"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/next"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dip"
+            ></View>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#557A7A7A"
+        android:background="#e9e9e9"
         />
     <RelativeLayout
         android:id="@+id/receivables_incard"
         android:layout_width="match_parent"
-        android:background="@color/white"
+        android:background="@drawable/item_t_yy"
         android:layout_height="50dip">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="提现卡"
+            android:text="到账卡"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dip"
             />
@@ -114,10 +124,18 @@
             android:layout_height="wrap_content"
             android:text="请选择"
             android:textColor="#ff888888"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_centerVertical="true"
             android:layout_marginLeft="82dip"
             />
+        <View
+            android:layout_width="6dip"
+            android:layout_height="12dip"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/next"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dip"
+            ></View>
     </RelativeLayout>
     <TextView
         android:id="@+id/receivables_submit"
@@ -125,7 +143,7 @@
         android:layout_height="48dip"
         android:text="确认收款"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         android:gravity="center"
         android:background="@drawable/home_repay_r"
         android:layout_marginLeft="25dip"

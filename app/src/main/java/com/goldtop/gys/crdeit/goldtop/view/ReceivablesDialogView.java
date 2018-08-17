@@ -66,6 +66,13 @@ public class ReceivablesDialogView extends Dialog {
                 getContext().startActivity(new Intent(getContext(), AddCard01Activity.class));
             }
         });
+        view.findViewById(R.id.receivables_dialog_addt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getContext().startActivity(new Intent(getContext(), AddCard01Activity.class));
+            }
+        });
+
         linearLayout = view.findViewById(R.id.receivables_dialog_layout);
 
         //this.iscancelable = isCancelable;
@@ -153,6 +160,7 @@ public class ReceivablesDialogView extends Dialog {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            //view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ContextUtil.dip2px(getContext(),25)));
             return view;
         }
     }

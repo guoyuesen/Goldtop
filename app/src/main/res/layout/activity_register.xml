@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
     <include layout="@layout/base_title_layout"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#80aaaaaa"
+        android:background="#40aaaaaa"
         />
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="50dip"
+    android:layout_height="64dip"
     android:background="@color/white"
+    android:gravity="bottom"
     >
     <EditText
         android:id="@+id/register_phone"
@@ -19,10 +21,12 @@
         android:layout_height="40dip"
         android:background="@color/white"
         android:hint="请输入手机号"
-        android:textSize="15sp"
+        android:textColorHint="#d5d5d5"
+        android:textSize="15dip"
         android:inputType="number"
-        android:layout_marginLeft="100dip"
+        android:layout_marginLeft="40dip"
         android:layout_centerVertical="true"
+        android:textCursorDrawable="@drawable/edittextn"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -30,19 +34,23 @@
        android:layout_marginLeft="14dip"
         android:text="手机号码"
         android:textColor="#A2A2A2"
-        android:textSize="15sp"
+        android:textSize="15dip"
         android:gravity="center_vertical"
+        android:visibility="gone"
         />
 </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#80aaaaaa"
+        android:background="#40aaaaaa"
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
         />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="64dip"
         android:background="@color/white"
+        android:gravity="bottom"
         >
 
         <EditText
@@ -50,12 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:background="@color/white"
-            android:layout_marginLeft="100dip"
+            android:layout_marginLeft="40dip"
             android:hint="请输入验证码"
-            android:textSize="15sp"
+            android:textSize="15dip"
+            android:textColorHint="#d5d5d5"
             android:paddingRight="83dip"
             android:inputType="number"
             android:layout_centerVertical="true"
+            android:textCursorDrawable="@drawable/edittextn"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -63,31 +73,36 @@
             android:layout_marginLeft="14dip"
             android:text="验证码"
             android:textColor="#A2A2A2"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:gravity="center_vertical"
+            android:visibility="gone"
             />
         <com.goldtop.gys.crdeit.goldtop.view.DateButton
             android:id="@+id/register_datebtn"
             android:layout_width="83dip"
             android:layout_height="28dip"
             android:text="获取验证码"
-            android:textColor="#fffece00"
-            android:textSize="13sp"
+            android:textColor="#eefece00"
+            android:textSize="15dip"
             android:layout_alignParentRight="true"
             android:background="@color/transparent"
             android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
 
             />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#80aaaaaa"
+        android:background="#40aaaaaa"
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
         />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="64dip"
         android:background="@color/white"
+        android:gravity="bottom"
         >
 
         <EditText
@@ -95,11 +110,13 @@
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="100dip"
+            android:layout_marginLeft="40dip"
             android:background="@color/white"
             android:hint="请输入密码"
-            android:textSize="15sp"
+            android:textColorHint="#d5d5d5"
+            android:textSize="15dip"
             android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/edittextn"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -107,19 +124,23 @@
             android:layout_marginLeft="14dip"
             android:text="输入密码"
             android:textColor="#A2A2A2"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:gravity="center_vertical"
+            android:visibility="gone"
             />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#80aaaaaa"
+        android:background="#40aaaaaa"
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
         />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="64dip"
         android:background="@color/white"
+        android:gravity="bottom"
         >
 
         <EditText
@@ -128,10 +149,12 @@
             android:layout_height="40dip"
             android:layout_centerVertical="true"
             android:background="@color/white"
-            android:layout_marginLeft="100dip"
+            android:layout_marginLeft="40dip"
+            android:textColorHint="#d5d5d5"
             android:hint="请确认密码"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/edittextn"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -139,20 +162,24 @@
             android:layout_marginLeft="14dip"
             android:text="确认密码"
             android:textColor="#A2A2A2"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:gravity="center_vertical"
+            android:visibility="gone"
             />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
-        android:background="#80aaaaaa"
+        android:background="#40aaaaaa"
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
         />
     <RelativeLayout
         android:id="@+id/update_pass"
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="64dip"
         android:background="@color/white"
+        android:gravity="bottom"
         >
 
         <EditText
@@ -160,22 +187,31 @@
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:background="@color/white"
-            android:hint="请输入邀请码（选填）"
-            android:textSize="15sp"
-            android:layout_marginLeft="100dip"
-            android:layout_centerVertical="true"
+            android:hint="请输入邀请人手机号"
+            android:textSize="15dip"
+            android:layout_marginLeft="40dip"
+            android:textColorHint="#d5d5d5"
+            android:textCursorDrawable="@drawable/edittextn"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="14dip"
             android:text="邀请码"
-            android:textColor="#A2A2A2"
-            android:textSize="15sp"
+            android:textColor="#d5d5d5"
+            android:textSize="15dip"
             android:gravity="center_vertical"
+            android:visibility="gone"
             />
     </RelativeLayout>
-    <Button
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#40aaaaaa"
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
+        />
+    <TextView
         android:id="@+id/register_submit"
         android:layout_width="match_parent"
         android:layout_height="48dip"
@@ -183,10 +219,10 @@
         android:layout_marginLeft="42dp"
         android:layout_marginRight="42dip"
         android:layout_marginTop="42dip"
+        android:gravity="center"
         android:text="立即注册"
         android:textColor="#ff000000"
-        android:textSize="18sp"
-        android:elevation="3dip"
+        android:textSize="17dip"
         />
 <RelativeLayout
     android:layout_width="match_parent"
@@ -205,14 +241,14 @@
             android:layout_height="wrap_content"
             android:text="已有账户？"
             android:textColor="#ff888888"
-            android:textSize="15sp"
+            android:textSize="15dip"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即登录"
             android:textColor="#FEC700"
-            android:textSize="15sp"
+            android:textSize="15dip"
             android:id="@+id/register_login"
             />
     </LinearLayout>

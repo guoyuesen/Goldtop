@@ -9,11 +9,11 @@
     android:src="@mipmap/login_05"
     android:id="@+id/imageView"></ImageView>
     <ImageView
-        android:layout_width="35dip"
-        android:layout_height="35dip"
+        android:layout_width="45dip"
+        android:layout_height="45dip"
         android:id="@+id/login_close"
         android:src="@mipmap/close"
-        android:padding="10dip"
+        android:padding="15dip"
         android:layout_marginTop="46dip"
         android:layout_marginLeft="27dip"
         />
@@ -38,52 +38,99 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="95dip"
             android:layout_marginLeft="38dip"
-            android:src="@mipmap/login_02"
+            android:src="@mipmap/login1"
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="162dip"
             android:layout_marginLeft="38dip"
-            android:src="@mipmap/login_02"
+            android:src="@mipmap/login2"
             />
 <EditText
     android:id="@+id/login_phone"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dip"
     android:layout_marginLeft="72dip"
     android:layout_marginTop="83dip"
     android:hint="请输入您的手机号"
-    android:textSize="16sp"
+    android:textSize="16dip"
     android:layout_marginRight="29dip"
     android:inputType="number"
-    android:theme="@style/MyEditText"
+    android:background="@color/white"
+    android:textCursorDrawable="@drawable/edittextn"
+    android:textColorHint="#b5b5b5"
     />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dip"
+            android:background="#66FECE00"
+            android:layout_marginLeft="70dip"
+            android:layout_marginRight="40dip"
+            android:layout_marginTop="125dip"
+            />
         <EditText
             android:id="@+id/login_pass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dip"
             android:layout_marginLeft="72dip"
             android:layout_marginTop="152dip"
             android:hint="请输入密码"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginRight="29dip"
             android:inputType="textPassword"
-            android:theme="@style/MyEditText"
+            android:background="@color/white"
+            android:textCursorDrawable="@drawable/edittextn"
+            android:textColorHint="#b5b5b5"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dip"
+            android:background="#66FECE00"
+            android:layout_marginLeft="70dip"
+            android:layout_marginRight="40dip"
+            android:layout_marginTop="190dip"
+            />
+        <ImageView
+            android:id="@+id/login_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dip"
+            android:padding="5dp"
+            android:src="@mipmap/login3"
+            />
+        <ImageView
+            android:id="@+id/login_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="165dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dip"
+            android:padding="5dip"
+            android:src="@mipmap/login5"
             />
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/login_submit"
-        android:layout_width="182dip"
-        android:layout_height="48dip"
+    <View
+        android:layout_width="200dip"
+        android:layout_height="60dip"
         android:layout_below="@+id/login_relative"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-40dp"
-        android:background="@drawable/home_repay_r"
+        android:layout_marginTop="-35dp"
+        android:background="@mipmap/login6"/>
+    <TextView
+        android:id="@+id/login_submit"
+        android:layout_width="200dip"
+        android:layout_height="60dip"
+        android:layout_below="@+id/login_relative"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-37dp"
         android:text="登录"
+        android:gravity="center"
+        android:background="#00000000"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="17dip" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,7 +147,7 @@
             android:layout_marginRight="10dip"
             android:text="忘记密码 "
             android:textColor="#C5C4C4"
-            android:textSize="14sp"
+            android:textSize="14dip"
             />
         <View
             android:layout_width="0.5dip"
@@ -114,7 +161,7 @@
             android:layout_marginLeft="10dip"
             android:text="现在注册 "
             android:textColor="#C5C4C4"
-            android:textSize="14sp"
+            android:textSize="14dip"
             />
     </LinearLayout>
     <View
@@ -129,7 +176,7 @@
         android:layout_height="wrap_content"
         android:text="其他登陆方式"
         android:textColor="#ff333333"
-        android:textSize="13sp"
+        android:textSize="13dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/login_submit"
         android:layout_marginTop="50dip"
@@ -143,15 +190,16 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/login_submit"
         android:layout_marginTop="90dip"
+
         />
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="微信"
         android:textColor="#ff333333"
-        android:textSize="12sp"
+        android:textSize="12dip"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/login_submit"
         android:layout_marginTop="141dip"
-        />
+        />-->
 </RelativeLayout>

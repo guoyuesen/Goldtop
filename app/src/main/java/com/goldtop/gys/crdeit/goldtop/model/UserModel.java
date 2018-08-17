@@ -44,7 +44,7 @@ public static void setInfo(JSONObject object){
     idCardNo=object.getString("idCardNo")==null?"":object.getString("idCardNo");
     address=object.getString("address")==null?"":object.getString("address");
     custLevelSample=object.getString("custLevelSample")==null?"":object.getString("custLevelSample");
-    introducerId=object.getString("introducerId")==null?"":object.getString("introducerId");
+    //introducerId=object.getString("introducerId")==null?"":object.getString("introducerId");
     custStatus=object.getString("custStatus")==null?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"REG_ING");
     lastLogin=object.getString("lastLogin")==null?"":object.getString("lastLogin");
     createdTime=object.getString("createdTime")==null?"":object.getString("createdTime");

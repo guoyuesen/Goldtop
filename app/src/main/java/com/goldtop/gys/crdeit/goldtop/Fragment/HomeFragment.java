@@ -24,6 +24,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.ReceivablesActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
     ListView homeFrameList;
     private View view;
     HomeBankAdapter adapter;
-    HttpsDialogView dialog;
+
 
     @Nullable
     @Override
@@ -104,6 +105,7 @@ public class HomeFragment extends Fragment {
                 if (!AppUtil.isLogin(getContext())){
                     return;
                 }
+                startActivity(new Intent(getContext(),RecommendedAwardsActivity.class));
             }
         });
         hview.findViewById(R.id.home_frame_btn4).setOnClickListener(new View.OnClickListener() {
@@ -147,12 +149,12 @@ public class HomeFragment extends Fragment {
         map.put("custId", UserModel.custId);
         map.put("cardType","C");
         Log.d(Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C"+"==》","");
-        if (dialog==null){
+        /*if (dialog==null){
             dialog = new HttpsDialogView(getContext());
             dialog.show();
         }else if (!dialog.isShowing()){
             dialog.show();
-        }
+        }*/
         MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C", map, new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
@@ -170,7 +172,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                dialog.dismiss();
+                //dialog.dismiss();
             }
         }));
         super.onStart();
@@ -191,9 +193,9 @@ public class HomeFragment extends Fragment {
                         JSONArray array = jsonObject.getJSONArray("data");
                         for (int i = 0;i<a.length();i++){
                             String number = a.getJSONObject(i).getString("accountCode");
+                            boolean p = true;
                             for (int j = 0;j<array.length();j++){
-                                if (array.getJSONArray(0).length()>0){
-                                    JSONObject object = array.getJSONArray(0).getJSONObject(0);
+                                    JSONObject object = array.getJSONObject(j);
                                     if (number.equals(object.getString("cardNo"))){
                                         a.getJSONObject(i).put("applyId",object.getString("applyId"));
                                         a.getJSONObject(i).put("balanceAmt",object.getString("balanceAmt"));
@@ -203,8 +205,19 @@ public class HomeFragment extends Fragment {
                                         a.getJSONObject(i).put("deadline",object.getString("deadline"));
                                         a.getJSONObject(i).put("balanceTerm",object.getString("balanceTerm"));
                                         a.getJSONObject(i).put("applyAmt",object.getString("applyAmt"));
+                                        p = false;
                                     }
-                                }
+                            }
+                            if (p){
+                                Log.d("-----","----");
+                                a.getJSONObject(i).put("applyId","0");
+                                a.getJSONObject(i).put("balanceAmt","0");
+                                a.getJSONObject(i).put("transFee","0");
+                                a.getJSONObject(i).put("totalTerm","0");
+                                a.getJSONObject(i).put("currPaymentAmt","0");
+                                a.getJSONObject(i).put("deadline","0");
+                                a.getJSONObject(i).put("balanceTerm","0");
+                                a.getJSONObject(i).put("applyAmt","0");
                             }
                         }
                         adapter.notifyDataSetChanged(a);
@@ -213,14 +226,14 @@ public class HomeFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                if (dialog.isShowing())
-                    dialog.dismiss();
+               /* if (dialog.isShowing())
+                    dialog.dismiss();*/
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (dialog.isShowing())
-                    dialog.dismiss();
+                /*if (dialog.isShowing())
+                    dialog.dismiss();*/
             }
         }));
     }

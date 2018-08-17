@@ -55,22 +55,16 @@ public class OrderActivity extends BaseActivity{
         ButterKnife.bind(this);
         orderTab1.setVisibility(View.VISIBLE);
         JSONArray array = new JSONArray();
-        array.put(1);
+
         orderTab1.setAdapter(new Orderdapter(this, array));
         JSONArray array1 = new JSONArray();
-        array1.put(1);
-        array1.put(1);
+
         orderTab2.setAdapter(new Orderdapter(this, array1));
         JSONArray array2 = new JSONArray();
-        array2.put(1);
-        array2.put(1);
-        array2.put(1);
+
         orderTab3.setAdapter(new Orderdapter(this, array2));
         JSONArray array3 = new JSONArray();
-        array3.put(1);
-        array3.put(1);
-        array3.put(1);
-        array3.put(1);
+
         orderTab4.setAdapter(new Orderdapter(this, array3));
         listView = orderTab1;
         W = ContextUtil.getX(this)/8+ContextUtil.dip2px(this,15);

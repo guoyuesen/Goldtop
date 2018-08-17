@@ -3,8 +3,10 @@ package com.goldtop.gys.crdeit.goldtop.acticity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -52,7 +54,7 @@ public class AuthenticationActivity extends BaseActivity {
     @Bind(R.id.authen_shi)
     EditText authenshi;
     @Bind(R.id.authen_yhmc)
-    EditText authenyhmc;
+    TextView authenyhmc;
     @Bind(R.id.authen_phone)
     EditText authenPhone;
 
@@ -68,6 +70,17 @@ public class AuthenticationActivity extends BaseActivity {
                 finish();
             }
         }).setTitleText("实名认证");
+        authenCardnumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    // 此处为得到焦点时的处理内容
+                    String cardnumber = authenCardnumber.getText().toString().trim();
+                    queryBankNo(cardnumber);
+
+                }
+            }
+        });
     }
 
     @OnClick(R.id.authen_submit)
@@ -81,7 +94,7 @@ public class AuthenticationActivity extends BaseActivity {
         String sheng = authensheng.getText().toString().trim();
         String shi = authenshi.getText().toString().trim();
         String yhmc = authenyhmc.getText().toString().trim();
-        if (name.isEmpty()||idnumber.isEmpty()||cardnumber.isEmpty()||adderss.isEmpty()||phone.isEmpty()||sheng.isEmpty()||shi.isEmpty()||yhmc.isEmpty()){
+        if (name.isEmpty()||idnumber.isEmpty()||cardnumber.isEmpty()||phone.isEmpty()||yhmc.isEmpty()){
             Toast.makeText(this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
             return;
         }
@@ -94,10 +107,10 @@ public class AuthenticationActivity extends BaseActivity {
         map.put("custId",UserModel.custId);
         map.put("accountCode",cardnumber);
             map.put("accountName",name);
-            map.put("bankName",yhmc);
-            map.put("openingSubBankName",adderss);
+            map.put("bankName",yhmc.substring(0,yhmc.indexOf("·")));
+            /*map.put("openingSubBankName",adderss);
             map.put("openningBankProvince",sheng);
-            map.put("openningBankCity",shi);
+            map.put("openningBankCity",shi);*/
             map.put("mobileNo",phone);
             map.put("bankCardType","D");
         JSONObject object = new JSONObject(map);
@@ -124,5 +137,33 @@ public class AuthenticationActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void queryBankNo(final String bankNo){
+        //银行代码请求接口 url
+        String url = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo="+bankNo+"&cardBinCheck=true";
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getBoolean("validated")){
+                        if (!jsonObject.getString("cardType").equals("DC")){
+                            Toast.makeText(getApplication(),"请输入储蓄卡卡号",Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        authenyhmc.setText(AddCard02Activity.getBankName(bankNo.substring(0,6)));
+                    }else {
+                        Toast.makeText(getApplication(),"请检查银行卡号码",Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplication(),"网络请求错误",Toast.LENGTH_LONG).show();
+            }
+        }));
+
     }
 }

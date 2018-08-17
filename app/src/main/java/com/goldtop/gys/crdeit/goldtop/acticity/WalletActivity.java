@@ -50,15 +50,21 @@ public class WalletActivity extends BaseActivity {
                 finish();
             }
         }).setTitleText("钱包");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         MyVolley.addRequest(new VolleyRequest(Action.totalIncome+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
                     if (jsonObject.getString("code").equals("1")){
                         JSONObject object = jsonObject.getJSONObject("data");
-                        walletMoney.setText(""+object.getDouble("totalIncomeAmount"));
+                        walletMoney.setText(""+object.getDouble("totalIncomeAmount")/100.00d);
                         walletMoneyNum.setText(""+object.getString("incomeCount"));
-                        walletUserNum.setText(object.getInt("custNum"));
+                        walletUserNum.setText(""+object.getString("custNum"));
                     }else {
                         Toast.makeText(WalletActivity.this,"message",Toast.LENGTH_LONG).show();
                     }

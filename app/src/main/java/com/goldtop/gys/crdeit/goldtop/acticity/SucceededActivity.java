@@ -3,6 +3,7 @@ package com.goldtop.gys.crdeit.goldtop.acticity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import butterknife.OnClick;
 public class SucceededActivity extends BaseActivity {
     @Bind(R.id.succeeded_text)
     TextView succeededText;
+    @Bind(R.id.succeeded_text1)
+            TextView t2;
     String card="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +38,9 @@ public class SucceededActivity extends BaseActivity {
             }
         }).setTitleText("计划设置成功");
         card = getIntent().getStringExtra("card");
-        succeededText.setText("卡尾号（"+card.substring(card.length()-4)+"）代还款设置成功！ 代还款期间，请确保卡余额保持不变否则会影响还款成功率！");
+        succeededText.setText("卡尾号 （"+card.substring(card.length()-4)+"） 代还款设置成功！");
+        String str="代还款期间，请确保卡<font color='#ffcd16'>余额保持不变</font>否则会影响还款成功率！";
+        t2.setText(Html.fromHtml(str));
     }
 
     @OnClick({R.id.succeeded_wancheng, R.id.succeeded_chakan})

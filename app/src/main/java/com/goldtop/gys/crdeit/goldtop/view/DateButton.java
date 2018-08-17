@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.interfaces.DateButtonListener;
 
@@ -18,7 +20,7 @@ import com.goldtop.gys.crdeit.goldtop.interfaces.DateButtonListener;
  */
 
 @SuppressLint("AppCompatCustomView")
-public class DateButton extends Button {
+public class DateButton extends TextView {
     private static int CharactersColor = Color.parseColor("#eeeeee");
     private static String text = "点击";
     private DateButtonListener clickListener = null;
@@ -71,6 +73,7 @@ public class DateButton extends Button {
     }
     private void initB(){
         setText(text);
+        setGravity(Gravity.CENTER);
     }
 
 

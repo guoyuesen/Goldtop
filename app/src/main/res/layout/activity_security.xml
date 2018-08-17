@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/base_title_layout"/>
+    <TextView
+        android:id="@+id/shoushimima"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:layout_marginTop="10dip"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:text="设置手势密码"
+        />
+</LinearLayout>

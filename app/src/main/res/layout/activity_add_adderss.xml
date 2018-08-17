@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="收货人"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入姓名"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="手机号码"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -50,7 +50,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请输入联系电话"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:inputType="number"
             />
     </RelativeLayout>
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="选择地区"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -76,7 +76,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请选择"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:text="收货地址"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -101,7 +101,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
             android:hint="请填写详细地址"
-            android:textSize="16sp"
+            android:textSize="16dip"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:text="设为默认"
             android:textColor="#ff333333"
-            android:textSize="16sp"
+            android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
@@ -131,6 +131,6 @@
         android:gravity="center"
         android:text="保存"
         android:textColor="#ff000000"
-        android:textSize="18sp"
+        android:textSize="17dip"
         />
 </LinearLayout>

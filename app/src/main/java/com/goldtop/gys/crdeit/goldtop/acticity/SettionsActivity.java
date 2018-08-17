@@ -1,11 +1,13 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import butterknife.ButterKnife;
@@ -34,12 +36,18 @@ public class SettionsActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.settings_01:
+                startActivity(new Intent(this,SecurityActivity.class));
                 break;
             case R.id.settings_02:
                 break;
             case R.id.settings_03:
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.settings_04:
+                UserModel.remov();
+                Intent intent = new Intent(this,HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
         }
     }

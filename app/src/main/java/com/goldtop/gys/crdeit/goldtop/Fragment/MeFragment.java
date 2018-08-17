@@ -31,6 +31,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.RegisterActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.SettionsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WalletActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -168,7 +169,7 @@ public class MeFragment extends Fragment {
             case R.id.me_f_integral_l://积分
                 break;
             case R.id.me_f_authentication_l://实名认证
-                if (UserModel.shiMrenz.equals("INIT")){
+                if (!UserModel.custLevelSample.equals("VIP")){
                     getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
                 }
                 break;
@@ -184,6 +185,7 @@ public class MeFragment extends Fragment {
             case R.id.me_f_tema_l://团队业绩
                 break;
             case R.id.me_f_process_l://新手指南
+                WebUtilActivity.InWeb(getContext(),"http://47.106.103.104/app/guide.png?fileName=guide","新手指南",null);
                 break;
             case R.id.me_f_order_l://我的订单
                 getActivity().startActivity(new Intent(getContext(), OrderActivity.class));

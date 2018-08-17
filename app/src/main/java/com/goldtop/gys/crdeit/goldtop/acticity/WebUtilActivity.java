@@ -47,7 +47,8 @@ public class WebUtilActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_util);
         if (!title.equals("")){
-            new TitleBuder(this).setLeftImage(R.mipmap.ic_launcher).setTitleText(title).setLeftListener(new View.OnClickListener() {
+            hiedBar(this);
+            new TitleBuder(this).setLeftImage(R.mipmap.back_to).setTitleText(title).setLeftListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     finish();

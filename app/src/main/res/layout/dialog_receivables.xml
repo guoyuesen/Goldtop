@@ -13,15 +13,16 @@
         android:layout_centerHorizontal="true"
         android:text="请选择"
         android:textColor="#ff333333"
-        android:textSize="16sp"
+        android:textSize="16dip"
         />
     <ImageView
         android:id="@+id/receivables_dialog_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/close"
+        android:src="@mipmap/close1"
         android:layout_centerVertical="true"
         android:layout_marginLeft="19dip"
+        android:padding="5dip"
         />
     <ImageView
         android:id="@+id/receivables_dialog_add"
@@ -33,11 +34,12 @@
         android:layout_marginRight="19dip"
         />
     <TextView
+        android:id="@+id/receivables_dialog_addt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加"
         android:textColor="#ffff7f00"
-        android:textSize="15sp"
+        android:textSize="15dip"
         android:layout_alignParentRight="true"
         android:layout_marginRight="42dip"
         android:layout_centerVertical="true"
@@ -50,6 +52,8 @@
             android:layout_height="40dip"
             android:paddingLeft="40dip"
             android:paddingRight="40dip"
+            android:divider="#e9e9e9"
+            android:dividerHeight="0.5dip"
             ></ListView>
     <View
         android:layout_width="wrap_content"

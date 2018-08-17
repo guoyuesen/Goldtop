@@ -74,16 +74,16 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             JSONObject object1= all.getJSONObject(0);
             JSONObject object2= all.getJSONObject(1);
             String riqi = ContextUtil.dataTostr(object1.getLong("paymentTime"),"yyyy-MM-dd");
-            item.riqi.setText(riqi);
+            item.riqi.setText("还款日期："+riqi);
             item.time01.setText(ContextUtil.dataTostr(object1.getLong("paymentTime"),"HH:mm"));
             item.time02.setText(ContextUtil.dataTostr(object2.getLong("paymentTime"),"HH:mm"));
-            item.money01.setText(""+(object1.getDouble("paymentAmt")+object1.getDouble("transFee")));
-            item.money02.setText(""+(object2.getDouble("paymentAmt")+object2.getDouble("transFee")));
+            item.money01.setText(""+(object1.getDouble("paymentAmt")));//+object1.getDouble("transFee")
+            item.money02.setText(""+(object2.getDouble("paymentAmt")));//+object2.getDouble("transFee")
             item.free.setText("当日手续费："+(object1.getDouble("transFee")+object2.getDouble("transFee")));
             //还款计划状态（INIT待确认、CONFIRMED已生效、CANCELED计划被撤销、REPAY_ING 还款中、REPAY_SUCCESS还款成功、REPAY_FAIL 还款失败）
             setCode(item.code01,object1.getString("paymentStatus"));
             setCode(item.code02,object2.getString("paymentStatus"));
-            item.money03.setText(""+(Float.parseFloat(object1.getString("paymentAmt"))+Float.parseFloat(object2.getString("paymentAmt"))));
+            item.money03.setText(o.getString("planMoney"));
             item.time03.setText(o.getString("withdrawTime"));
         } catch (JSONException e) {
             e.printStackTrace();

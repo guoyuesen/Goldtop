@@ -139,8 +139,8 @@ public class RepaymentMsgActivity extends BaseActivity {
             herdtext06 = header.findViewById(R.id.head_card_number);
             try {
                 herdtext01.setText("" + (cardobj.getDouble("applyAmt") - cardobj.getDouble("balanceAmt")));
-                herdtext02.setText(cardobj.getInt("totalTerm") / 2 - (cardobj.getInt("balanceTerm") % 2 == 1 ? cardobj.getInt("balanceTerm") / 2 + 1 : cardobj.getInt("balanceTerm") / 2) + "");
-                herdtext03.setText("/" + (cardobj.getInt("totalTerm") / 2));
+                herdtext02.setText(cardobj.getInt("totalTerm") - (cardobj.getInt("balanceTerm")) + "");
+                herdtext03.setText("/" + (cardobj.getInt("totalTerm")));
                 herdtext04.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
                 herdtext05.setText("" + cardobj.getDouble("applyAmt"));
                 herdtext06.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
@@ -203,11 +203,15 @@ public class RepaymentMsgActivity extends BaseActivity {
             public void CallBack(JSONObject jsonObject) {
                 Log.d("==》",jsonObject.toString());
                 try {
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    JSONObject object = jsonObject.getJSONObject("data");
+                    JSONArray jsonArray = object.getJSONArray("dataList");
                     if (jsonArray.length()>0){
                         playId=jsonArray.getJSONObject(0).getJSONArray("planList").getJSONObject(0).getString("applyId");
-                        if (cardobj!=null)
-                        bommorder.setText(playId);
+                        if (cardobj!=null) {
+                            herdtext01.setText(object.getString("finAmt"));
+                            bommorder.setText(playId);
+                            bommTime.setText(ContextUtil.dataTostr(jsonArray.getJSONObject(0).getJSONArray("planList").getJSONObject(0).getLong("paymentTime"), "yyyy-MM-dd"));
+                        }
                     }
                     adapter.notifyDataSetChanged(jsonArray);
                 } catch (JSONException e) {
