@@ -8,16 +8,11 @@
         android:layout_width="match_parent"
         android:background="@drawable/home_title_color"
         android:layout_height="240dip">
-        <com.goldtop.gys.crdeit.goldtop.view.ArcProgress
+        <com.goldtop.gys.crdeit.goldtop.view.ArcProgressBar
             android:id="@+id/repayment_progress"
             android:layout_width="300dip"
-            android:layout_height="wrap_content"
-            app:radius="150dp"
-            app:arcCapRound="true"
-            app:degree="180"
-            app:progressStyle="arc"
-            app:progressColor="#cccccc"
-            app:tickDensity="3"
+            android:layout_height="150dip"
+            android:background="#00000000"
             android:layout_centerHorizontal="true"
             />
         <LinearLayout

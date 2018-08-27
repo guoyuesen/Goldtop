@@ -30,26 +30,26 @@ public class UserModel {
     public static String identifyingCode="";//
     public static String roleList="";//
     public static String menuList="";//
-    public static String shiMrenz="REG_ING";//
+    public static String shiMrenz="";//
 public static void setInfo(JSONObject object){
     try {
-        id=object.getString("id")==null?"":object.getString("id");
-    custId=object.getString("custId")==null?"":object.getString("custId");
-    custPassword=object.getString("custPassword")==null?"":object.getString("custPassword");
-    custName=object.getString("custName")==null?"":object.getString("custName");
-    custSex=object.getString("custSex")==null?"":object.getString("custSex");
-    custAge=object.getString("custAge")==null?"":object.getString("custAge");
-    custMobile=object.getString("custMobile")==null?"":object.getString("custMobile");
-    custEmail=object.getString("custEmail")==null?"":object.getString("custEmail");
-    idCardNo=object.getString("idCardNo")==null?"":object.getString("idCardNo");
-    address=object.getString("address")==null?"":object.getString("address");
-    custLevelSample=object.getString("custLevelSample")==null?"":object.getString("custLevelSample");
-    //introducerId=object.getString("introducerId")==null?"":object.getString("introducerId");
-    custStatus=object.getString("custStatus")==null?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"REG_ING");
-    lastLogin=object.getString("lastLogin")==null?"":object.getString("lastLogin");
-    createdTime=object.getString("createdTime")==null?"":object.getString("createdTime");
-    bankCards=object.getString("bankCards")==null?"":object.getString("bankCards");
-    identifyingCode=object.getString("identifyingCode")==null?"":object.getString("identifyingCode");
+        id=object.getString("id").equals("null")?"":object.getString("id");
+    custId=object.getString("custId").equals("null")?"":object.getString("custId");
+    custPassword=object.getString("custPassword").equals("null")?"":object.getString("custPassword");
+    custName=object.getString("custName").equals("null")?"暂未实名认证":object.getString("custName");
+    custSex=object.getString("custSex").equals("null")?"":object.getString("custSex");
+    custAge=object.getString("custAge").equals("null")?"":object.getString("custAge");
+    custMobile=object.getString("custMobile").equals("null")?"":object.getString("custMobile");
+    custEmail=object.getString("custEmail").equals("null")?"":object.getString("custEmail");
+    idCardNo=object.getString("idCardNo").equals("null")?"":object.getString("idCardNo");
+    address=object.getString("address").equals("null")?"":object.getString("address");
+    custLevelSample=object.getString("custLevelSample").equals("null")?"":object.getString("custLevelSample");
+    //introducerId=object.getString("introducerId").equals("null")?"":object.getString("introducerId");
+    custStatus=object.getString("custStatus").equals("null")?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"REG_ING");
+    lastLogin=object.getString("lastLogin").equals("null")?"":object.getString("lastLogin");
+    createdTime=object.getString("createdTime").equals("null")?"":object.getString("createdTime");
+    bankCards=object.getString("bankCards").equals("null")?"":object.getString("bankCards");
+    identifyingCode=object.getString("identifyingCode").equals("null")?"":object.getString("identifyingCode");
     } catch (JSONException e) {
         Log.d("","json格式错误");
     }

@@ -1,5 +1,6 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,13 +8,18 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.android.volley.VolleyError;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.holder.Holder;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
+import com.goldtop.gys.crdeit.goldtop.Fragment.ShpingFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.Utils.PayResult;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
@@ -26,7 +32,9 @@ import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,6 +91,34 @@ public class VipActivity extends BaseActivity {
             TextView textView = findViewById(R.id.vip_text);
             textView.setText("您已是尊贵的VIP会员");
             findViewById(R.id.vip_submit).setVisibility(View.GONE);
+        }
+        List<Integer> ins = new ArrayList<>();
+        ins.add(R.mipmap.sp_show07);
+        ins.add(R.mipmap.shangc3);
+        ins.add(R.mipmap.sp_show07);
+        ConvenientBanner<Integer> convenientBanner = findViewById(R.id.shping_f_t_img);
+        convenientBanner.setPages(new CBViewHolderCreator<VipActivity.ImageViewHolder>() {
+            @Override
+            public VipActivity.ImageViewHolder createHolder() {
+                return new VipActivity.ImageViewHolder();
+            }
+        },ins).setPageIndicator(new int[]  {R.drawable.button_r_c,R.drawable.button_r_f})
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setPointViewVisible(true)
+                .startTurning(5000); //设置指示器的方向水平  居中
+    }
+    public class ImageViewHolder implements Holder<Integer> {
+        private ImageView imageView;
+        @Override
+        public View createView(Context context) {
+            imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            return imageView;
+        }
+        @Override
+        public void UpdateUI(Context context, int position, Integer data) {
+
+            imageView.setImageResource(data);
         }
     }
     private void getPayinfo(){

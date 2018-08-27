@@ -17,6 +17,7 @@ public class ThisApplication extends Application {
         MyVolley.init(getApplicationContext());
         context = getApplicationContext();
         MobSDK.init(this);
+
     }
     public static Context getContext(){
 

@@ -63,13 +63,21 @@ public class ReceivablesDialogView extends Dialog {
         view.findViewById(R.id.receivables_dialog_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getContext().startActivity(new Intent(getContext(), AddCard01Activity.class));
+                if (T.equals("C")){
+                    AddCard01Activity.initActivity(getContext(),"CC");
+                }else {
+                    AddCard01Activity.initActivity(getContext(),"DC");
+                }
             }
         });
         view.findViewById(R.id.receivables_dialog_addt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getContext().startActivity(new Intent(getContext(), AddCard01Activity.class));
+                if (T.equals("C")){
+                    AddCard01Activity.initActivity(getContext(),"CC");
+                }else {
+                    AddCard01Activity.initActivity(getContext(),"DC");
+                }
             }
         });
 

@@ -54,6 +54,7 @@ public class MyCardAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.item_my_card, null);
             item.name = view.findViewById(R.id.item_mycard_name);
             item.num = view.findViewById(R.id.item_mycard_num);
+            item.type = view.findViewById(R.id.card_type);
             view.setTag(item);
         }else {
             item = (ThisItem) view.getTag();
@@ -61,6 +62,11 @@ public class MyCardAdapter extends BaseAdapter {
         try {
             JSONObject object = array.getJSONObject(i);
             item.name.setText(object.getString("bankName"));
+            if (object.getString("bankCardType").equals("D")){
+                item.type.setText("储蓄卡");
+            }else {
+                item.type.setText("信用卡");
+            }
             String num = object.getString("accountCode");
             StringBuffer sb = new StringBuffer("");
             for (int s = 0;s<num.length();s++){
@@ -82,5 +88,6 @@ public class MyCardAdapter extends BaseAdapter {
     class ThisItem{
         TextView name;
         TextView num;
+        TextView type;
     }
 }

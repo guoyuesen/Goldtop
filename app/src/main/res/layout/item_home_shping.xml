@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,12 +66,13 @@
             android:minHeight="60dip"
             android:text="智能温度计"
             android:textColor="#ff686868"
-            android:textSize="14dip"
+            android:textSize="13dip"
             android:layout_marginLeft="130dip"
             android:layout_marginTop="15dip"
             android:layout_marginRight="79dip"
             />
         <TextView
+            android:id="@+id/sp_dh"
             android:layout_width="74dip"
             android:layout_height="24dip"
             android:gravity="center"
@@ -81,6 +84,12 @@
             android:layout_marginRight="10dip"
             android:background="@drawable/button_transparent_ff7f00"
             android:layout_alignParentRight="true"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dip"
+            android:background="#f9f9f9"
+            android:layout_marginTop="140dip"
             />
     </RelativeLayout>
 

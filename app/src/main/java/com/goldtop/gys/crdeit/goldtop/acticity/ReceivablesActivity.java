@@ -82,7 +82,7 @@ public class ReceivablesActivity extends BaseActivity {
                     Toast.makeText(this,"请选择信用卡",Toast.LENGTH_LONG).show();
                     return;
                 }
-                    if(!objectin.getString("openStatus").equals("OPEN_SUCCESS")){
+                    if(!objectout.getString("openStatus").equals("OPEN_SUCCESS")){
                         Toast.makeText(this,"信用卡未进行银联认证，请联系客服",Toast.LENGTH_LONG).show();
                         return;
                     }

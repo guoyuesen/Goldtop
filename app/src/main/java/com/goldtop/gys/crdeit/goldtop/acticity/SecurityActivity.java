@@ -36,5 +36,8 @@ public class SecurityActivity extends BaseActivity {
     public void onClick() {
         //GraphicActivity.isLogin = false;
         //startActivity(new Intent(this,GraphicActivity.class));
+        Intent intent = new Intent(this,RegisterActivity.class);
+        intent.putExtra("from","pass");
+        startActivity(intent);
     }
 }

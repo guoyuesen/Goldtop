@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.goldtop.gys.crdeit.goldtop.R;
 
@@ -56,6 +57,7 @@ public class HomeShpingAdapter extends BaseAdapter {
             item.img = view.findViewById(R.id.item_sp_img);
             item.text = view.findViewById(R.id.item_sp_text);
             item.jf = view.findViewById(R.id.item_sp_jf);
+            item.dh = view.findViewById(R.id.sp_dh);
             view.setTag(item);
         }else {
             item = (ThisItem) view.getTag();
@@ -65,6 +67,12 @@ public class HomeShpingAdapter extends BaseAdapter {
             item.img.setImageResource(object.getInt("img"));
             item.text.setText(object.getString("text"));
             item.jf.setText(""+object.getInt("jf"));
+            item.dh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context,"积分不足",Toast.LENGTH_LONG).show();
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -75,6 +83,7 @@ public class HomeShpingAdapter extends BaseAdapter {
         ImageView img;
         TextView text;
         TextView jf;
+        View dh;
 
     }
 }

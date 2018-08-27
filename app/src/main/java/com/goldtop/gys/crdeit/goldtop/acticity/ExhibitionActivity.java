@@ -41,9 +41,9 @@ public class ExhibitionActivity extends BaseActivity {
 
     private void initactivity() {
         viewPager.setAdapter(new PagerAdapter() {
-            String [] t = new String[]{"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=252480313,3979546401&fm=27&gp=0.jpg",
-                    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4197497777,1331906814&fm=27&gp=0.jpg",
-                    "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=177156347,222002421&fm=27&gp=0.jpg"};
+            int [] t = new int[]{R.mipmap.ydy01,
+                    R.mipmap.ydy02,
+                    R.mipmap.ydy03};
             @Override
             public int getCount() {
                 return t.length;
@@ -60,7 +60,8 @@ public class ExhibitionActivity extends BaseActivity {
                 ImageView imageView = new ImageView(ExhibitionActivity.this);
                 imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                MyVolley.getImage(t[position],imageView);
+                imageView.setImageResource(t[position]);
+                //MyVolley.getImage(t[position],imageView);
                 /*TextView textView = new TextView(ExhibitionActivity.this);
                 textView.setGravity(Gravity.CENTER);
                 textView.setText(""+t[position]);*/
@@ -100,6 +101,7 @@ public class ExhibitionActivity extends BaseActivity {
             public void onClick(View view) {
                 //Toast.makeText(ThisApplication.getContext(),"跳过",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ExhibitionActivity.this,HomeActivity.class));
+                finish();
             }
         });
         findViewById(R.id.exhibition_next).setOnClickListener(new View.OnClickListener() {
@@ -108,6 +110,7 @@ public class ExhibitionActivity extends BaseActivity {
                 //Toast.makeText(ThisApplication.getContext(),"立即进入",Toast.LENGTH_LONG).show();
                 //WebUtilActivity.InWeb(ExhibitionActivity.this,"http://www.baidu.com","百度",null);
                 startActivity(new Intent(ExhibitionActivity.this,HomeActivity.class));
+                finish();
             }
         });
     }

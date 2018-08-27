@@ -85,4 +85,35 @@
             android:layout_marginRight="12dip"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f1f1f1"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="21dp"
+            android:text="总手续费"
+            android:textColor="#ff333333"
+            android:textSize="15dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dip"
+            />
+        <TextView
+            android:id="@+id/toptow_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0元"
+            android:textColor="#ffcecccc"
+            android:textSize="15dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dip"
+            />
+    </RelativeLayout>
 </LinearLayout>

@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -111,8 +112,8 @@ public class RedEnvelopesActivity extends BaseActivity {
                     if (jsonObject.getInt("code")==1){
                         money = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
                         ktx = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
-                        envelopesKtxMoney.setText(""+ktx);
-                        envelopesMoney.setText(""+money);
+                        envelopesKtxMoney.setText(MoneyUtils.getShowMoney(ktx));
+                        envelopesMoney.setText(MoneyUtils.getShowMoney(money));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

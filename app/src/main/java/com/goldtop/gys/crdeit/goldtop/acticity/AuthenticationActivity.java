@@ -1,7 +1,11 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -77,7 +81,52 @@ public class AuthenticationActivity extends BaseActivity {
                     // 此处为得到焦点时的处理内容
                     String cardnumber = authenCardnumber.getText().toString().trim();
                     queryBankNo(cardnumber);
+                }
+            }
+        });
+        authenCardnumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String str = editable.toString();
+                if (str.length()>16&&authenyhmc.getText().toString().trim().isEmpty()){
+                    authenyhmc.setText(AddCard02Activity.getBankName(str.substring(0,6)));
+                }
+            }
+        });
+        final TextView thmc = findViewById(R.id.authen_yhmc);
+        thmc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String n = authenCardnumber.getText().toString().trim();
+                String yh = thmc.getText().toString().trim();
+                if (yh == null||yh.equals("")) {
+                    MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBank +"?bankNo="+ n, new HashMap<String, String>(), new MyVolleyCallback() {
+                        @Override
+                        public void CallBack(JSONObject jsonObject) {
+                            try {
+                                if (jsonObject.getInt("code")==1){
+                                    thmc.setText(jsonObject.getJSONObject("data").getString("bankName"));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }));
                 }
             }
         });
@@ -98,6 +147,7 @@ public class AuthenticationActivity extends BaseActivity {
             Toast.makeText(this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
             return;
         }
+        UserModel.custName = name;
         final Map<String, String> params = new HashMap<String, String>();
         params.put("custId", UserModel.custId);
         params.put("custName", name);
@@ -125,12 +175,25 @@ public class AuthenticationActivity extends BaseActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("返回参数：==》",response.toString());
+                //Toast.makeText(AuthenticationActivity.this,"实名认证提交成功",Toast.LENGTH_LONG).show();
+                UserModel.shiMrenz = "REG_ING";
+                AlertDialog dialog = new AlertDialog.Builder(AuthenticationActivity.this)
+                        .setMessage("实名认证提交成功，为了您的账户安全，实名认证可能需要3-5分钟，请耐心等待")
+                        .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        }).create();
+                dialog.show();
                 Httpdismiss();
+                //finish();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("错误参数：==》","error.getMessage()");
+                Toast.makeText(AuthenticationActivity.this,"网络请求失败",Toast.LENGTH_LONG).show();
                 Httpdismiss();
             }
         }));

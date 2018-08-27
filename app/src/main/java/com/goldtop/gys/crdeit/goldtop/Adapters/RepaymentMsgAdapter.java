@@ -62,7 +62,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             item.code01 = view.findViewById(R.id.item_repayment_text08);
             item.code02 = view.findViewById(R.id.item_repayment_text11);
             item.time03 = view.findViewById(R.id.item_repayment_text12);
-            item.free = view.findViewById(R.id.item_repayment_text13);
+            //item.free = view.findViewById(R.id.item_repayment_text13);
             item.money03 = view.findViewById(R.id.item_repayment_text14);
             view.setTag(item);
         }else {
@@ -79,7 +79,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             item.time02.setText(ContextUtil.dataTostr(object2.getLong("paymentTime"),"HH:mm"));
             item.money01.setText(""+(object1.getDouble("paymentAmt")));//+object1.getDouble("transFee")
             item.money02.setText(""+(object2.getDouble("paymentAmt")));//+object2.getDouble("transFee")
-            item.free.setText("当日手续费："+(object1.getDouble("transFee")+object2.getDouble("transFee")));
+            //item.free.setText("当日手续费："+(object1.getDouble("transFee")+object2.getDouble("transFee")));
             //还款计划状态（INIT待确认、CONFIRMED已生效、CANCELED计划被撤销、REPAY_ING 还款中、REPAY_SUCCESS还款成功、REPAY_FAIL 还款失败）
             setCode(item.code01,object1.getString("paymentStatus"));
             setCode(item.code02,object2.getString("paymentStatus"));
@@ -105,7 +105,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
         TextView code01;
         TextView code02;
         TextView time03;
-        TextView free;
+        //TextView free;
         TextView money03;
     }
     public void setCode(TextView textView,String code){

@@ -15,6 +15,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="32dip"
         android:layout_marginRight="16dip"
+        android:background="@color/transparent"
         />
     <Button
         android:id="@+id/exhibition_next"
@@ -25,6 +26,7 @@
         android:layout_marginBottom="16dip"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
+        android:background="@drawable/button_f_me_login"
         />
 
 </RelativeLayout>

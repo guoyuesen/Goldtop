@@ -5,7 +5,7 @@ package com.goldtop.gys.crdeit.goldtop.service;
  */
 
 public class Action {
-    private static String url = "http://47.106.103.104";
+    private static String url = "http://www.tuoluo718.com";
     //登录
     public static String login = url+"/login";
     //注册
@@ -27,7 +27,7 @@ public class Action {
     //获取计划手续费
     public static String calcReserveMoney = url+"/payment/calcReserveMoney";
     //还款申请
-    public static String paymentApply = url+"/payment/paymentApply";
+    public static String paymentApply = url+"/apply/paymentApply";//"/payment/paymentApply";
     //查看计划
     public static String paymentPlanListByDate = url+"/payment/paymentPlanListByDate";
     //取消计划
@@ -48,9 +48,13 @@ public class Action {
     public static String createPatternPassword=url+"/createPatternPassword";
     //红包
     public static String myRedpack=url+"/income/myRedpack";
-    //红包
+    //钱包金额？
     public static String transfer=url+"/income/transfer";
     //手势密码登录
     public static String loginByType = url+ "/loginByType";
+    //版本号
+    public static String version = url+"/app/version";
+    //查询银行
+    public static String queryBank = url+"/queryBank";
 
 }

@@ -103,7 +103,7 @@
         android:id="@+id/item_repayment_bomm_cloesplay"
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        android:background="@drawable/home_repay_bommr"
+        android:background="@drawable/home_repay_rn"
         android:layout_marginRight="50dip"
         android:layout_marginLeft="50dip"
         android:layout_marginTop="190dip"

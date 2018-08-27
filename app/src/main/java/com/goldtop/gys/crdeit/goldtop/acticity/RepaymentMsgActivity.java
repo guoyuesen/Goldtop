@@ -23,7 +23,7 @@ import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
-import com.goldtop.gys.crdeit.goldtop.view.ArcProgress;
+import com.goldtop.gys.crdeit.goldtop.view.ArcProgressBar;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import org.json.JSONArray;
@@ -59,6 +59,7 @@ public class RepaymentMsgActivity extends BaseActivity {
     TextView herdtext04;
     TextView herdtext05;
     TextView herdtext06;
+    TextView fee;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +145,8 @@ public class RepaymentMsgActivity extends BaseActivity {
                 herdtext04.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
                 herdtext05.setText("" + cardobj.getDouble("applyAmt"));
                 herdtext06.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
+                ArcProgressBar bar= header.findViewById(R.id.repayment_progress);
+                bar.setSetbacks((int)((cardobj.getDouble("totalTerm") - cardobj.getDouble("balanceTerm"))/cardobj.getDouble("totalTerm")*180));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -152,6 +155,7 @@ public class RepaymentMsgActivity extends BaseActivity {
             TextView t1= header.findViewById(R.id.toptow_money);
             TextView t2= header.findViewById(R.id.toptow_money01);
             TextView t3= header.findViewById(R.id.toptow_day);
+            fee= header.findViewById(R.id.toptow_fee);
             t1.setText(getIntent().getStringExtra("Money1"));
             t2.setText(getIntent().getStringExtra("Money2")+"元");
             t3.setText(getIntent().getStringExtra("Day")+"天");
@@ -211,6 +215,8 @@ public class RepaymentMsgActivity extends BaseActivity {
                             herdtext01.setText(object.getString("finAmt"));
                             bommorder.setText(playId);
                             bommTime.setText(ContextUtil.dataTostr(jsonArray.getJSONObject(0).getJSONArray("planList").getJSONObject(0).getLong("paymentTime"), "yyyy-MM-dd"));
+                        }else {
+                            fee.setText(object.getString("totalFee")+"元");
                         }
                     }
                     adapter.notifyDataSetChanged(jsonArray);

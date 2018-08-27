@@ -23,6 +23,27 @@
             android:textSize="14dip"
             android:layout_marginLeft="20dip"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="还款时间："
+            android:textColor="#ff888888"
+            android:textSize="13dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dip"
+            />
+        <TextView
+            android:id="@+id/item_repayment_text12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22:00"
+            android:textColor="#ff888888"
+            android:textSize="13dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dip"
+            />
     </RelativeLayout>
 
     <LinearLayout
@@ -180,7 +201,7 @@
     android:layout_height="1dip"
     android:background="#30C5C4C4"
     />
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dip"
             >
@@ -214,7 +235,7 @@
                 android:layout_marginRight="13dip"
                 android:layout_alignParentRight="true"
                 />
-        </RelativeLayout>
+        </RelativeLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dip"

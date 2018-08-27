@@ -27,6 +27,7 @@ import com.goldtop.gys.crdeit.goldtop.Fragment.HomeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.MeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.ShpingFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import butterknife.Bind;
@@ -91,10 +92,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick({R.id.home_bottom_btn1, R.id.home_bottom_btn2, R.id.home_bottom_btn3, R.id.home_bottom_btn4})
     public void onClick(View view) {
-        //获取管理者
-        supportFragmentManager = getSupportFragmentManager();
-        //开启事务
-        fragmentTransaction = supportFragmentManager.beginTransaction();
+
         //fragmentTransaction.setCustomAnimations(R.anim.activity_in,R.anim.activity_out);
         switch (view.getId()) {
             case R.id.home_bottom_btn1:
@@ -118,6 +116,10 @@ public class HomeActivity extends AppCompatActivity {
         if (v == a) {
             return;
         }
+        //获取管理者
+        supportFragmentManager = getSupportFragmentManager();
+        //开启事务
+        fragmentTransaction = supportFragmentManager.beginTransaction();
         fragmentTransaction.hide(fragment);
         switch (a) {
             case 0:
@@ -165,6 +167,12 @@ public class HomeActivity extends AppCompatActivity {
                     if (meFragment == null) {
                         //实例化fragment2
                         meFragment = new MeFragment();
+                        meFragment.setClick(new DialogClick() {
+                            @Override
+                            public void onClick(View v) {
+                                Fragment(1);
+                            }
+                        });
                         fragmentTransaction.add(R.id.home_frame, meFragment).commit();
                     } else {
                         //有的话就显示

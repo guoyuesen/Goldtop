@@ -137,7 +137,7 @@ public class HomeBankAdapter extends BaseAdapter {
                     item.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (!UserModel.custStatus.equals("AUTH")){
+                            if (!UserModel.custStatus.equals("REG_SUCCESS")){
                                 Toast.makeText(context,"您还未实名认证，请先进行实名认证",Toast.LENGTH_LONG).show();
                                 return;
                             }

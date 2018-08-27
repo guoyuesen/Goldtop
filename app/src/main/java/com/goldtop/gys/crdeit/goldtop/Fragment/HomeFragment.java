@@ -1,5 +1,8 @@
 package com.goldtop.gys.crdeit.goldtop.Fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -21,12 +27,14 @@ import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
+import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.ReceivablesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
+import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -77,7 +85,7 @@ public class HomeFragment extends Fragment {
         homeFrameAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), AddCard01Activity.class));
+                AddCard01Activity.initActivity(getContext(),"CC");
             }
         });
         JSONArray array = new JSONArray();
@@ -87,7 +95,7 @@ public class HomeFragment extends Fragment {
         hview.findViewById(R.id.home_frame_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebUtilActivity.InWeb(getContext(),"https://h5.blackfish.cn/bill/credit-card-manager/page-index?channel=RZnfboTz&ID=015","",null);
+                WebUtilActivity.InWeb(getContext(),"https://h5.blackfish.cn/bill/credit-card-manager/page-index?channel=RZnfboTz&ID=015","信用卡办理",null);
             }
         });
         hview.findViewById(R.id.home_frame_btn2).setOnClickListener(new View.OnClickListener() {
@@ -121,8 +129,24 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if (!AppUtil.isLogin(getContext())){
                     return;
+                }if (UserModel.shiMrenz.equals("REG_SUCCESS")){
+                    AddCard01Activity.initActivity(getContext(),"CC");
+                }else if (UserModel.shiMrenz.equals("INIT")||UserModel.shiMrenz.equals("")){
+                    dialogShow2(getContext(), "您尚未进行实名认证，请前往认证！", new DialogClick() {
+                        @Override
+                        public void onClick(View v) {
+                            getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
+                        }
+                    });
+                }else {
+                    dialogShow2(getContext(), "实名认证审核中，请耐心等待！", new DialogClick() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
                 }
-                startActivity(new Intent(getContext(), AddCard01Activity.class));
+
             }
         });
         view.findViewById(R.id.home_baoxian).setOnClickListener(new View.OnClickListener() {
@@ -131,7 +155,7 @@ public class HomeFragment extends Fragment {
                 WebUtilActivity.InWeb(getContext(),"https://m.zhongan.com/p/85132614","",null);
             }
         });
-        homeFrameList.addFooterView(view);
+        homeFrameList.addFooterView(view,null,false);
         homeFrameMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +166,37 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    public static void dialogShow2(Context context, String msg, final DialogClick listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.update_manage_dialog, null);
+        TextView content = (TextView) v.findViewById(R.id.dialog_content);
+        content.setText(msg);
+        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
+        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
+        //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        btn_sure.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                listener.onClick(v);
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+
+            }
+        });
+    }
     @Override
     public void onStart() {
         Map<String,String> map = new HashMap<String,String>();

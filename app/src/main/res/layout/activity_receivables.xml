@@ -24,21 +24,22 @@
             android:layout_height="wrap_content"
             android:text="¥"
             android:textColor="#ff333333"
-            android:textSize="46dip"
+            android:textSize="31dip"
             android:layout_marginLeft="20dip"
-            android:layout_marginTop="56dip"
+            android:layout_marginTop="77dip"
             />
         <EditText
             android:id="@+id/receivables_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="0.00"
-            android:textSize="35dip"
+            android:textSize="47dip"
             android:layout_marginLeft="63dip"
             android:layout_marginTop="65dip"
             android:background="@color/white"
             android:inputType="number"
             android:textStyle="bold"
+            android:text=""
             />
 
 
@@ -52,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预计30分钟内到账，需支付*元手续费"
+            android:text="实时到账，需支付*元手续费"
             android:textColor="#ffd0d0d0"
             android:textSize="14dip"
             android:layout_marginLeft="16dip"

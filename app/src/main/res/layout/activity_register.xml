@@ -117,6 +117,7 @@
             android:textSize="15dip"
             android:inputType="textPassword"
             android:textCursorDrawable="@drawable/edittextn"
+
             />
         <TextView
             android:layout_width="wrap_content"

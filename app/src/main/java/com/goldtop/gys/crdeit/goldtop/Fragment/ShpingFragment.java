@@ -65,13 +65,13 @@ public class ShpingFragment extends Fragment {
 
         try {
             JSONObject object = new JSONObject();
-            object.put("img",R.mipmap.sp_show01);
-            object.put("text","创意夏日碎冰杯 韩国小清新冰杯水果饮料杯塑料制冷随手杯 ");
+            object.put("img",R.mipmap.shangc1);
+            object.put("text","心相印抽纸茶语丝享3层150抽24包抽纸巾整箱新老包装随机  ");
             object.put("jf",9);
             array.put(object);
             object = new JSONObject();
-            object.put("img",R.mipmap.sp_show02);
-            object.put("text","创意夏日碎冰杯 韩国小清新冰杯水果饮料杯塑料制冷随手杯 ");
+            object.put("img",R.mipmap.shangc2);
+            object.put("text","迪奥dior蓝金口红唇膏限量五支520#888#999哑光滋润礼物 礼盒套装 ");
             object.put("jf",20);
             array.put(object);
             object = new JSONObject();
@@ -101,17 +101,17 @@ public class ShpingFragment extends Fragment {
 
         bommView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_bomm, null);
         homeShpingGrid.setAdapter(new HeaderViewListAdapter(null, null, new HomeShpingAdapter(getContext(), array)));
-        homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                /*JSONArray array1 = new JSONArray();
+                *//*JSONArray array1 = new JSONArray();
                 for (int j = 0; j < i; j++) {
                     array1.put(0);
                 }
                 ButtomDialogView dialogView = new ButtomDialogView(getContext(), array1);
-                dialogView.show();*/
+                dialogView.show();*//*
             }
-        });
+        });*/
         homeShpingGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int getLastVisiblePosition = 0, lastVisiblePositionY = 0;
             @Override
@@ -157,7 +157,7 @@ public class ShpingFragment extends Fragment {
         View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
         List<Integer> ins = new ArrayList<>();
         ins.add(R.mipmap.sp_show07);
-        ins.add(R.mipmap.sp_show07);
+        ins.add(R.mipmap.shangc3);
         ins.add(R.mipmap.sp_show07);
         ConvenientBanner<Integer> convenientBanner = view1.findViewById(R.id.shping_f_t_img);
         convenientBanner.setPages(new CBViewHolderCreator<ImageViewHolder>() {

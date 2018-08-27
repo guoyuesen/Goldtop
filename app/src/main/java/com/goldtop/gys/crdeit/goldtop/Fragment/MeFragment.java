@@ -1,13 +1,18 @@
 package com.goldtop.gys.crdeit.goldtop.Fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +37,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.SettionsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WalletActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
+import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -72,6 +78,11 @@ public class MeFragment extends Fragment {
     @Bind(R.id.me_f_rz)
     TextView me_f_rz;
     private View view;
+    DialogClick click;
+
+    public void setClick(DialogClick click) {
+        this.click = click;
+    }
 
     @Nullable
     @Override
@@ -112,7 +123,7 @@ public class MeFragment extends Fragment {
                 me_f_rz.setText("未认证");
                 break;
         }
-        if (UserModel.shiMrenz.equals("REG_ING")){
+        if (UserModel.shiMrenz.equals("")||UserModel.shiMrenz.equals("REG_ING")){
             MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.smrz+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
                 @Override
                 public void CallBack(JSONObject jsonObject) {
@@ -131,6 +142,9 @@ public class MeFragment extends Fragment {
                                     me_f_rz.setText("未认证");
                                     break;
                             }
+                        }else {
+                            UserModel.shiMrenz = "INIT";
+                            me_f_rz.setText("未认证");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -167,9 +181,12 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), RedEnvelopesActivity.class));
                 break;
             case R.id.me_f_integral_l://积分
+                if (click!=null){
+                click.onClick(null);
+                }
                 break;
             case R.id.me_f_authentication_l://实名认证
-                if (!UserModel.custLevelSample.equals("VIP")){
+                if (!UserModel.shiMrenz.equals("INIT")){
                     getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
                 }
                 break;
@@ -206,6 +223,20 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), SettionsActivity.class));
                 break;
             case R.id.me_f_process_l0://我的客服
+                /*Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:02885002704");
+                intent.setData(data);
+                startActivity(intent);*/
+                int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                            getActivity(),
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            123);
+                } else {
+                    startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:02885002704")));
+                }
                 break;
         }
     }

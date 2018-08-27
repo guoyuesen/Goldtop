@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -62,9 +63,10 @@ public class WalletActivity extends BaseActivity {
                 try {
                     if (jsonObject.getString("code").equals("1")){
                         JSONObject object = jsonObject.getJSONObject("data");
-                        walletMoney.setText(""+object.getDouble("totalIncomeAmount")/100.00d);
-                        walletMoneyNum.setText(""+object.getString("incomeCount"));
-                        walletUserNum.setText(""+object.getString("custNum"));
+                        walletMoney.setText(MoneyUtils.getShowMoney(object.getDouble("totalIncomeAmount")/100.00d));
+                        walletMoneyNum.setText(""+(object.getString("incomeCount").equals("null")||(object.getString("incomeCount")==null)?"0":object.getString("incomeCount")));
+                        walletUserNum.setText(""+(object.getString("custNum").equals("null")||(object.getString("custNum")==null)?"0":object.getString("custNum")));
+                        //walletUserNum.setText(""+object.getString("custNum"));
                     }else {
                         Toast.makeText(WalletActivity.this,"message",Toast.LENGTH_LONG).show();
                     }

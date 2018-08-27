@@ -6,8 +6,8 @@ android {
         applicationId "com.goldtop.gys.crdeit.goldtop"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -37,6 +37,10 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     implementation files('libs/alipaySdk-20180601.jar')
+    /*权限获取*/
+    compile 'com.yanzhenjie:permission:1.0.5'
+    //compile 'com.androidkun:xversionupdate:1.0.4'
+    compile 'com.android.support:design:27.1.1'
 }
 MobSDK {
     appKey "2754c48a1b426"
@@ -44,6 +48,10 @@ MobSDK {
     ShareSDK {
         devInfo {
             Wechat {
+                appId "wx6ba6c1cfaec6442b"
+                appSecret "cbd386f122bfbc06fc1d6be240eff19a"
+            }
+            WechatMoments {
                 appId "wx6ba6c1cfaec6442b"
                 appSecret "cbd386f122bfbc06fc1d6be240eff19a"
             }
