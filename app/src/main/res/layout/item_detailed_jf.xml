@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/detaile_jf_t3"
         android:layout_width="wrap_content"
         android:layout_height="32dip"
         android:layout_marginStart="15dp"
@@ -51,16 +52,10 @@
             android:textSize="15dip" />
 
         <TextView
+            android:id="@+id/detaile_jf_t2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10"
-            android:textColor="#FF6A00"
-            android:textSize="22dip" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="积分"
+            android:text="0积分"
             android:textColor="#FF6A00"
             android:textSize="15dip" />
     </LinearLayout>

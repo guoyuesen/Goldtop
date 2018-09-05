@@ -38,6 +38,7 @@ public class WalletActivity extends BaseActivity {
     TextView walletMoneyNum;
     @Bind(R.id.wallet_user_num)
     TextView walletUserNum;
+    Double money = 0.00d;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +64,8 @@ public class WalletActivity extends BaseActivity {
                 try {
                     if (jsonObject.getString("code").equals("1")){
                         JSONObject object = jsonObject.getJSONObject("data");
-                        walletMoney.setText(MoneyUtils.getShowMoney(object.getDouble("totalIncomeAmount")/100.00d));
+                        money = object.getDouble("totalIncomeAmount");
+                        walletMoney.setText(MoneyUtils.getShowMoney(money/100.00d));
                         walletMoneyNum.setText(""+(object.getString("incomeCount").equals("null")||(object.getString("incomeCount")==null)?"0":object.getString("incomeCount")));
                         walletUserNum.setText(""+(object.getString("custNum").equals("null")||(object.getString("custNum")==null)?"0":object.getString("custNum")));
                         //walletUserNum.setText(""+object.getString("custNum"));
@@ -95,7 +97,9 @@ public class WalletActivity extends BaseActivity {
                 startActivity(new Intent(this,RecommendedAwardsActivity.class));
                 break;
             case R.id.wallet_R_04:
-                startActivity(new Intent(this,ExpressiveActivity.class));
+                Intent intent = new Intent(this,ExpressiveActivity.class);
+                intent.putExtra("money",money);
+                startActivity(intent);
                 break;
         }
     }

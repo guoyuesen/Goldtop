@@ -55,6 +55,9 @@ public class MainActivity extends BaseActivity {
                     new InstallApk(MainActivity.this)
                             .installApk(new File(Environment.getExternalStorageDirectory(), "your_app_name.apk"));
                     break;
+                case 1:
+
+                    break;
             }
 
         }

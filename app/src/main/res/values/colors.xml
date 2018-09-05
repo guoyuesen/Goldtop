@@ -7,6 +7,7 @@
     <color name="white">#ffffff</color>
     <color name="whitetran">#80ffffff</color>
     <color name="transparent">#00000000</color>
+    <color name="transparent_">#22000000</color>
     <color name="red">#eb2127</color>
     <color name="titlecolor">#FECE00</color>
 </resources>

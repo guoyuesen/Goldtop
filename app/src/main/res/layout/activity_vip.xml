@@ -29,9 +29,10 @@
         android:visibility="gone"
         />
     <TextView
+        android:id="@+id/vip_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(135****8866)"
+        android:text="(***********)"
         android:textColor="#ff333333"
         android:textSize="16dip"
         android:layout_marginTop="85dip"
@@ -72,10 +73,10 @@
         android:id="@+id/vip_submit"
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        android:text="立即成为VIP会员"
+        android:text="立即升级VIP"
         android:textColor="#ff333333"
         android:textSize="17dip"
-        android:background="@drawable/home_repay_r"
+        android:background="@drawable/home_repay_vip"
         android:layout_marginLeft="25dip"
         android:layout_marginRight="25dip"
         android:layout_below="@+id/vip_f_t_img"
@@ -84,6 +85,22 @@
         android:layout_marginTop="38dip"
         android:layout_marginBottom="38dip"
         />
+            <TextView
+                android:id="@+id/vip_vip"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:text="立即升级会员"
+                android:textColor="@color/titlecolor"
+                android:textSize="17dip"
+                android:background="@drawable/button_transparent_vip"
+                android:layout_marginLeft="25dip"
+                android:layout_marginRight="25dip"
+                android:layout_below="@+id/vip_f_t_img"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="98dip"
+                android:layout_marginBottom="38dip"
+                />
         </RelativeLayout>
 
     </ScrollView>

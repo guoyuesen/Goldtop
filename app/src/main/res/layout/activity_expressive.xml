@@ -102,16 +102,45 @@
             android:layout_marginRight="12dip"
             android:layout_marginTop="100dip"
         />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="额外扣除¥*手续费（费率*%）"
-            android:textColor="#a3888888"
-            android:textSize="14dip"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dip"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
-            android:layout_marginLeft="12dip"
-            android:layout_marginTop="110dip"
-            />
+            android:paddingLeft="14dip"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="可提现金额为"
+                android:textColor="#a3888888"
+                android:textSize="14dip"
+                />
+            <TextView
+                android:id="@+id/envelopes_ktx_money"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="0.00"
+                android:textColor="#a3888888"
+                android:textSize="14dip"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="元,"
+                android:textColor="#a3888888"
+                android:textSize="14dip"
+                />
+            <TextView
+                android:id="@+id/envelopes_money_all"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="全部提现"
+                android:textColor="#FEC700"
+                android:textSize="14dip"
+                />
+        </LinearLayout>
     </RelativeLayout>
     <TextView
         android:id="@+id/tx_submit"
@@ -126,4 +155,5 @@
         android:layout_marginTop="400dip"
         android:background="@drawable/home_repay_r"
         />
+
 </RelativeLayout>

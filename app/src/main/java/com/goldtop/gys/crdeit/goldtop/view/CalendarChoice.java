@@ -61,9 +61,8 @@ public class CalendarChoice extends View implements View.OnTouchListener{
             for (int j = 0;j < d.length;j++){
                 int dn[] = d[j];
                 int baseLineY = (int) ((dn[2]+(bw/2)) - top/2 - bottom/2);//基线中间点的y轴计算公式
-
                 if (dn[5]==0){
-                    p.setColor(Color.parseColor("#eeeeee"));
+                    p.setColor(Color.parseColor("#ffffff"));
                     canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
                     if (i==0&&j==3){
                         canvas.drawText(dn[4]+"月",dn[1]+(bw/2),baseLineY,paint);
@@ -74,18 +73,25 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                     }
                 }else {
                     if (dn[5] == 2){
-                        p.setColor(Color.parseColor("#eeeeee"));
-                        paint.setColor(Color.BLACK);
+                        p.setColor(Color.parseColor("#ffffff"));
+                        paint.setColor(Color.parseColor("#eeeeee"));
                     }else
                     if (dn[0]==1){
-                        p.setColor(Color.BLUE);
+                        p.setColor(Color.parseColor("#ffee00"));
                         paint.setColor(Color.WHITE);
                     }else {
                         p.setColor(Color.WHITE);
                         paint.setColor(Color.BLACK);
                     }
-                    canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
-                    canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY,paint);
+                    RectF rf = new RectF(dn[1]+15,dn[2]+15,dn[1]+bw-15,dn[2]+bw-15);
+                    canvas.drawRoundRect(rf,10,10,p);
+                    if (dn[0]==1){
+                        canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY-20,paint);
+                        canvas.drawText("还款",dn[1]+(bw/2),baseLineY+20,paint);
+                    }else {
+                        canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY,paint);
+                    }
+
                 }
 
             }

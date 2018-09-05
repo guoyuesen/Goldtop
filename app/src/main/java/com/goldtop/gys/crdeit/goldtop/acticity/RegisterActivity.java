@@ -71,6 +71,7 @@ public class RegisterActivity extends BaseActivity {
                 }
             }).setBackgrund(Color.parseColor("#ffffff"));
             updatePass.setVisibility(View.GONE);
+            registerSubmit.setText("修改密码");
             from = false;
         } else {
             new TitleBuder(this).setTitleText("注册").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
@@ -170,7 +171,7 @@ public class RegisterActivity extends BaseActivity {
                 }
                 Httpshow(RegisterActivity.this);
                 //Log.d("<===请求地址====>",Action.register);
-                MyVolley.addRequest(new VolleyRequest(Action.register, params, new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(url, params, new MyVolleyCallback() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //Log.d("<=======>",error.getMessage());

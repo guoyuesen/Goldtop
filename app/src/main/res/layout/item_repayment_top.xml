@@ -147,6 +147,7 @@
             android:layout_height="19dip"
             android:src="@mipmap/home_activity_11"
             android:layout_marginRight="5dip"
+            android:visibility="gone"
             />
         <TextView
             android:id="@+id/head_card_number"

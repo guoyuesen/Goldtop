@@ -2,7 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 <include layout="@layout/base_title_layout"/>
-    <RelativeLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:layout_marginTop="62dip"
+        style="@style/MyCustomTabLayout"
+        ></android.support.design.widget.TabLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#1C1C1C22"
+        android:layout_marginTop="110dip"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="111dip"
+        />
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="57dip"
         android:layout_marginTop="62dp"
@@ -163,5 +182,5 @@
                     />
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>

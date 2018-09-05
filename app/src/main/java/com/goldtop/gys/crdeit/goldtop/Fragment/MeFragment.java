@@ -1,6 +1,8 @@
 package com.goldtop.gys.crdeit.goldtop.Fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -131,6 +133,7 @@ public class MeFragment extends Fragment {
                         if (jsonObject.getString("code").equals("1")){
                             JSONObject object = jsonObject.getJSONObject("data");
                             UserModel.shiMrenz = object.getString("desciption");
+                            UserModel.custStatus = object.getString("desciption");
                             switch (UserModel.shiMrenz){
                                 case "REG_SUCCESS":
                                     me_f_rz.setText("已认证");
@@ -175,9 +178,11 @@ public class MeFragment extends Fragment {
         }
         switch (view.getId()) {
             case R.id.me_f_wallet_l://钱包
+                if (HomeFragment.smrzShow(getActivity()))
                 getActivity().startActivity(new Intent(getContext(), WalletActivity.class));
                 break;
             case R.id.me_f_red_l://红包
+                if (HomeFragment.smrzShow(getActivity()))
                 getActivity().startActivity(new Intent(getContext(), RedEnvelopesActivity.class));
                 break;
             case R.id.me_f_integral_l://积分
@@ -186,14 +191,16 @@ public class MeFragment extends Fragment {
                 }
                 break;
             case R.id.me_f_authentication_l://实名认证
-                if (!UserModel.shiMrenz.equals("INIT")){
+                if (UserModel.shiMrenz.equals("INIT")){
                     getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
                 }
                 break;
             case R.id.me_f_card_l://我的银行卡
+                if (HomeFragment.smrzShow(getActivity()))
                 getActivity().startActivity(new Intent(getContext(), MyCardActivity.class));
                 break;
             case R.id.me_f_vip_l://vip
+                if (HomeFragment.smrzShow(getActivity()))
                 getActivity().startActivity(new Intent(getContext(), VipActivity.class));
                 break;
             case R.id.me_f_invite_l://邀请有奖
@@ -223,20 +230,34 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), SettionsActivity.class));
                 break;
             case R.id.me_f_process_l0://我的客服
-                /*Intent intent = new Intent(Intent.ACTION_DIAL);
-                Uri data = Uri.parse("tel:02885002704");
-                intent.setData(data);
-                startActivity(intent);*/
-                int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+                builder.setTitle("温馨提示");
+                builder.setMessage("您的专属客服号：02885002704");
+                builder.setPositiveButton("取消",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(
-                            getActivity(),
-                            new String[]{Manifest.permission.CALL_PHONE},
-                            123);
-                } else {
-                    startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:02885002704")));
-                }
+                            }
+                        });
+                builder.setNegativeButton("拨打电话", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE);
+
+                        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(
+                                    getActivity(),
+                                    new String[]{Manifest.permission.CALL_PHONE},
+                                    123);
+                        } else {
+                            startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:02885002704")));
+                        }
+                    }
+                });
+                AlertDialog dialog=builder.create();
+                dialog.show();
+
                 break;
         }
     }

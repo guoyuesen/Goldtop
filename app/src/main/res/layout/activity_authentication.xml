@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <include layout="@layout/base_title_layout"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -53,7 +57,7 @@
             android:layout_marginLeft="100dip"
             android:hint="请输入身份证号"
             android:textSize="16dip"
-            android:inputType="number"
+            android:maxLength="18"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -83,60 +87,7 @@
             android:inputType="number"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:background="@color/white"
-        android:layout_marginTop="0.2dip"
-        android:visibility="gone"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开户行省"
-            android:textColor="#ff333333"
-            android:textSize="16dip"
-            android:layout_marginLeft="14dip"
-            android:layout_centerVertical="true"
-            />
-        <EditText
-            android:id="@+id/authen_sheng"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="100dip"
-            android:hint="请输入开户行所在省"
-            android:textSize="16dip"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:background="@color/white"
-        android:layout_marginTop="0.2dip"
-        android:visibility="gone"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开户行市"
-            android:textColor="#ff333333"
-            android:textSize="16dip"
-            android:layout_marginLeft="14dip"
-            android:layout_centerVertical="true"
-            />
-        <EditText
-            android:id="@+id/authen_shi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="100dip"
-            android:hint="请输入开户行所在市"
-            android:textSize="16dip"
-            />
-    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -173,23 +124,50 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="开户行省市"
+            android:textColor="#ff333333"
+            android:textSize="16dip"
+            android:layout_marginLeft="14dip"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/authen_khhss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dip"
+            android:hint="请选择"
+            android:textSize="16dip"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/white"
+        android:layout_marginTop="0.2dip"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="开户行"
             android:textColor="#ff333333"
             android:textSize="16dip"
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
-        <EditText
-            android:id="@+id/authen_adderss"
+        <TextView
+            android:id="@+id/authen_khh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="100dip"
-            android:hint="请输入开户行地址"
+            android:hint="请选择"
             android:textSize="16dip"
             />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
@@ -230,4 +208,132 @@
         android:textColor="#ff000000"
         android:textSize="17dip"
         />
-</LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/zhxz_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone"
+        >
+        <LinearLayout
+            android:id="@+id/zhxz_nr"
+            android:layout_width="match_parent"
+            android:layout_height="500dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/zhihangxzbg"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dip">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选择地区"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    />
+                <ImageView
+                    android:id="@+id/zhxz_close"
+                    android:layout_width="35dip"
+                    android:layout_height="35dip"
+                    android:padding="10dp"
+                    android:src="@mipmap/close1"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dip"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:paddingLeft="20dip"
+                android:text="已选择"
+                android:gravity="center_vertical"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="#f9f9f9"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/zhxz_t1"
+                    android:layout_width="150dip"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:text=""
+                    android:hint="请选择"
+                    android:singleLine="true"
+                    android:paddingLeft="10dip"
+                    />
+                <TextView
+                    android:id="@+id/zhxz_t2"
+                    android:layout_width="100dip"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:text=""
+                    android:hint="请选择"
+                    android:layout_marginLeft="150dip"
+                    android:singleLine="true"
+                    />
+                <View
+                    android:id="@+id/view_sheng"
+                    android:layout_width="40dip"
+                    android:layout_height="2dip"
+                    android:background="@color/titlecolor"
+                    android:layout_marginLeft="65dip"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dip"
+                    />
+                <View
+                    android:id="@+id/view_shi"
+                    android:layout_width="40dip"
+                    android:layout_height="2dip"
+                    android:background="@color/titlecolor"
+                    android:layout_marginLeft="180dip"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dip"
+                    />
+            </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/zhxz_ss"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:padding="10dip"
+                    android:visibility="gone"
+                    ></ListView>
+                <LinearLayout
+                    android:id="@+id/zhxz_em"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <ProgressBar
+                        android:id="@+id/pb_load"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:indeterminateDrawable="@drawable/progressbar"
+                    android:layout_centerInParent="true"/>
+                    <TextView
+                        android:id="@+id/pb_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="暂无相关信息!"
+                        />
+                </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

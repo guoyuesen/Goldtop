@@ -28,6 +28,7 @@ import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.view.CSxzDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.DateDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 import com.google.gson.JsonObject;
@@ -59,6 +60,8 @@ public class RepaymentInstallActivity extends BaseActivity {
     TextView installDate;
     @Bind(R.id.install_fee)
     TextView installfee;
+    @Bind(R.id.install_cs)
+    TextView installfcs;
     private int day=0;
     private String money = "";
     private String daystr="";
@@ -66,6 +69,7 @@ public class RepaymentInstallActivity extends BaseActivity {
     private String cardid = "";
     boolean s = true;
     String daymoney="";
+    private String city ="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,7 +125,7 @@ public class RepaymentInstallActivity extends BaseActivity {
         });*/
     }
 
-    @OnClick({R.id.install_submit,R.id.install_xuanze})
+    @OnClick({R.id.install_submit,R.id.install_xuanze,R.id.repayment_pay_cs})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.install_submit:
@@ -149,19 +153,33 @@ public class RepaymentInstallActivity extends BaseActivity {
             case R.id.install_xuanze:
                 dialogView.show();
                 break;
+            case R.id.repayment_pay_cs:
+                new CSxzDialogView(this, new CSxzDialogView.CsBack() {
+                    @Override
+                    public void Back(String c, String S, String s) {
+                        city = s;
+                        installfcs.setText(c);
+                    }
+                }).show();
+                break;
         }
 
     }
 
     private void submit() {
-        if (day == 0 || money.isEmpty())
+        if (day == 0 || money.isEmpty()) {
+            Toast.makeText(this,"计划金额或计划时间不能为空",Toast.LENGTH_LONG).show();
             return;
+        }
         s = false;
         Map<String,String> map = new HashMap<String, String>();
         map.put("custId", UserModel.custId);
         map.put("paymentAmt", money);
         map.put("paymentDate", daystr);
         map.put("cardCode", cardid);
+        if (!city.isEmpty()){
+            map.put("city", city);
+        }
         Httpshow(this);
         JSONObject o = new JSONObject(map);
         Log.d("请求参数：==》",o.toString());

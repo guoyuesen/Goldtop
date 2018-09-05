@@ -4,6 +4,7 @@ package com.goldtop.gys.crdeit.goldtop.updatedownload;
  * Created by 郭月森 on 2018/8/23.
  */
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,9 +15,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.view.RoundProgressBar;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -34,6 +40,14 @@ public class DownFileHelper {
     Context mContext;
     NotificationManager mNotifyManager;
     Notification.Builder builder;
+    RoundProgressBar bar;
+    Handler diahandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            bar.setProgress(msg.what);
+        }
+    };
 
     public DownFileHelper(Context mContext, Handler handler) {
         this.handler = handler;
@@ -49,6 +63,12 @@ public class DownFileHelper {
         Log.d("","=======================================================");
         mNotifyManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Bitmap btm = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.logo1_80);//可以换成你的app的logo
+        final AlertDialog dialog = new AlertDialog.Builder(mContext).create();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_roundprogressbar,null);
+        bar = view.findViewById(R.id.bar);
+        dialog.setView(view);
+        dialog.setCancelable(false);
+        dialog.show();
         if (Build.VERSION.SDK_INT >= 26) {
 
             //创建 通知通道  channelid和channelname是必须的（自己命名就好）
@@ -87,9 +107,11 @@ public class DownFileHelper {
                     con.setReadTimeout(5000);
                     con.setConnectTimeout(5000);
                     con.setRequestProperty("Charset", "UTF-8");
-                    con.setRequestMethod("GET");
+                    con.setRequestMethod("POST");
+                    con.setRequestProperty("Accept-Encoding", "identity");
+                    con.setRequestProperty("User-Agent", " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36");
                     if (con.getResponseCode() == 200) {
-                        int length = con.getContentLength();// 获取文件大小
+                        int length = 7000000;// 获取文件大小
                         InputStream is = con.getInputStream();
 
                         FileOutputStream fileOutputStream = null;
@@ -108,8 +130,17 @@ public class DownFileHelper {
                             while ((ch = is.read(buf)) != -1) {
                                 fileOutputStream.write(buf, 0, ch);
                                 process += ch;
-                                //更新进度条
-                                result = numberFormat.format((float) process / (float) length * 100);
+                                if (process>length){
+                                    //更新进度条
+                                    result = numberFormat.format((float) 99.6);
+                                }else {
+                                    //更新进度条
+                                    result = numberFormat.format((float) process / (float) length * 100);
+                                }
+                                Message m = new Message();
+                                float r = (float) process / (float) length * 100;
+                                m.what = (int)r;
+                                diahandler.sendMessage(m);
                                 builder.setContentText("下载进度：" + result + "%");
                                 builder.setProgress(length, process, false);
                                 mNotifyManager.notify(1, builder.build());

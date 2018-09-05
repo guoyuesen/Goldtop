@@ -36,6 +36,7 @@
         android:layout_toLeftOf="@id/item_repayment_bomm_bank"
         android:layout_marginTop="5dip"
         android:layout_marginRight="5dip"
+        android:visibility="gone"
         />
     <TextView
         android:layout_width="wrap_content"

@@ -57,7 +57,8 @@ public class VipActivity extends BaseActivity {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Toast.makeText(VipActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VipActivity.this, "支付成功,请重新登录以更新数据", Toast.LENGTH_SHORT).show();
+
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(VipActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -83,20 +84,47 @@ public class VipActivity extends BaseActivity {
         findViewById(R.id.vip_submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getPayinfo();
+                getPayinfo(0);
             }
         });
+        findViewById(R.id.vip_vip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getPayinfo(1);
+            }
+        });
+        TextView phone = findViewById(R.id.vip_phone);
+        phone.setText(UserModel.custMobile);
+        /*if (UserModel.custLevelSample.equals("VIP")){
 
-        if (UserModel.custLevelSample.equals("VIP")){
-            TextView textView = findViewById(R.id.vip_text);
-            textView.setText("您已是尊贵的VIP会员");
+
             findViewById(R.id.vip_submit).setVisibility(View.GONE);
-        }
+        }*/
+        TextView textView = findViewById(R.id.vip_text);
         List<Integer> ins = new ArrayList<>();
-        ins.add(R.mipmap.sp_show07);
-        ins.add(R.mipmap.shangc3);
-        ins.add(R.mipmap.sp_show07);
-        ConvenientBanner<Integer> convenientBanner = findViewById(R.id.shping_f_t_img);
+        switch (UserModel.custLevelSample){
+            case "AGENT":
+                textView.setText("您是尊贵的企业账户");
+                ins.add(R.mipmap.vip__03);
+                break;
+            case "MEMBER":
+                textView.setText("您的级别是会员");
+                ins.add(R.mipmap.vip__02);
+                ins.add(R.mipmap.vip__01);
+                break;
+            case "VIP":
+                textView.setText("您是尊贵的VIP会员");
+                ins.add(R.mipmap.vip__01);
+                break;
+            case "NORMAL":
+                textView.setText("您的级别是普通用户");
+                ins.add(R.mipmap.vip__02);
+                ins.add(R.mipmap.vip__01);
+                break;
+        }
+
+
+        ConvenientBanner<Integer> convenientBanner = findViewById(R.id.vip_f_t_img);
         convenientBanner.setPages(new CBViewHolderCreator<VipActivity.ImageViewHolder>() {
             @Override
             public VipActivity.ImageViewHolder createHolder() {
@@ -105,7 +133,7 @@ public class VipActivity extends BaseActivity {
         },ins).setPageIndicator(new int[]  {R.drawable.button_r_c,R.drawable.button_r_f})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setPointViewVisible(true)
-                .startTurning(5000); //设置指示器的方向水平  居中
+        ; //设置指示器的方向水平  居中
     }
     public class ImageViewHolder implements Holder<Integer> {
         private ImageView imageView;
@@ -121,17 +149,26 @@ public class VipActivity extends BaseActivity {
             imageView.setImageResource(data);
         }
     }
-    private void getPayinfo(){
+    private void getPayinfo(int i){
         if (UserModel.custId.isEmpty()){
             Toast.makeText(this,"请登录",Toast.LENGTH_LONG).show();
             return;
         }
-        if (UserModel.custLevelSample.equals("VIP")){
-            Toast.makeText(this,"您已是VIP用户，升级代理请拨打招商电话",Toast.LENGTH_LONG).show();
+        if (i == 0&&(!UserModel.custLevelSample.equals("MEMBER")&&!UserModel.custLevelSample.equals("NORMAL"))){
+            Toast.makeText(this,"您已是VIP或以上级别，升级请拨打招商电话",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (i==1&&!UserModel.custLevelSample.equals("NORMAL")){
+            Toast.makeText(this,"您已是会员或以上级别，升级VIP或拨打招商电话",Toast.LENGTH_LONG).show();
+            return;
         }
         Map<String,String> map = new HashMap<String, String>();
         map.put("custId", UserModel.custId);
-        map.put("tradeMoney","0.01");
+        if (i==0) {
+            map.put("type", "V");
+        }else {
+            map.put("type", "M");
+        }
         Httpshow(this);
         MyVolley.addRequest(new formRequest(Action.createOrder, map, new MyVolleyCallback() {
             @Override

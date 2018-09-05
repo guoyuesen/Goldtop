@@ -45,7 +45,8 @@ public static void setInfo(JSONObject object){
     address=object.getString("address").equals("null")?"":object.getString("address");
     custLevelSample=object.getString("custLevelSample").equals("null")?"":object.getString("custLevelSample");
     //introducerId=object.getString("introducerId").equals("null")?"":object.getString("introducerId");
-    custStatus=object.getString("custStatus").equals("null")?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"REG_ING");
+    custStatus=object.getString("custStatus").equals("null")?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"INIT");
+    shiMrenz = object.getString("custStatus").equals("null")?"":(object.getString("custStatus").equals("AUTH")?"REG_SUCCESS":"INIT");
     lastLogin=object.getString("lastLogin").equals("null")?"":object.getString("lastLogin");
     createdTime=object.getString("createdTime").equals("null")?"":object.getString("createdTime");
     bankCards=object.getString("bankCards").equals("null")?"":object.getString("bankCards");

@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment {
                 if (!AppUtil.isLogin(getContext())){
                     return;
                 }
+                if (HomeFragment.smrzShow(getActivity()))
                 startActivity(new Intent(getContext(),ReceivablesActivity.class));
             }
         });
@@ -166,6 +167,27 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    public static boolean smrzShow(final Context context){
+        if (UserModel.shiMrenz.equals("REG_SUCCESS")){
+            return true;
+        }else if (UserModel.shiMrenz.equals("INIT")||UserModel.shiMrenz.equals("")){
+            dialogShow2(context, "您尚未进行实名认证，请前往认证！", new DialogClick() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, AuthenticationActivity.class));
+                }
+            });
+            return false;
+        }else {
+            dialogShow2(context, "实名认证审核中，请耐心等待！", new DialogClick() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            return false;
+        }
+    }
     public static void dialogShow2(Context context, String msg, final DialogClick listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -199,36 +221,35 @@ public class HomeFragment extends Fragment {
     }
     @Override
     public void onStart() {
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("custId", UserModel.custId);
-        map.put("cardType","C");
-        Log.d(Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C"+"==》","");
-        /*if (dialog==null){
-            dialog = new HttpsDialogView(getContext());
-            dialog.show();
-        }else if (!dialog.isShowing()){
-            dialog.show();
-        }*/
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard+"?custId="+UserModel.custId+"&cardType=C", map, new MyVolleyCallback() {
-            @Override
-            public void CallBack(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.getString("code").equals("1")){
-                        JSONArray array = jsonObject.getJSONArray("data");
-                        getcards(array);
-                        //adapter.notifyDataSetChanged(array);
-                        //Log.d("data==》",""+array.toString());
+        if (!UserModel.custId.isEmpty()) {
+            /*Map<String, String> map = new HashMap<String, String>();
+            map.put("custId", UserModel.custId);
+            map.put("cardType", "C");
+            Log.d(Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=C" + "==》", "");
+            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=C", map, new MyVolleyCallback() {
+                @Override
+                public void CallBack(JSONObject jsonObject) {
+                    try {
+                        if (jsonObject.getString("code").equals("1")) {
+                            JSONObject object = jsonObject.getJSONObject("data");
+                            JSONArray array = object.getJSONArray("bankCardList");
+                            getcards(object);
+                            //adapter.notifyDataSetChanged(array);
+                            //Log.d("data==》",""+array.toString());
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //dialog.dismiss();
-            }
-        }));
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //dialog.dismiss();
+                }
+            }));
+        */
+            getcards();
+        }
         super.onStart();
     }
 
@@ -237,7 +258,8 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-    public void getcards(final JSONArray a){
+    public void getcards(){
+
         MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.paymentSchedule+"?custId="+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
@@ -245,36 +267,38 @@ public class HomeFragment extends Fragment {
                     if (jsonObject.getString("code").equals("1")){
                         Log.d("===>",jsonObject.toString());
                         JSONArray array = jsonObject.getJSONArray("data");
-                        for (int i = 0;i<a.length();i++){
-                            String number = a.getJSONObject(i).getString("accountCode");
+                        /*for (int i = 0;i<a.getJSONArray("bankCardList").length();i++){
+                            String number = a.getJSONArray("bankCardList").getJSONObject(i).getString("accountCode");
                             boolean p = true;
                             for (int j = 0;j<array.length();j++){
                                     JSONObject object = array.getJSONObject(j);
                                     if (number.equals(object.getString("cardNo"))){
-                                        a.getJSONObject(i).put("applyId",object.getString("applyId"));
-                                        a.getJSONObject(i).put("balanceAmt",object.getString("balanceAmt"));
-                                        a.getJSONObject(i).put("transFee",object.getString("transFee"));
-                                        a.getJSONObject(i).put("totalTerm",object.getString("totalTerm"));
-                                        a.getJSONObject(i).put("currPaymentAmt",object.getString("currPaymentAmt"));
-                                        a.getJSONObject(i).put("deadline",object.getString("deadline"));
-                                        a.getJSONObject(i).put("balanceTerm",object.getString("balanceTerm"));
-                                        a.getJSONObject(i).put("applyAmt",object.getString("applyAmt"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("applyId",object.getString("applyId"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("balanceAmt",object.getString("balanceAmt"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("transFee",object.getString("transFee"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("totalTerm",object.getString("totalTerm"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("currPaymentAmt",object.getString("currPaymentAmt"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("deadline",object.getString("deadline"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("balanceTerm",object.getString("balanceTerm"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("applyAmt",object.getString("applyAmt"));
+                                        a.getJSONArray("bankCardList").getJSONObject(i).put("idCardNo",a.getString("idCardNo"));
                                         p = false;
                                     }
                             }
                             if (p){
                                 Log.d("-----","----");
-                                a.getJSONObject(i).put("applyId","0");
-                                a.getJSONObject(i).put("balanceAmt","0");
-                                a.getJSONObject(i).put("transFee","0");
-                                a.getJSONObject(i).put("totalTerm","0");
-                                a.getJSONObject(i).put("currPaymentAmt","0");
-                                a.getJSONObject(i).put("deadline","0");
-                                a.getJSONObject(i).put("balanceTerm","0");
-                                a.getJSONObject(i).put("applyAmt","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("applyId","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("balanceAmt","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("transFee","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("totalTerm","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("currPaymentAmt","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("deadline","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("balanceTerm","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("applyAmt","0");
+                                a.getJSONArray("bankCardList").getJSONObject(i).put("idCardNo","0");
                             }
-                        }
-                        adapter.notifyDataSetChanged(a);
+                        }*/
+                        adapter.notifyDataSetChanged(array);
                         //Log.d("data==》",""+array.toString());
                     }
                 } catch (JSONException e) {

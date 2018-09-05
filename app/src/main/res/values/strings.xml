@@ -10,4 +10,5 @@
     <string name="message_setting_back">用户从设置回来了</string>
     <string name="message_post_succeed">获取SD卡权限成功</string>
     <string name="message_post_failed">获取SD卡权限失败</string>
+    <string name="xiugai"><u>更换</u></string>
 </resources>

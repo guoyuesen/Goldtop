@@ -43,6 +43,7 @@ public class RedEnvelopesActivity extends BaseActivity {
     private float money = 0.00f;
     private float ktx = 0.00f;
     private Object m;
+    String id = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +56,12 @@ public class RedEnvelopesActivity extends BaseActivity {
             public void onClick(View view) {
                 finish();
             }
-        }).setTitleText("红包");
+        }).setTitleText("红包").setRightText("红包明细").setRightListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailedActivity.inActivity(RedEnvelopesActivity.this,false,id);
+            }
+        });
         envelopesKtxMoney.setText("" + ktx);
         envelopesMoney.setText("" + money);
         getM();
@@ -78,15 +84,15 @@ public class RedEnvelopesActivity extends BaseActivity {
                     Toast.makeText(this,"请输入有效金额",Toast.LENGTH_LONG).show();
                     return;
                 }
-                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"custId="+UserModel.custId+"&money="+m, new HashMap<String, String>(), new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"?custId="+UserModel.custId+"&money="+Integer.parseInt(m)*100, new HashMap<String, String>(), new MyVolleyCallback() {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         try {
                             if (jsonObject.getInt("code") == 1){
-                                Toast.makeText(RedEnvelopesActivity.this,"message",Toast.LENGTH_LONG).show();
+                                Toast.makeText(RedEnvelopesActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                                 getM();
                             }else {
-                                Toast.makeText(RedEnvelopesActivity.this,"message",Toast.LENGTH_LONG).show();
+                                Toast.makeText(RedEnvelopesActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -114,6 +120,7 @@ public class RedEnvelopesActivity extends BaseActivity {
                         ktx = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
                         envelopesKtxMoney.setText(MoneyUtils.getShowMoney(ktx));
                         envelopesMoney.setText(MoneyUtils.getShowMoney(money));
+                        id = jsonObject.getJSONObject("data").getString("id");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

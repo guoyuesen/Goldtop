@@ -10,4 +10,28 @@
         android:dividerHeight="0.5dip"
         android:divider="#f0f0f0"
         ></ListView>
+    <LinearLayout
+        android:id="@+id/order_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="61dip"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/orderem"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="哎呀～数据都藏起来了！"
+            android:textColor="#ff888888"
+            android:textSize="15sp"
+            android:layout_marginTop="3dip"
+            />
+
+    </LinearLayout>
 </RelativeLayout>

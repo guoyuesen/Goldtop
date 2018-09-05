@@ -159,6 +159,47 @@
             android:layout_alignParentRight="true"
             />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/repayment_pay_cs"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消费城市"
+            android:textColor="#ff333333"
+            android:textSize="15dip"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/install_cs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择"
+            android:textColor="#ee888888"
+            android:textSize="15dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dip"
+            />
+        <ImageView
+            android:layout_width="6dip"
+            android:layout_height="12dip"
+            android:src="@mipmap/next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
 
     </RelativeLayout>
         <TextView
@@ -172,6 +213,6 @@
             android:textColor="#ff000000"
             android:textSize="17dip"
             android:gravity="center"
-            android:layout_marginTop="147dip"
+            android:layout_marginTop="100dip"
             />
 </LinearLayout>

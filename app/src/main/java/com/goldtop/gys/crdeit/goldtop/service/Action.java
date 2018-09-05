@@ -13,7 +13,7 @@ public class Action {
     //修改密码
     public static String changePassword = url+"/cust/changePassword";
     //实名认证
-    public static String authentication = url+"/cust/cert";
+    public static String authentication = url+"/cust/registry";
     //获取验证码
     public static String check = url+"/identify";
     //获取银行卡列表
@@ -23,7 +23,7 @@ public class Action {
     //添加银行卡
     public static String addcard = url+"/payment/addCard";
     //同名卡开卡
-    public static String openCard = url+"/payment/openCard";
+    //public static String openCard = url+"/payment/openCard";
     //获取计划手续费
     public static String calcReserveMoney = url+"/payment/calcReserveMoney";
     //还款申请
@@ -56,5 +56,21 @@ public class Action {
     public static String version = url+"/app/version";
     //查询银行
     public static String queryBank = url+"/queryBank";
+    //联行号查询
+    public static String getAnge = url+"/dictionarty/getAnge";//省不传 ， parentCode = code
+    //开卡
+    public static String openCard = url + "/bk/openCard";
+    //获取开卡短信验证码
+    public static String openSms = url+"/bk/openCardSms";
+    //大额支付短信验证码
+    public static String bigPaySms = url+"/txWithdraw/bigPaySms";
+    //大额支付
+    public static String bigPay = url+"/txWithdraw/bigPay";
+    //修改付款行业
+    public static String updateMcc = url+"/payment/updateMcc";
+    //钱包提现
+    public static String withdrawFromIncome= url+"/income/withdrawFromIncome";
+    //红包明细
+    public static String redPackDetail= url+"/income/redPackDetail";
 
 }

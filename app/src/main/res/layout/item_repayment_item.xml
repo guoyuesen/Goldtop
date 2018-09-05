@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dip"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+        <TextView
+            android:id="@+id/item_01"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:textColor="#333"
+            android:text="1"
+            android:textSize="14dip"
+            />
+        <TextView
+            android:id="@+id/item_02"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="00:00"
+            android:textSize="14dip"
+            android:textColor="#ee888888"
+
+            />
+        <TextView
+            android:id="@+id/item_03"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0.00"
+            android:textSize="14dip"
+            android:textColor="#ee888888"
+            />
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            >
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+            <Spinner
+                android:id="@+id/item_06"
+                android:layout_width="100dip"
+                android:layout_height="match_parent"
+                android:background="#00000000"
+                ></Spinner>
+    <TextView
+        android:id="@+id/item_item_gg"
+        android:layout_width="35dip"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/xiugai"
+        android:textSize="14dip"
+        android:textColor="#0049FF"
+        android:autoLink="all"
+        android:layout_marginLeft="65dip"
+        android:background="@color/white"
+        />
+            <TextView
+                android:id="@+id/item_04"
+                android:layout_width="65dip"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="健身/游泳"
+                android:textSize="14dip"
+                android:textColor="#ee888888"
+                android:maxLength="6"
+                android:ellipsize="end"
+                android:background="@color/white"
+                />
+
+</RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/item_05"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="等待"
+            android:textColor="#fffece00"
+            android:textSize="14dip"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

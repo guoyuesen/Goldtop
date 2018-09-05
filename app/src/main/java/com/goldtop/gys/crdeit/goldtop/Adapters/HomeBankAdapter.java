@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.acticity.OpenCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RepaymentInstallActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RepaymentMsgActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
@@ -62,7 +63,7 @@ public class HomeBankAdapter extends BaseAdapter {
     @Override
     public Object getItem(int i) {
         try {
-            return array.get(i);
+            return array.getJSONObject(i);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -105,18 +106,19 @@ public class HomeBankAdapter extends BaseAdapter {
                 item.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        try {
-                            WebUtilActivity.InWeb(context,Action.openCard+"?custId="+UserModel.custId+"&cardId="+object.getString("id"),"",null);
-                        } catch (JSONException e) {
+                        //try {
+                            //WebUtilActivity.InWeb(context,Action.openCard+"?custId="+UserModel.custId+"&cardId="+object.getString("id"),"",null);
+                            OpenCardActivity.initActivity(context,object);
+                        /*} catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                     }
                 });
             }else if(object.getString("openStatus").equals("OPEN_FAIL")){
                 item.button.setText("认证失败");
             }else{
 
-                if (object.getBoolean("havePaymentPlan")){
+                if (!"".equals(object.getString("applyId"))){
                     item.button.setText("查看详情");
                     item.money1.setText(""+object.getDouble("applyAmt"));
                     item.money2.setText(""+object.getDouble("balanceAmt"));

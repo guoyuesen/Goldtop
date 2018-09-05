@@ -1,5 +1,6 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,7 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
+import com.goldtop.gys.crdeit.goldtop.Fragment.HomeFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -134,7 +137,12 @@ public class AddCard02Activity extends BaseActivity {
                 try {
                     JSONObject object = new JSONObject(response.toString());
                     if (object.getString("code").equals("1")) {
-                        finish();
+                        HomeFragment.dialogShow2(AddCard02Activity.this, "绑卡成功，进行银联认证后就可以设置还款计划了。", new DialogClick() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
                     } else {
                         Toast.makeText(AddCard02Activity.this, object.getString("message"), Toast.LENGTH_LONG).show();
                     }
@@ -1212,15 +1220,15 @@ public class AddCard02Activity extends BaseActivity {
             map.put("623026", "绍兴银行·兰花IC借记卡");
             map.put("623086", "绍兴银行·社保IC借记卡");
             map.put("628291", "绍兴银行·兰花公务卡");
-            map.put("621532", "成都商业银行·芙蓉锦程福农卡");
-            map.put("621482", "成都商业银行·芙蓉锦程天府通卡");
-            map.put("622135", "成都商业银行·锦程卡(银联卡)");
-            map.put("622152", "成都商业银行·锦程卡金卡");
-            map.put("622153", "成都商业银行·锦程卡定活一卡通金卡");
-            map.put("622154", "成都商业银行·锦程卡定活一卡通");
-            map.put("622996", "成都商业银行·锦程力诚联名卡");
-            map.put("622997", "成都商业银行·锦程力诚联名卡");
-            map.put("940027", "成都商业银行·锦程卡(银联卡)");
+            map.put("621532", "成都银行·芙蓉锦程福农卡");
+            map.put("621482", "成都银行·芙蓉锦程天府通卡");
+            map.put("622135", "成都银行·锦程卡(银联卡)");
+            map.put("622152", "成都银行·锦程卡金卡");
+            map.put("622153", "成都银行·锦程卡定活一卡通金卡");
+            map.put("622154", "成都银行·锦程卡定活一卡通");
+            map.put("622996", "成都银行·锦程力诚联名卡");
+            map.put("622997", "成都银行·锦程力诚联名卡");
+            map.put("940027", "成都银行·锦程卡(银联卡)");
             map.put("623099", "抚顺银行·借记IC卡");
             map.put("623007", "临商银行·借记卡");
             map.put("940055", "宜昌市商业银行·三峡卡(银联卡)");

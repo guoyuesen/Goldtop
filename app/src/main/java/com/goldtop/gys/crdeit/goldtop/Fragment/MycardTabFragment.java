@@ -87,7 +87,8 @@ public class MycardTabFragment extends Fragment {
             public void CallBack(JSONObject jsonObject) {
                 try {
                     if (jsonObject.getString("code").equals("1")) {
-                        JSONArray array = jsonObject.getJSONArray("data");
+                        JSONObject object = jsonObject.getJSONObject("data");
+                        JSONArray array = object.getJSONArray("bankCardList");
                             listView.setAdapter(new MyCardAdapter(getContext(), array));
                             if (array.length()>0){
                                 View footer = LayoutInflater.from(getContext()).inflate(R.layout.my_card_footer,null);
