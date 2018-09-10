@@ -10,19 +10,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Adapters.MyCardAdapter;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
+import com.goldtop.gys.crdeit.goldtop.acticity.BankCardMessgeActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.view.HttpsDialogView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +40,11 @@ import java.util.HashMap;
  */
 public class MycardTabFragment extends Fragment {
     private TextView textView;
+    MyCardAdapter adapter;
+    JSONArray array;
+    String type;
+    public static String p = "";
+    ListView listView;
 
     public static MycardTabFragment newInstance(String type){
         Bundle bundle = new Bundle();
@@ -48,9 +57,7 @@ public class MycardTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mycard, null);
-        //textView = (TextView) view.findViewById(R.id.text);
-        //textView.setText(String.valueOf((char) getArguments().getInt("index")));
-        ListView listView = view.findViewById(R.id.my_card_list);
+        listView = view.findViewById(R.id.my_card_list);
         View em = view.findViewById(R.id.my_card_empty);
         TextView t1 = em.findViewById(R.id.my_card_empty_t1);
         TextView t2 = em.findViewById(R.id.my_card_empty_t2);
@@ -76,22 +83,56 @@ public class MycardTabFragment extends Fragment {
 
             }
         });
-        listView.setAdapter(new MyCardAdapter(getContext(), new JSONArray()));
+        adapter = new MyCardAdapter(getContext(), new JSONArray());
+        listView.setAdapter(adapter);
         listView.setEmptyView(em);
-        getcard(getArguments().getString("type"),listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (type.equals("D")&&i == 0){
+                    Toast.makeText(getContext(),"实名认证储蓄卡不可操作!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Intent intent = new Intent(getContext(), BankCardMessgeActivity.class);
+                try {
+                    intent.putExtra("bankobj",array.getJSONObject(i).toString());
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        type = getArguments().getString("type");
+        getcard(type,listView);
         return view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (p.equals(type)) {
+            getcard(type,listView);
+            p = "";
+        }
+    }
+    View footer = null;
     public void getcard(final String t, final ListView listView) {
+        final HttpsDialogView view = new HttpsDialogView(getContext());
+        view.show();
         MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType="+t, new HashMap<String, String>(), new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
+                view.dismiss();
                 try {
                     if (jsonObject.getString("code").equals("1")) {
                         JSONObject object = jsonObject.getJSONObject("data");
                         JSONArray array = object.getJSONArray("bankCardList");
-                            listView.setAdapter(new MyCardAdapter(getContext(), array));
+                        MycardTabFragment.this.array = array;
+                            //listView.setAdapter(new MyCardAdapter(getContext(), array));
+                            adapter.notifyDataSetChanged(MycardTabFragment.this.array);
+                            listView.removeFooterView(footer);
                             if (array.length()>0){
-                                View footer = LayoutInflater.from(getContext()).inflate(R.layout.my_card_footer,null);
+                                footer = LayoutInflater.from(getContext()).inflate(R.layout.my_card_footer,null);
                                 TextView textView = footer.findViewById(R.id.my_card_footer_text);
                                 if (t.equals("D")){
                                     textView.setText("添加储蓄卡");
@@ -106,6 +147,7 @@ public class MycardTabFragment extends Fragment {
                                         }else {
                                             AddCard01Activity.initActivity(getContext(),"DC");
                                         }
+                                        p = "-1";
                                     }
                                 });
                                 listView.addFooterView(footer,null,false);
@@ -118,7 +160,7 @@ public class MycardTabFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                view.dismiss();
             }
         }));
     }

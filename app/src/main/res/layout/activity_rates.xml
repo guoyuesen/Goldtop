@@ -16,6 +16,7 @@
         android:src="@mipmap/rates3"
         />
     <ImageView
+        android:id="@+id/rates_img"
         android:layout_width="136dip"
         android:layout_height="35dip"
         android:layout_marginTop="149dip"
@@ -49,5 +50,6 @@
         android:textColor="#ff000000"
         android:textSize="17sp"
         android:gravity="center"
+        android:visibility="gone"
         />
 </RelativeLayout>

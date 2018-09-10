@@ -6,8 +6,8 @@ android {
         applicationId "com.goldtop.gys.crdeit.goldtop"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 8
-        versionName "0.0.7"
+        versionCode 11
+        versionName "0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -38,8 +38,7 @@ dependencies {
     compile 'com.bigkoo:convenientbanner:2.0.5'
     implementation files('libs/alipaySdk-20180601.jar')
     /*权限获取*/
-    compile 'com.yanzhenjie:permission:1.0.5'
-    //compile 'com.androidkun:xversionupdate:1.0.4'
+    compile 'com.hjq:xxpermissions:1.5'
     compile 'com.android.support:design:27.1.1'
 }
 MobSDK {

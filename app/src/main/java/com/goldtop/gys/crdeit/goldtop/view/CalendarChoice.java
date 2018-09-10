@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +23,6 @@ import java.util.Date;
 public class CalendarChoice extends View implements View.OnTouchListener{
     int bw;
     int item[][][]= new int[14][7][6];
-    //String xq[] = {"日","一","二","三","四","五","六"};
     public CalendarChoice(Context context) {
         super(context);
     }
@@ -45,6 +43,7 @@ public class CalendarChoice extends View implements View.OnTouchListener{
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.d("================","=============3");
         super.onDraw(canvas);
         Paint p = new Paint();
         p.setColor(Color.WHITE);
@@ -55,29 +54,26 @@ public class CalendarChoice extends View implements View.OnTouchListener{
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float top = fontMetrics.top;//为基线到字体上边框的距离,即上图中的top
         float bottom = fontMetrics.bottom;//为基线到字体下边框的距离,即上图中的bottom
-
         for (int i = 0;i<item.length;i++){
             int d[][] = item[i];
             for (int j = 0;j < d.length;j++){
                 int dn[] = d[j];
                 int baseLineY = (int) ((dn[2]+(bw/2)) - top/2 - bottom/2);//基线中间点的y轴计算公式
                 if (dn[5]==0){
-                    p.setColor(Color.parseColor("#ffffff"));
-                    canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
+                    //p.setColor(Color.parseColor("#ffffff"));
+                    //canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
                     if (i==0&&j==3){
-                        canvas.drawText(dn[4]+"月",dn[1]+(bw/2),baseLineY,paint);
-                    }else /*if(i==1){
-                        canvas.drawText(xq[j],dn[1]+(bw/2),baseLineY,paint);
-                    }else*/ if (i==7&&j==3){
-                        canvas.drawText(((dn[4]+1)==13?1:(dn[4]+1))+"月",dn[1]+(bw/2),baseLineY,paint);
+                        canvas.drawText(getCurrentYear()+"年"+dn[4]+"月",dn[1]+(bw/2),baseLineY,paint);
+                    }else if (i==7&&j==3){
+                        canvas.drawText(getCurrentYear()+"年"+(dn[4]==13?1:(dn[4]))+"月",dn[1]+(bw/2),baseLineY,paint);
                     }
                 }else {
                     if (dn[5] == 2){
                         p.setColor(Color.parseColor("#ffffff"));
-                        paint.setColor(Color.parseColor("#eeeeee"));
+                        paint.setColor(Color.parseColor("#dddddd"));
                     }else
                     if (dn[0]==1){
-                        p.setColor(Color.parseColor("#ffee00"));
+                        p.setColor(Color.parseColor("#FECE00"));
                         paint.setColor(Color.WHITE);
                     }else {
                         p.setColor(Color.WHITE);
@@ -97,6 +93,13 @@ public class CalendarChoice extends View implements View.OnTouchListener{
             }
         }
     }
+
+    @Override
+    public void draw(Canvas canvas) {
+        Log.d("================","=============5");
+        super.draw(canvas);
+    }
+
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -225,6 +228,7 @@ public class CalendarChoice extends View implements View.OnTouchListener{
         }
         setMinimumHeight(bw*14);
     }
+
     public String getContent(){
         String y = getCurrentYear();
         DecimalFormat df=new DecimalFormat("00");

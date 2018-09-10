@@ -72,5 +72,11 @@ public class Action {
     public static String withdrawFromIncome= url+"/income/withdrawFromIncome";
     //红包明细
     public static String redPackDetail= url+"/income/redPackDetail";
+    //历史计划
+    public static String history= url+"/apply/history";
+    //计划详情（applayid）
+    public static String applyDetail = url+"/payment/applyDetail";
+    //解绑银行卡
+    public static String unbindCard = url+"/cust/unbindCard";
 
 }

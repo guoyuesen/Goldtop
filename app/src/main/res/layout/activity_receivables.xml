@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#f0f0f0"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:background="#f0f0f0"
+        android:layout_height="match_parent">
 <include layout="@layout/base_title_layout"/>
 
     <RelativeLayout
@@ -51,6 +55,7 @@
         android:paddingBottom="12dip"
         >
         <TextView
+            android:id="@+id/shouxuf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="实时到账，需支付*元手续费"
@@ -59,13 +64,7 @@
             android:layout_marginLeft="16dip"
             android:layout_marginTop="10dip"
             />
-        <View
-            android:layout_width="14dip"
-            android:layout_height="14dip"
-            android:background="@mipmap/gantanhao"
-            android:layout_marginTop="13dip"
-            android:layout_marginLeft="5dip"
-            />
+
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/receivables_outcard"
@@ -139,6 +138,15 @@
             ></View>
     </RelativeLayout>
     <TextView
+        android:id="@+id/yhxetext"
+        android:layout_width="wrap_content"
+        android:layout_height="25dip"
+        android:text="查看银行限额"
+        android:gravity="center"
+        android:layout_marginLeft="10dip"
+        android:textColor="#fffece00"
+        />
+    <TextView
         android:id="@+id/receivables_submit"
         android:layout_width="match_parent"
         android:layout_height="48dip"
@@ -151,4 +159,22 @@
         android:layout_marginRight="25dip"
         android:layout_marginTop="50dip"
         />
-</LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        android:id="@+id/yhxeimg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/yhxeimg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/yhxe"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            />
+    </ScrollView>
+
+</RelativeLayout>

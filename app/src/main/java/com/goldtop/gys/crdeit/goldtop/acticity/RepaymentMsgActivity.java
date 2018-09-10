@@ -18,6 +18,7 @@ import com.goldtop.gys.crdeit.goldtop.Adapters.RepaymentMsgAdapter;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -32,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,6 +61,7 @@ public class RepaymentMsgActivity extends BaseActivity {
     TextView herdtext04;
     TextView herdtext05;
     TextView herdtext06;
+    TextView herdtrepayment_totalFee;
     TextView fee;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,13 +69,14 @@ public class RepaymentMsgActivity extends BaseActivity {
         BaseActivity.hiedBar(this);
         setContentView(R.layout.activity_repayment_msg);
         ButterKnife.bind(this);
-        new TitleBuder(this).setTitleText("代还详情").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
+        new TitleBuder(this).setTitleText("还款详情").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
         card = getIntent().getStringExtra("card");
+        playId = getIntent().getStringExtra("applyId");
         try {
             String js = getIntent().getStringExtra("jsono");
             if (js!=null)
@@ -80,8 +84,9 @@ public class RepaymentMsgActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        initFooter();
         initHead();
-       initFooter();
+
 
         JSONArray array = new JSONArray();
         adapter = new RepaymentMsgAdapter(this,array);
@@ -96,9 +101,19 @@ public class RepaymentMsgActivity extends BaseActivity {
             bommNumber = Footer.findViewById(R.id.item_repayment_bomm_bank);
             bommTime = Footer.findViewById(R.id.item_repayment_bomm_creattime);
             bommorder = Footer.findViewById(R.id.item_repayment_bomm_order);
-            try {
-            bommNumber.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
-            bommTime.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
+            try {//{"paymentAmt":"5000","endDate":"2018-09-28","finTerm":"0","term":"5","id":"201809061509351646727615","startDate":"2018-09-24","status":"PROCESSIING"}
+                String yhmc = AddCard02Activity.getBankName(card.substring(0,6));
+                if (yhmc == null){
+                    yhmc = "";
+                }
+                bommNumber.setText(yhmc.substring(0, yhmc.indexOf("·") != -1 ? yhmc.indexOf("·") : yhmc.length())+"(" + card.substring(card.length() - 4) + ")");
+                String time = cardobj.getString("deadline");
+                if (isInteger(time)){
+                    bommTime.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
+                }else {
+                    bommTime.setText(cardobj.getString("deadline"));
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -128,7 +143,10 @@ public class RepaymentMsgActivity extends BaseActivity {
         }
         repaymentList.addFooterView(Footer);
     }
-
+    public static boolean isInteger(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
+    }
     private void initHead() {
         if (cardobj!=null) {
             header = LayoutInflater.from(this).inflate(R.layout.item_repayment_top, null);
@@ -138,13 +156,23 @@ public class RepaymentMsgActivity extends BaseActivity {
             herdtext04 = header.findViewById(R.id.repayment_time);
             herdtext05 = header.findViewById(R.id.repayment_money);
             herdtext06 = header.findViewById(R.id.head_card_number);
+            herdtrepayment_totalFee = header.findViewById(R.id.repayment_totalFee);
             try {
-                herdtext01.setText("" + (cardobj.getDouble("applyAmt") - cardobj.getDouble("balanceAmt")));
+                herdtext01.setText(MoneyUtils.getShowMoney("" + (cardobj.getDouble("applyAmt") - cardobj.getDouble("balanceAmt"))));
                 herdtext02.setText(cardobj.getInt("totalTerm") - (cardobj.getInt("balanceTerm")) + "");
                 herdtext03.setText("/" + (cardobj.getInt("totalTerm")));
-                herdtext04.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
+                String time = cardobj.getString("deadline");
+                if (isInteger(time)){
+                    herdtext04.setText(ContextUtil.dataTostr(cardobj.getLong("deadline"), "yyyy-MM-dd"));
+                }else {
+                    herdtext04.setText(cardobj.getString("endDate"));
+                }
                 herdtext05.setText("" + cardobj.getDouble("applyAmt"));
-                herdtext06.setText(cardobj.getString("bankName")+"(" + card.substring(card.length() - 4) + ")");
+                String yhmc = AddCard02Activity.getBankName(card.substring(0,6));
+                if (yhmc==null){
+                    yhmc = "";
+                }
+                herdtext06.setText(yhmc.substring(0, yhmc.indexOf("·") != -1 ? yhmc.indexOf("·") : yhmc.length())+"(" + card.substring(card.length() - 4) + ")");
                 ArcProgressBar bar= header.findViewById(R.id.repayment_progress);
                 bar.setSetbacks((int)((cardobj.getDouble("totalTerm") - cardobj.getDouble("balanceTerm"))/cardobj.getDouble("totalTerm")*180));
             } catch (JSONException e) {
@@ -200,9 +228,10 @@ public class RepaymentMsgActivity extends BaseActivity {
         Map<String,String> map = new HashMap<String, String>();
         map.put("custId", UserModel.custId);
         map.put("cardNo",card);
+        map.put("applyId",playId);
         Httpshow(this);
-        Log.d("==》",Action.paymentPlanListByDate+"?custId="+UserModel.custId+"&cardNo="+card);
-        VolleyRequest request = new VolleyRequest(Request.Method.GET, Action.paymentPlanListByDate+"?custId="+UserModel.custId+"&cardNo="+card, map, new MyVolleyCallback() {
+        Log.d("==》",Action.applyDetail+"?custId="+UserModel.custId+"&applyId="+playId);
+        VolleyRequest request = new VolleyRequest(Request.Method.GET, Action.applyDetail+"?custId="+UserModel.custId+"&applyId="+playId, map, new MyVolleyCallback() {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Log.d("==》",jsonObject.toString());
@@ -210,11 +239,11 @@ public class RepaymentMsgActivity extends BaseActivity {
                     JSONObject object = jsonObject.getJSONObject("data");
                     JSONArray jsonArray = object.getJSONArray("dataList");
                     if (jsonArray.length()>0){
-                        playId=jsonArray.getJSONObject(0).getJSONArray("planList").getJSONObject(0).getString("applyId");
                         if (cardobj!=null) {
                             herdtext01.setText(object.getString("finAmt"));
                             bommorder.setText(playId);
                             bommTime.setText(ContextUtil.dataTostr(jsonArray.getJSONObject(0).getJSONArray("planList").getJSONObject(0).getLong("paymentTime"), "yyyy-MM-dd"));
+                            herdtrepayment_totalFee.setText(object.getString("totalFee"));
                         }else {
                             fee.setText(object.getString("totalFee")+"元");
                         }

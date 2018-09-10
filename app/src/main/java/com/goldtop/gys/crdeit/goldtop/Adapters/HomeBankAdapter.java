@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.acticity.OpenCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RepaymentInstallActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RepaymentMsgActivity;
@@ -120,14 +121,15 @@ public class HomeBankAdapter extends BaseAdapter {
 
                 if (!"".equals(object.getString("applyId"))){
                     item.button.setText("查看详情");
-                    item.money1.setText(""+object.getDouble("applyAmt"));
-                    item.money2.setText(""+object.getDouble("balanceAmt"));
+                    item.money1.setText(MoneyUtils.getShowMoney(""+object.getDouble("applyAmt")));
+                    item.money2.setText(MoneyUtils.getShowMoney(""+object.getDouble("balanceAmt")));
                     item.button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             try {
                                 Intent intent = new Intent(context, RepaymentMsgActivity.class);
                                 intent.putExtra("card", object.getString("accountCode"));
+                                intent.putExtra("applyId", object.getString("applyId"));
                                 intent.putExtra("jsono",object.toString());
                                 context.startActivity(intent);
                             } catch (JSONException e) {

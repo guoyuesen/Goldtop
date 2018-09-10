@@ -319,6 +319,7 @@
                 android:background="@color/white"
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
+                android:visibility="visible"
                 >
 
                 <ImageView
@@ -358,6 +359,7 @@
                 android:background="@color/white"
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
+                android:visibility="visible"
                 >
 
                 <ImageView
@@ -477,6 +479,7 @@
                 android:background="@color/white"
                 android:paddingLeft="23dip"
                 android:paddingRight="20dip"
+                android:visibility="visible"
                 >
 
                 <ImageView
@@ -528,6 +531,72 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的客服"
+                    android:textColor="#ff333333"
+                    android:textSize="14dip"
+
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/more"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <!--我的费率-->
+            <RelativeLayout
+                android:id="@+id/me_f_flee_l"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:paddingRight="20dip"
+                android:visibility="visible"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/me_wdfl"
+                    android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的费率"
+                    android:textColor="#ff333333"
+                    android:textSize="14dip"
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/more"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
+            <!--我的邀请码-->
+            <RelativeLayout
+                android:id="@+id/me_f_qrcode_l"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:paddingRight="20dip"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/me_wdyqm"
+                    android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的邀请码"
                     android:textColor="#ff333333"
                     android:textSize="14dip"
 

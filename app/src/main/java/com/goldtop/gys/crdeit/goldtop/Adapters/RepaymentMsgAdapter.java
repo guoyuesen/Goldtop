@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
@@ -91,7 +92,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             item.list.setAdapter(new ItemItem(all,context,i));
             String riqi = ContextUtil.dataTostr(object1.getLong("paymentTime"),"yyyy-MM-dd");
             item.riqi.setText("还款日期："+riqi);
-            item.money03.setText(o.getString("planMoney"));
+            item.money03.setText(MoneyUtils.getShowMoney(o.getString("planMoney")));
             item.time03.setText(o.getString("withdrawTime"));
             view.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ContextUtil.dip2px(context,55+36+36*all.length()+50+2)));
 
@@ -203,9 +204,9 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             }
             try {
                 final JSONObject object = array.getJSONObject(i);
-                itemI.t0.setText(""+i);
+                itemI.t0.setText(i+1+"");
                 itemI.t1.setText(ContextUtil.dataTostr(object.getLong("paymentTime"),"HH:mm"));
-                itemI.t2.setText(""+(object.getString("paymentAmt")));
+                itemI.t2.setText(MoneyUtils.getShowMoney(object.getString("paymentAmt")));
                 setCode(itemI.t4,object.getString("paymentStatus"));
                 itemI.t4.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -214,8 +215,6 @@ public class RepaymentMsgAdapter extends BaseAdapter {
                     }
                 });
                 itemI.t3.setText(object.getString("hyName"));
-                list.remove(0);
-                list.add(0,object.getString("hyName"));
                 if (!"CONFIRMED".equals(object.getString("paymentStatus"))){
                     itemI.t5.setVisibility(View.GONE);
                     itemI.t6.setTextColor(Color.parseColor("#e9e9e9"));
@@ -225,9 +224,10 @@ public class RepaymentMsgAdapter extends BaseAdapter {
                     //适配器
                     ArrayAdapter<String> arr_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
                     //设置样式
-                    arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    arr_adapter.setDropDownViewResource(R.layout.simple_spinner_item);
                     itemI.t5.setAdapter(arr_adapter);
                     final ItemItemI finalItemI = itemI;
+                    itemI.t5.setSelection(0, true);
                     itemI.t5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int p, long l) {

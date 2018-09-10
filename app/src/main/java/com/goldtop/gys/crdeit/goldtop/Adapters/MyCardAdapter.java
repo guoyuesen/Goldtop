@@ -26,6 +26,11 @@ public class MyCardAdapter extends BaseAdapter {
         this.array = array;
     }
 
+    public void notifyDataSetChanged(JSONArray array) {
+        this.array = array;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return array.length();

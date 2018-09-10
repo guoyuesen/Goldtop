@@ -24,22 +24,31 @@
             android:layout_marginBottom="40dp"
             >
             <TextView
-                android:layout_width="100dip"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="完成还款时间"
                 android:textColor="#ff615b00"
-                android:layout_marginRight="80dip"
                 android:gravity="center"
                 android:textSize="13dip"
+                android:layout_weight="1"
                 />
             <TextView
-                android:layout_width="100dip"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="总手续费"
+                android:textColor="#ff615b00"
+                android:gravity="center"
+                android:textSize="13dip"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="代还款总额"
                 android:textColor="#ff615b00"
-                android:layout_marginLeft="80dip"
                 android:gravity="center"
                 android:textSize="13dip"
+                android:layout_weight="1"
                 />
         </LinearLayout>
         <LinearLayout
@@ -52,22 +61,33 @@
             >
             <TextView
                 android:id="@+id/repayment_time"
-                android:layout_width="100dip"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="00-00 00"
                 android:textColor="#000000"
-                android:layout_marginRight="80dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="13dip"
+                />
+            <TextView
+                android:id="@+id/repayment_totalFee"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="#000000"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="13dip"
                 />
             <TextView
                 android:id="@+id/repayment_money"
-                android:layout_width="100dip"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:text="0.00"
                 android:textColor="#000000"
-                android:layout_marginLeft="80dip"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="13dip"

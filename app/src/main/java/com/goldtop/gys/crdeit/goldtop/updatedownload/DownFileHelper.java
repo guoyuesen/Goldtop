@@ -4,6 +4,7 @@ package com.goldtop.gys.crdeit.goldtop.updatedownload;
  * Created by 郭月森 on 2018/8/23.
  */
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,12 +17,16 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.view.RoundProgressBar;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,6 +46,8 @@ public class DownFileHelper {
     NotificationManager mNotifyManager;
     Notification.Builder builder;
     RoundProgressBar bar;
+    TextView ctext;
+    AlertDialog dialog;
     Handler diahandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -59,13 +66,15 @@ public class DownFileHelper {
      *
      * @param path apk下载地址
      */
-    public void downFile(final String path) {
-        Log.d("","=======================================================");
+    public void downFile(final String path,String str) {
+        Log.d("", "=======================================================");
         mNotifyManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Bitmap btm = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.logo1_80);//可以换成你的app的logo
-        final AlertDialog dialog = new AlertDialog.Builder(mContext).create();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_roundprogressbar,null);
+        dialog = new AlertDialog.Builder(mContext).create();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_roundprogressbar, null);
         bar = view.findViewById(R.id.bar);
+        ctext = view.findViewById(R.id.bar_context);
+        ctext.setText(str);
         dialog.setView(view);
         dialog.setCancelable(false);
         dialog.show();
@@ -130,16 +139,16 @@ public class DownFileHelper {
                             while ((ch = is.read(buf)) != -1) {
                                 fileOutputStream.write(buf, 0, ch);
                                 process += ch;
-                                if (process>length){
+                                if (process > length) {
                                     //更新进度条
                                     result = numberFormat.format((float) 99.6);
-                                }else {
+                                } else {
                                     //更新进度条
                                     result = numberFormat.format((float) process / (float) length * 100);
                                 }
                                 Message m = new Message();
                                 float r = (float) process / (float) length * 100;
-                                m.what = (int)r;
+                                m.what = (int) r;
                                 diahandler.sendMessage(m);
                                 builder.setContentText("下载进度：" + result + "%");
                                 builder.setProgress(length, process, false);
@@ -157,7 +166,7 @@ public class DownFileHelper {
                         mNotifyManager.notify(1, builder.build());
                         mNotifyManager.cancelAll();
                         handler.sendEmptyMessage(0);
-
+                        dialog.dismiss();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -167,4 +176,5 @@ public class DownFileHelper {
         }.start();
 
     }
+
 }

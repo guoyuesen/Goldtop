@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Fragment.HomeFragment;
+import com.goldtop.gys.crdeit.goldtop.Fragment.MycardTabFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
@@ -106,7 +107,7 @@ public class AddCard02Activity extends BaseActivity {
             Toast.makeText(this, "请认真填写相关信息", Toast.LENGTH_LONG).show();
             return;
         }
-        Map<String, String> map = new HashMap<String, String>();
+        final Map<String, String> map = new HashMap<String, String>();
         map.put("custId", UserModel.custId);
         map.put("accountCode", number);
         map.put("accountName", UserModel.custName);
@@ -140,6 +141,9 @@ public class AddCard02Activity extends BaseActivity {
                         HomeFragment.dialogShow2(AddCard02Activity.this, "绑卡成功，进行银联认证后就可以设置还款计划了。", new DialogClick() {
                             @Override
                             public void onClick(View v) {
+                                if (MycardTabFragment.p.equals("-1")){
+                                    MycardTabFragment.p = map.get("bankCardType");
+                                }
                                 finish();
                             }
                         });
@@ -185,6 +189,7 @@ public class AddCard02Activity extends BaseActivity {
             map.put("621674", "邮政储蓄银行·普通高中学生资助卡");
             map.put("623218", "邮政储蓄银行·中国旅游卡（普卡）");
             map.put("621599", "邮政储蓄银行·福农卡");
+            map.put("622155", "平安银行·GOLD金卡");
             //"招商银行",@"中信银行",@"华夏银行",@"中信银行",@"广发银行",@"广发银行",@"中国银行",@"平安银行" ];@"451461",@"622688",@"625969",@"622689",@"625809",@"625808",@"621785",@"526855"];
             map.put("526855", "平安银行");
             map.put("621785", "中国银行");

@@ -30,6 +30,8 @@ public class ScheduleActivity extends BaseActivity {
     TextView card;
     @Bind(R.id.time1)
     TextView time1;
+    @Bind(R.id.money1)
+    TextView money1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,8 +47,9 @@ public class ScheduleActivity extends BaseActivity {
         });
         time.setText(ContextUtil.dataTostr(new Date().getTime(), "yyyy-MM-dd HH:mm"));
         time1.setText(ContextUtil.dataTostr(new Date().getTime(), "yyyy-MM-dd HH:mm"));
-        money.setText(getIntent().getStringExtra("amount"));
-        card.setText(getIntent().getStringExtra("cardnum")+" "+ UserModel.custName);
+        money.setText("￥"+getIntent().getStringExtra("money"));
+        money1.setText("￥"+getIntent().getStringExtra("sxf"));
+        card.setText(getIntent().getStringExtra("card") + " " + UserModel.custName);
     }
 
     @OnClick(R.id.submit)

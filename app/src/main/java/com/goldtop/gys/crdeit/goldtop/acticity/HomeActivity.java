@@ -1,14 +1,26 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +31,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Fragment.FindFragment;
@@ -27,8 +41,24 @@ import com.goldtop.gys.crdeit.goldtop.Fragment.HomeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.MeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.ShpingFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.Tools;
 import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
+import com.goldtop.gys.crdeit.goldtop.updatedownload.DownFileHelper;
+import com.goldtop.gys.crdeit.goldtop.updatedownload.InstallApk;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.XXPermissions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -72,18 +102,65 @@ public class HomeActivity extends AppCompatActivity {
     private ShpingFragment shpingFragment;
     private MeFragment meFragment;
     private int v = 0;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        boolean b = HomeActivity.this.getPackageManager().canRequestPackageInstalls();
+                        if (b) {
+                            new InstallApk(HomeActivity.this)
+                                    .installApk(new File(Environment.getExternalStorageDirectory(), "your_app_name.apk"));
+                        } else {
+                            //请求安装未知应用来源的权限
+                            ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, 10102);
+                        }
+                    } else {
+                        new InstallApk(HomeActivity.this)
+                                .installApk(new File(Environment.getExternalStorageDirectory(), "your_app_name.apk"));
+                    }
 
+                    break;
+                case 1:
+
+                    break;
+            }
+
+        }
+    };
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseActivity.hiedBar(this);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        /*XXPermissions.with(this)
+                //.permission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,})
+                .request(new OnPermission() {
 
+                    @Override
+                    public void hasPermission(List<String> granted, boolean isAll) {
+                        if (isAll){
+                            Toast.makeText(HomeActivity.this,"金陀螺感谢您的支持",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean quick) {
+
+                    }
+                });*/
+        getV();
         //获取管理者
         supportFragmentManager = getSupportFragmentManager();
         //开启事务
         fragmentTransaction = supportFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(
+                R.anim.activity_in, R.anim.activity_out,
+                R.anim.activity_in, R.anim.activity_out
+        );
         //new TitleBuder(this).setTitleText("首页");
         homeFragment = new HomeFragment();
         fragment = homeFragment;
@@ -120,6 +197,10 @@ public class HomeActivity extends AppCompatActivity {
         supportFragmentManager = getSupportFragmentManager();
         //开启事务
         fragmentTransaction = supportFragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(
+                R.anim.activity_in, R.anim.activity_out,
+                R.anim.activity_in, R.anim.activity_out
+        );
         fragmentTransaction.hide(fragment);
         switch (a) {
             case 0:
@@ -201,6 +282,113 @@ public class HomeActivity extends AppCompatActivity {
             case 3:
                 homeBottomImg4.setImageResource(R.mipmap.activity_home_04_0);
                 break;
+        }
+    }
+
+    public void getV(){
+        MyVolley.addRequest(new VolleyRequest(Action.version, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    final JSONObject data = jsonObject.getJSONObject("data");
+                    Log.d("-----",data.getInt("code")+"----"+ Tools.getVersion(HomeActivity.this));
+                    if (data.getInt("code")> Tools.getVersion(HomeActivity.this)){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this).setTitle("提示")
+                                .setMessage("发现新版本，请更新!")
+                                .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                            XXPermissions.with(HomeActivity.this)
+                                                    .permission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,})
+                                                    .request(new OnPermission() {
+
+                                                        @Override
+                                                        public void hasPermission(List<String> granted, boolean isAll) {
+                                                            if (isAll){
+                                                                try {
+                                                                    new DownFileHelper(HomeActivity.this, handler)
+                                                                            .downFile("http://www.tuoluo718.com/app/download",data.getString("updateNote"));
+                                                                    Toast.makeText(HomeActivity.this,"更新包下载任务已开启，请耐心等待",Toast.LENGTH_LONG).show();
+                                                                } catch (JSONException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void noPermission(List<String> denied, boolean quick) {
+
+                                                        }
+                                                    });
+
+                                        dialogInterface.dismiss();
+
+                                    }
+                                });
+                        if (data.getInt("flag") == 0) {
+                            builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                        }
+                        builder.create().show();
+
+                    }else {
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 10102:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    new InstallApk(HomeActivity.this)
+                            .installApk(new File(Environment.getExternalStorageDirectory(), "your_app_name.apk"));
+                    Log.d(">_<","0");
+                } else {
+                    AlertDialog dialog = new AlertDialog.Builder(this).setMessage("为了您的信息安全，我们的安装需要您的授权！")
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(HomeActivity.this,"更新失败，请前往官网重新下载或授权安装",Toast.LENGTH_LONG).show();
+                                    dialogInterface.dismiss();
+                                }
+                            }).setNeutralButton("去设置", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+                                    startActivityForResult(intent, 10103);
+                                    Log.d(">_<","1");
+                                    dialogInterface.dismiss();
+                                }
+                            }).create();
+                    dialog.show();
+                }
+
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10103){
+            handler.sendEmptyMessage(0);
+            Log.d(">_<","2");
         }
     }
 }

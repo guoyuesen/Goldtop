@@ -15,9 +15,13 @@ import android.support.v4.content.FileProvider;
 
 
 import com.goldtop.gys.crdeit.goldtop.BuildConfig;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/3/13.
@@ -32,18 +36,35 @@ public class InstallApk {
         this.context = context;
     }
 
-    public void installApk(File apkFile) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    public void installApk(final File apkFile) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= 26) {
             boolean b = context.getPackageManager().canRequestPackageInstalls();
-            //if (b) {
+            if (b) {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 Uri contentUri = FileProvider.getUriForFile(context.getApplicationContext(),
                         BuildConfig.APPLICATION_ID+".fileProvider", apkFile);
                 intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
                 context.startActivity(intent);
-            /*} else {
-                //请求安装未知应用来源的权限
+            } else {
+                XXPermissions.with(context)
+                        .permission(Manifest.permission.REQUEST_INSTALL_PACKAGES)
+                        .request(new OnPermission() {
+                            @Override
+                            public void hasPermission(List<String> granted, boolean isAll) {
+                                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                Uri contentUri = FileProvider.getUriForFile(context.getApplicationContext(),
+                                        BuildConfig.APPLICATION_ID+".fileProvider", apkFile);
+                                intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+                                context.startActivity(intent);
+                            }
+
+                            @Override
+                            public void noPermission(List<String> denied, boolean quick) {
+
+                            }
+                        });
+               /* //请求安装未知应用来源的权限
                 ConfirmDialog confirmDialog =new ConfirmDialog(context);
                 confirmDialog.setStyle("安装权限","Android8.0安装应用需要打开未\n知来源权限，请去设置中开启权限",
                         "去设置","取消");
@@ -54,8 +75,8 @@ public class InstallApk {
                         ActivityCompat.requestPermissions(context, mPermissionList, 2);
                     }
                 });
-                confirmDialog.show();
-            }*/
+                confirmDialog.show();*/
+            }
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

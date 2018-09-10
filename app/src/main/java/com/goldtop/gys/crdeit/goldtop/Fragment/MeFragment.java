@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -32,6 +33,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.LoginActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.OrderActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.RatesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RedEnvelopesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RegisterActivity;
@@ -171,7 +173,7 @@ public class MeFragment extends Fragment {
     @OnClick({R.id.me_f_wallet_l, R.id.me_f_red_l, R.id.me_f_integral_l, R.id.me_f_authentication_l, R.id.me_f_card_l,
             R.id.me_f_vip_l, R.id.me_f_invite_l, R.id.me_f_tema_l, R.id.me_f_process_l, R.id.me_f_order_l,
             R.id.me_f_address_l, R.id.fragment_mi_settiongs,R.id.me_f_login,R.id.me_f_register,
-            R.id.me_f_process_l1,R.id.me_f_process_l0})
+            R.id.me_f_process_l1,R.id.me_f_process_l0,R.id.me_f_flee_l,R.id.me_f_qrcode_l})
     public void onClick(View view) {
         if (!AppUtil.isLogin(getContext())){
             return;
@@ -229,6 +231,13 @@ public class MeFragment extends Fragment {
             case R.id.me_f_process_l1://设置
                 getActivity().startActivity(new Intent(getContext(), SettionsActivity.class));
                 break;
+            case R.id.me_f_flee_l://费率
+                getActivity().startActivity(new Intent(getContext(), RatesActivity.class));
+                break;
+            case R.id.me_f_qrcode_l://邀请码
+                Toast.makeText(getContext(),"暂未开通",Toast.LENGTH_LONG).show();
+                //getActivity().startActivity(new Intent(getContext(), SettionsActivity.class));
+                break;
             case R.id.me_f_process_l0://我的客服
                 AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
                 builder.setTitle("温馨提示");
@@ -237,7 +246,7 @@ public class MeFragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                dialogInterface.dismiss();
                             }
                         });
                 builder.setNegativeButton("拨打电话", new DialogInterface.OnClickListener() {

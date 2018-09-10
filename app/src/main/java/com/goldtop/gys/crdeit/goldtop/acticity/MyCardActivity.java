@@ -44,14 +44,7 @@ import butterknife.OnClick;
  */
 
 public class MyCardActivity extends BaseActivity {
-    /*@Bind(R.id.my_card_list)
-    ListView myCardList;
-    @Bind(R.id.my_card_list2)
-    ListView myCardList1;
-    @Bind(R.id.my_card_1)
-    TextView t1;
-    @Bind(R.id.my_card_2)
-    TextView t2;*/
+
     private String[] titles = new String[]{"储蓄卡", "信用卡"};
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -72,14 +65,6 @@ public class MyCardActivity extends BaseActivity {
                 finish();
             }
         });
-        /*JSONArray array = new JSONArray();
-        myCardList.setAdapter(new MyCardAdapter(this, array));
-        myCardList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //startActivity(new Intent(MyCardActivity.this,ReceivablesActivity.class));
-            }
-        });*/
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) findViewById(R.id.tablayout);
 

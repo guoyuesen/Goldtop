@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -28,6 +29,7 @@ import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
 import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.HistoryPlanActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.ReceivablesActivity;
@@ -65,6 +67,7 @@ public class HomeFragment extends Fragment {
     ListView homeFrameList;
     private View view;
     HomeBankAdapter adapter;
+    JSONArray array;
 
 
     @Nullable
@@ -88,9 +91,19 @@ public class HomeFragment extends Fragment {
                 AddCard01Activity.initActivity(getContext(),"CC");
             }
         });
-        JSONArray array = new JSONArray();
+        array = new JSONArray();
         adapter = new HomeBankAdapter(getContext(),array);
         homeFrameList.setAdapter(adapter);
+        homeFrameList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    HistoryPlanActivity.inActivity(getContext(),array.getJSONObject(i-1).getString("cardNo"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         View hview = LayoutInflater.from(getContext()).inflate(R.layout.item_home_top,null);
         hview.findViewById(R.id.home_frame_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +151,11 @@ public class HomeFragment extends Fragment {
                         public void onClick(View v) {
                             getActivity().startActivity(new Intent(getContext(), AuthenticationActivity.class));
                         }
+                    }, new DialogClick() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
                     });
                 }else {
                     dialogShow2(getContext(), "实名认证审核中，请耐心等待！", new DialogClick() {
@@ -176,6 +194,11 @@ public class HomeFragment extends Fragment {
                 public void onClick(View v) {
                     context.startActivity(new Intent(context, AuthenticationActivity.class));
                 }
+            }, new DialogClick() {
+                @Override
+                public void onClick(View v) {
+
+                }
             });
             return false;
         }else {
@@ -189,6 +212,9 @@ public class HomeFragment extends Fragment {
         }
     }
     public static void dialogShow2(Context context, String msg, final DialogClick listener) {
+        dialogShow2(context,msg,listener,null);
+    }
+    public static void dialogShow2(Context context, String msg, final DialogClick listener,final DialogClick clistener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.update_manage_dialog, null);
@@ -209,7 +235,11 @@ public class HomeFragment extends Fragment {
                 listener.onClick(v);
             }
         });
-
+        if (clistener == null){
+            btn_cancel.setVisibility(View.GONE);
+        }else {
+            btn_cancel.setVisibility(View.VISIBLE);
+        }
         btn_cancel.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -222,32 +252,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         if (!UserModel.custId.isEmpty()) {
-            /*Map<String, String> map = new HashMap<String, String>();
-            map.put("custId", UserModel.custId);
-            map.put("cardType", "C");
-            Log.d(Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=C" + "==》", "");
-            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=C", map, new MyVolleyCallback() {
-                @Override
-                public void CallBack(JSONObject jsonObject) {
-                    try {
-                        if (jsonObject.getString("code").equals("1")) {
-                            JSONObject object = jsonObject.getJSONObject("data");
-                            JSONArray array = object.getJSONArray("bankCardList");
-                            getcards(object);
-                            //adapter.notifyDataSetChanged(array);
-                            //Log.d("data==》",""+array.toString());
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //dialog.dismiss();
-                }
-            }));
-        */
             getcards();
         }
         super.onStart();
@@ -266,52 +270,18 @@ public class HomeFragment extends Fragment {
                 try {
                     if (jsonObject.getString("code").equals("1")){
                         Log.d("===>",jsonObject.toString());
-                        JSONArray array = jsonObject.getJSONArray("data");
-                        /*for (int i = 0;i<a.getJSONArray("bankCardList").length();i++){
-                            String number = a.getJSONArray("bankCardList").getJSONObject(i).getString("accountCode");
-                            boolean p = true;
-                            for (int j = 0;j<array.length();j++){
-                                    JSONObject object = array.getJSONObject(j);
-                                    if (number.equals(object.getString("cardNo"))){
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("applyId",object.getString("applyId"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("balanceAmt",object.getString("balanceAmt"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("transFee",object.getString("transFee"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("totalTerm",object.getString("totalTerm"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("currPaymentAmt",object.getString("currPaymentAmt"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("deadline",object.getString("deadline"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("balanceTerm",object.getString("balanceTerm"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("applyAmt",object.getString("applyAmt"));
-                                        a.getJSONArray("bankCardList").getJSONObject(i).put("idCardNo",a.getString("idCardNo"));
-                                        p = false;
-                                    }
-                            }
-                            if (p){
-                                Log.d("-----","----");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("applyId","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("balanceAmt","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("transFee","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("totalTerm","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("currPaymentAmt","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("deadline","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("balanceTerm","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("applyAmt","0");
-                                a.getJSONArray("bankCardList").getJSONObject(i).put("idCardNo","0");
-                            }
-                        }*/
+                        array = jsonObject.getJSONArray("data");
                         adapter.notifyDataSetChanged(array);
-                        //Log.d("data==》",""+array.toString());
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-               /* if (dialog.isShowing())
-                    dialog.dismiss();*/
+
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                /*if (dialog.isShowing())
-                    dialog.dismiss();*/
+
             }
         }));
     }

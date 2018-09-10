@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -29,6 +30,7 @@ import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 import com.goldtop.gys.crdeit.goldtop.view.CSxzDialogView;
+import com.goldtop.gys.crdeit.goldtop.view.CalendarChoice;
 import com.goldtop.gys.crdeit.goldtop.view.DateDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 import com.google.gson.JsonObject;
@@ -189,11 +191,13 @@ public class RepaymentInstallActivity extends BaseActivity {
                 Log.d("返回参数：==》", response.toString());
                 try {
                     if (response.getString("code").equals("1")){
+                        JSONObject object = response.getJSONObject("data");
                         Intent intent = new Intent(RepaymentInstallActivity.this,SucceededActivity.class);
                         intent.putExtra("card",cardid);
                         intent.putExtra("Money1",money);
                         intent.putExtra("Money2",daymoney);
                         intent.putExtra("Day",""+day);
+                        intent.putExtra("applyId",object.getString("applyId"));
                         startActivity(intent);
                         finish();
                     }else {
