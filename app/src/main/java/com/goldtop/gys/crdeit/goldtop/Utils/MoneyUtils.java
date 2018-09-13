@@ -12,6 +12,7 @@ public class MoneyUtils {
         return df.format(m);
     }
     public static String getShowMoney(String m){
+
         double d = Double.parseDouble(m);
         DecimalFormat df = new DecimalFormat("#0.00");
         return df.format(d);

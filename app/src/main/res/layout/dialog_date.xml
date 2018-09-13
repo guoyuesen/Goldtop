@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="选择日期"
             android:textColor="#ff000000"
-            android:textSize="22dip"
+            android:textSize="17dip"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             />
@@ -124,12 +124,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="13dip"
-            android:textSize="22dip"
+            android:textSize="17dip"
             android:textColor="@color/white"
             android:gravity="center"
             android:text="选择还款日期"
             android:layout_alignParentRight="true"
-            android:background="@drawable/home_title_color"
+            android:background="@drawable/home_title_cccccc"
             />
     </RelativeLayout>
 </RelativeLayout>

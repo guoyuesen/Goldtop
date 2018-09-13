@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
+import com.goldtop.gys.crdeit.goldtop.Utils.PayIndustryUtills;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
@@ -29,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +44,6 @@ import java.util.Set;
 public class RepaymentMsgAdapter extends BaseAdapter {
     private Context context;
     private JSONArray array;
-    Map<String,String> map = new HashMap<>();
-    List<String> list = new ArrayList<>();
 
     public RepaymentMsgAdapter(Context context, JSONArray array) {
         this.context = context;
@@ -149,25 +150,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
             this.array = array;
             this.context = context;
             this.index = index;
-            if (list.size()<1) {
-                map.put("百货商超", "M001");
-                map.put("酒吧", "M010");
-                map.put("酒店", "M011");
-                map.put("电影院", "M012");
-                map.put("餐饮", "M002");
-                map.put("珠宝/首饰", "M003");
-                map.put("服饰", "M004");
-                map.put("化妆品", "M005");
-                map.put("健身", "M006");
-                map.put("美容/SPA", "M007");
-                map.put("洗浴/按摩", "M008");
-                map.put("加油站", "M009");
-                Set<String> set = map.keySet();
-                list.add("");
-                for (String str : set) {
-                    list.add(str);
-                }
-            }
+
         }
 
         @Override
@@ -221,8 +204,9 @@ public class RepaymentMsgAdapter extends BaseAdapter {
                 }else {
                     itemI.t5.setVisibility(View.VISIBLE);
                     itemI.t6.setTextColor(Color.parseColor("#0049FF"));
+                    final List<String> hylist = Arrays.asList(PayIndustryUtills.getkeys(new Date(object.getLong("paymentTime"))));
                     //适配器
-                    ArrayAdapter<String> arr_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
+                    ArrayAdapter<String> arr_adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, hylist);
                     //设置样式
                     arr_adapter.setDropDownViewResource(R.layout.simple_spinner_item);
                     itemI.t5.setAdapter(arr_adapter);
@@ -233,8 +217,8 @@ public class RepaymentMsgAdapter extends BaseAdapter {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int p, long l) {
                             //finalItemI.t3.setText(list.get(i));
                             try {
-                            if (!object.getString("hyName").equals(list.get(p))){
-                                    setHy(finalItemI.t3,list.get(p),object.getString("ID"),index,i);
+                            if (!object.getString("hyName").equals(hylist.get(p))){
+                                    setHy(finalItemI.t3,hylist.get(p),object.getString("ID"),index,i);
                             }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -258,7 +242,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
     public void setHy(final TextView t, final String s, String id, final int di, final int xi){
         Map<String,String> m = new HashMap<>();
         m.put("id",id);
-        m.put("mccCode",map.get(s));
+        m.put("mccCode",PayIndustryUtills.Creat(s));
         final HttpsDialogView dialog = new HttpsDialogView(context);
         dialog.show();
         MyVolley.addRequest(new formRequest(Action.updateMcc, m, new MyVolleyCallback() {

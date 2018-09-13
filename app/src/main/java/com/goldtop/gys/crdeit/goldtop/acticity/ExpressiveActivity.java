@@ -1,5 +1,7 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
@@ -66,11 +69,11 @@ public class ExpressiveActivity extends BaseActivity {
             }
         });
         mo = getIntent().getDoubleExtra("money", 0.00d);
-        envelopesKtxMoney.setText(mo/100+"");
+        envelopesKtxMoney.setText(MoneyUtils.getShowMoney(mo/100));
         envelopesMoneyAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txMoney.setText(mo/100+"");
+                txMoney.setText(MoneyUtils.getShowMoney(mo/100));
             }
         });
         getcard(true);
@@ -97,12 +100,22 @@ public class ExpressiveActivity extends BaseActivity {
                 map.put("custId", UserModel.custId);
                 map.put("money", m * 100 + "");
                 map.put("cardNo", number);
+                Httpshow(this);
                 MyVolley.addRequest(new formRequest(Request.Method.GET,Action.withdrawFromIncome+"?custId="+UserModel.custId+"&money="+m * 100+"&cardNo="+number, map, new MyVolleyCallback() {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
+                        Httpdismiss();
                         try {
                             if (jsonObject.getInt("code") == 1) {
-                                Toast.makeText(ExpressiveActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(ExpressiveActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                AlertDialog dialog = new AlertDialog.Builder(ExpressiveActivity.this).setMessage("提现申请成功，资金将在24小时内到账(节假日顺延)，请注意查收!").setNeutralButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        finish();
+                                    }
+                                }).create();
+                                dialog.show();
                             } else {
                                 Toast.makeText(ExpressiveActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                             }
@@ -113,6 +126,7 @@ public class ExpressiveActivity extends BaseActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Httpdismiss();
                         Log.d("1234165411===","---------------");
                     }
                 }));

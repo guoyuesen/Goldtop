@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationSet;
@@ -526,5 +527,13 @@ public class ReceivablesActivity extends BaseActivity {
         }
     }
 
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (yhxeimg.getVisibility() == View.VISIBLE){
+            yhxeimg.setAnimation(AnimationUtils.loadAnimation(this, R.anim.activity_out));
+            yhxeimg.setVisibility(View.GONE);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 
 import org.json.JSONArray;
@@ -70,7 +71,9 @@ public class HomeShpingAdapter extends BaseAdapter {
             item.dh.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context,"积分不足",Toast.LENGTH_LONG).show();
+                    if (AppUtil.isLogin(context)){
+                        Toast.makeText(context,"积分不足",Toast.LENGTH_LONG).show();
+                    }
                 }
             });
         } catch (JSONException e) {

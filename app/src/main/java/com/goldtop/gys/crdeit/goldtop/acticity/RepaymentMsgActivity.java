@@ -1,5 +1,7 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -128,8 +130,19 @@ public class RepaymentMsgActivity extends BaseActivity {
             Footer.findViewById(R.id.item_repayment_bomm_cloesplay).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    closePlan();
+                    AlertDialog dialog = new AlertDialog.Builder(RepaymentMsgActivity.this).setMessage("计划取消后将不再执行，确定要取消本次计划吗?").setNeutralButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            closePlan();
+                            dialogInterface.dismiss();
+                        }
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }).create();
+                    dialog.show();
                 }
             });
         }else {

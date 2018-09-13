@@ -21,6 +21,7 @@ import java.util.Date;
  */
 
 public class CalendarChoice extends View implements View.OnTouchListener{
+    DateDialogView.DateBack back;
     int bw;
     int item[][][]= new int[14][7][6];
     public CalendarChoice(Context context) {
@@ -39,6 +40,10 @@ public class CalendarChoice extends View implements View.OnTouchListener{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setOnTouchListener(this);
+    }
+
+    public void setBack(DateDialogView.DateBack back) {
+        this.back = back;
     }
 
     @Override
@@ -63,8 +68,10 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                     //p.setColor(Color.parseColor("#ffffff"));
                     //canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
                     if (i==0&&j==3){
+                        paint.setColor(Color.BLACK);
                         canvas.drawText(getCurrentYear()+"年"+dn[4]+"月",dn[1]+(bw/2),baseLineY,paint);
                     }else if (i==7&&j==3){
+                        paint.setColor(Color.BLACK);
                         canvas.drawText(getCurrentYear()+"年"+(dn[4]==13?1:(dn[4]))+"月",dn[1]+(bw/2),baseLineY,paint);
                     }
                 }else {
@@ -77,13 +84,20 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                         paint.setColor(Color.WHITE);
                     }else {
                         p.setColor(Color.WHITE);
-                        paint.setColor(Color.BLACK);
+                        if (j==0||j==6){
+                            paint.setColor(Color.parseColor("#FF3D00"));
+                        }else {
+                            paint.setColor(Color.BLACK);
+                        }
+
                     }
                     RectF rf = new RectF(dn[1]+15,dn[2]+15,dn[1]+bw-15,dn[2]+bw-15);
                     canvas.drawRoundRect(rf,10,10,p);
                     if (dn[0]==1){
                         canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY-20,paint);
+                        paint.setTextSize(30);
                         canvas.drawText("还款",dn[1]+(bw/2),baseLineY+20,paint);
+                        paint.setTextSize(40);
                     }else {
                         canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY,paint);
                     }
@@ -120,6 +134,9 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                     item[j][i][0]=1;
                 }
                 invalidate();//刷新绘画
+                if (back!=null){
+                    back.callback("");
+                }
                 break;
         }
         return true;
@@ -180,6 +197,7 @@ public class CalendarChoice extends View implements View.OnTouchListener{
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        Log.d("今天星期：",v()+"");
         //获取显示宽度
         int w = getWidth()-getPaddingLeft()-getPaddingRight();
         //获取单格宽高
@@ -203,7 +221,7 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                 }else {
                     if (i==1&&j<v()){//按号当日星期几开始对应显示
                         item[i][j][5] = 0;
-                    }if (i==8&&j<((getCurrentMonthLastDay()%7+v())<7?(getCurrentMonthLastDay()%7+v()):(getCurrentMonthLastDay()%7+v())-6)){//第二月开始显示位置
+                    }else if (i==8&&j<((getCurrentMonthLastDay()%7+v())<7?(getCurrentMonthLastDay()%7+v()):(getCurrentMonthLastDay()%7+v())-7)){//第二月开始显示位置
                         item[i][j][5] = 0;
                     }else {
                         d++;//日期增加
@@ -223,7 +241,6 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                         }
                     }
                 }
-
             }
         }
         setMinimumHeight(bw*14);

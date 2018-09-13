@@ -36,6 +36,7 @@
             android:layout_marginLeft="131dip"
             android:layout_marginTop="102dip"
             android:background="@mipmap/fragment_shping_04"
+            android:visibility="visible"
             />
         <TextView
             android:id="@+id/item_sp_jf"

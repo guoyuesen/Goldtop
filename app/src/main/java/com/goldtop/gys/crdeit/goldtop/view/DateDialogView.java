@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
@@ -29,6 +30,7 @@ public class DateDialogView extends Dialog {
     DateBack back;
     CalendarChoice choice;
     Activity activity;
+    TextView textView;
     public DateDialogView(@NonNull Activity context,DateBack back) {
         super(context,R.style.MyDialog);
         activity = context;
@@ -40,6 +42,16 @@ public class DateDialogView extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         choice = view.findViewById(R.id.date_dialog_choice);
+        textView = view.findViewById(R.id.date_dialog_yes);
+        choice.setBack(new DateBack() {
+            @Override
+            public void callback(String str) {
+                if (choice.getContent().length()<1)
+                textView.setBackgroundResource(R.drawable.home_title_cccccc);
+                else
+                    textView.setBackgroundResource(R.drawable.home_title_color);
+            }
+        });
         RelativeLayout layout = view.findViewById(R.id.date_dialog_r);
         layout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ContextUtil.getX(activity)*2));
         choice.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ContextUtil.getX(activity)*2));
@@ -49,11 +61,14 @@ public class DateDialogView extends Dialog {
                 dismiss();
             }
         });
-        view.findViewById(R.id.date_dialog_yes).setOnClickListener(new View.OnClickListener() {
+
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.callback(choice.getContent());
-                dismiss();
+                if (choice.getContent().length()>0) {
+                    back.callback(choice.getContent());
+                    dismiss();
+                }
             }
         });
 
