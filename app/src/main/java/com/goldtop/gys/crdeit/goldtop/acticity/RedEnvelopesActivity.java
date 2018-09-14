@@ -80,7 +80,7 @@ public class RedEnvelopesActivity extends BaseActivity {
                     Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
                     return;
                 }//http://47.106.103.104/income/transfer
-                if (Float.parseFloat(m)>ktx){
+                if (Float.parseFloat(m)>ktx||ktx<0.01){
                     Toast.makeText(this,"请输入有效金额",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -121,6 +121,7 @@ public class RedEnvelopesActivity extends BaseActivity {
                         envelopesKtxMoney.setText(MoneyUtils.getShowMoney(ktx));
                         envelopesMoney.setText(MoneyUtils.getShowMoney(money));
                         id = jsonObject.getJSONObject("data").getString("id");
+                        envelopesOutMoney.setText(""+ktx);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

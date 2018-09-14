@@ -49,6 +49,7 @@
         android:layout_height="143dip"
         android:layout_marginTop="342dip"
         android:background="@color/white"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -137,6 +138,6 @@
         android:background="@drawable/home_repay_r"
         android:layout_marginRight="25dip"
         android:layout_marginLeft="25dip"
-        android:layout_marginTop="522dip"
+        android:layout_marginTop="352dip"
         />
 </RelativeLayout>

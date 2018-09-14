@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                    finish();
                 }
 
                 @Override
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
                 @Override
                 public void onStop() {
                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                    finish();
                 }
             });
             dateButton.Start();

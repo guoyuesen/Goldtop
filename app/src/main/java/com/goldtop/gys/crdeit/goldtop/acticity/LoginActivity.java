@@ -68,9 +68,10 @@ public class LoginActivity extends BaseActivity {
             }
         });
         SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
-        //String peopleJson = sp.getString("KEY_LOGING_PASS","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
+        String pass = sp.getString("KEY_LOGING_PASS","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
         String people = sp.getString("KEY_LOGING_PHONE","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
         loginPhone.setText(people);
+        loginPass.setText(pass);
         loginClose.setAlpha(170);
         loginClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +83,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 final String user = loginPhone.getText().toString().trim();
-                String pass = loginPass.getText().toString().trim();
+                final String pass = loginPass.getText().toString().trim();
                 if (user.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "请输入手机号", Toast.LENGTH_LONG).show();
                     return;
@@ -106,6 +107,7 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("KEY_LOGING_PHONE", user) ; //存入json串
+                                editor.putString("KEY_LOGING_PASS", pass) ;
                                 editor.commit() ; //提交
                                 finish();
                             } else {
