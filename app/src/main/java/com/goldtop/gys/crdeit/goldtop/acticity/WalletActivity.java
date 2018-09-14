@@ -51,7 +51,12 @@ public class WalletActivity extends BaseActivity {
             public void onClick(View view) {
                 finish();
             }
-        }).setTitleText("钱包");
+        }).setTitleText("钱包").setRightText("钱包明细").setRightListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 

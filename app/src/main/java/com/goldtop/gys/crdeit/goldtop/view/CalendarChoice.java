@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,14 +50,13 @@ public class CalendarChoice extends View implements View.OnTouchListener{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("================","=============3");
         super.onDraw(canvas);
         Paint p = new Paint();
         p.setColor(Color.WHITE);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(40);
+        paint.setTextSize(ContextUtil.dip2px(getContext(),15));
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float top = fontMetrics.top;//为基线到字体上边框的距离,即上图中的top
         float bottom = fontMetrics.bottom;//为基线到字体下边框的距离,即上图中的bottom
@@ -64,53 +65,51 @@ public class CalendarChoice extends View implements View.OnTouchListener{
             for (int j = 0;j < d.length;j++){
                 int dn[] = d[j];
                 int baseLineY = (int) ((dn[2]+(bw/2)) - top/2 - bottom/2);//基线中间点的y轴计算公式
-                if (dn[5]==0){
-                    //p.setColor(Color.parseColor("#ffffff"));
-                    //canvas.drawRect(dn[1],dn[2],dn[1]+bw,dn[2]+bw,p);
-                    if (i==0&&j==3){
+                if (dn[5]==0){//没有日期的空白
+                    if (i==0&&j==3){//第一个月份
                         paint.setColor(Color.BLACK);
                         canvas.drawText(getCurrentYear()+"年"+dn[4]+"月",dn[1]+(bw/2),baseLineY,paint);
-                    }else if (i==7&&j==3){
+                    }else if (i==7&&j==3){//第二个月份
                         paint.setColor(Color.BLACK);
                         canvas.drawText(getCurrentYear()+"年"+(dn[4]==13?1:(dn[4]))+"月",dn[1]+(bw/2),baseLineY,paint);
                     }
-                }else {
-                    if (dn[5] == 2){
+                }else {//日期
+                    if (dn[5] == 2){//已过日期背景及字的颜色
                         p.setColor(Color.parseColor("#ffffff"));
                         paint.setColor(Color.parseColor("#dddddd"));
-                    }else
-                    if (dn[0]==1){
-                        p.setColor(Color.parseColor("#FECE00"));
-                        paint.setColor(Color.WHITE);
-                    }else {
-                        p.setColor(Color.WHITE);
-                        if (j==0||j==6){
-                            paint.setColor(Color.parseColor("#FF3D00"));
-                        }else {
-                            paint.setColor(Color.BLACK);
+                    }else {//未过日期及字的颜色
+                        if (dn[0] == 1) {//选中日期字背景的颜色
+                            p.setColor(Color.parseColor("#FECE00"));
+                            paint.setColor(Color.WHITE);
+                        } else {//未选中日期字背景的颜色
+                            p.setColor(Color.WHITE);
+                            if (j == 0 || j == 6) {//周末字的颜色
+                                paint.setColor(Color.parseColor("#FF3D00"));
+                            } else {//周一至周五字的颜色
+                                paint.setColor(Color.BLACK);
+                            }
                         }
-
                     }
-                    RectF rf = new RectF(dn[1]+15,dn[2]+15,dn[1]+bw-15,dn[2]+bw-15);
-                    canvas.drawRoundRect(rf,10,10,p);
-                    if (dn[0]==1){
+                    RectF rf = new RectF(dn[1]+15,dn[2]+15,dn[1]+bw-15,dn[2]+bw-15);//背景范围
+                    canvas.drawRoundRect(rf,10,10,p);//绘画背景圆角10px
+                    if (dn[0]==1){//绘制选中状态
                         canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY-20,paint);
-                        paint.setTextSize(30);
+                        paint.setTextSize(ContextUtil.dip2px(getContext(),11));
                         canvas.drawText("还款",dn[1]+(bw/2),baseLineY+20,paint);
-                        paint.setTextSize(40);
-                    }else {
+                        paint.setTextSize(ContextUtil.dip2px(getContext(),15));
+                    }else {//绘制未选中状态
                         canvas.drawText(dn[3]+"",dn[1]+(bw/2),baseLineY,paint);
                     }
-
                 }
-
             }
         }
+        //绘画两月之间的分割线
+        paint.setColor(Color.parseColor("#dddddd"));
+        canvas.drawLine(20,getWidth(),getWidth()-20,getWidth(),paint);
     }
 
     @Override
     public void draw(Canvas canvas) {
-        Log.d("================","=============5");
         super.draw(canvas);
     }
 
@@ -127,7 +126,6 @@ public class CalendarChoice extends View implements View.OnTouchListener{
                 int j = (int)(motionEvent.getY()-getPaddingTop())/bw;
                 if (j>14||i>6||item[j][i][5]!=1)//判断点击是否有效
                     break;
-                Log.d("<==========>",item[j][i][4]+"月"+item[j][i][3]);
                 if (item[j][i][0]==1){
                     item[j][i][0]=0;
                 }else {
@@ -197,7 +195,6 @@ public class CalendarChoice extends View implements View.OnTouchListener{
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.d("今天星期：",v()+"");
         //获取显示宽度
         int w = getWidth()-getPaddingLeft()-getPaddingRight();
         //获取单格宽高

@@ -36,11 +36,6 @@ public class DetailedActivity extends BaseActivity {
     ListView detailedList;
     boolean in = true;
     DetailedAdapter adapter;
-    public static void inActivity(Context context,boolean t){
-        Intent intent = new Intent(context,DetailedActivity.class);
-        intent.putExtra("mx",t);
-        context.startActivity(intent);
-    }
     public static void inActivity(Context context,boolean t,String id){
         Intent intent = new Intent(context,DetailedActivity.class);
         intent.putExtra("mx",t);
