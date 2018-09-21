@@ -30,6 +30,7 @@
         android:layout_height="42dip"
         android:layout_marginTop="50dip"
         android:gravity="center"
+        android:visibility="gone"
         >
         <ImageView
             android:layout_width="10dip"

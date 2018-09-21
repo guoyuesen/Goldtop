@@ -26,6 +26,7 @@ import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddAdderssActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddCard01Activity;
+import com.goldtop.gys.crdeit.goldtop.acticity.OpenCardActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,7 +102,12 @@ public class ReceivablesDialogView extends Dialog {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
                     dismiss();
-                    back.sercsse(T,jsonArray.getJSONObject(i));
+                    if (jsonArray.getJSONObject(i).getString("openStatus").equals("OPEN_SUCCESS")){
+                        back.sercsse(T,jsonArray.getJSONObject(i));
+                    }else {
+                        OpenCardActivity.initActivity(context,jsonArray.getJSONObject(i));
+                    }
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -151,6 +157,7 @@ public class ReceivablesDialogView extends Dialog {
                 item.t1 = view.findViewById(R.id.d_i_bankname);
                 item.t2 = view.findViewById(R.id.d_i_number);
                 item.t3 = view.findViewById(R.id.d_i_type);
+                item.v = view.findViewById(R.id.receivables_rz);
                 view.setTag(item);
             }else {
                 item = (ThisItem) view.getTag();
@@ -162,6 +169,11 @@ public class ReceivablesDialogView extends Dialog {
                 item.t2.setText("尾号"+object.getString("accountCode").substring(object.getString("accountCode").length()-4));
                 if(object.getString("ioType").equals("IO")){
                     item.t3.setText("信");
+                    if (object.getString("openStatus").equals("OPEN_SUCCESS")){
+                        item.v.setVisibility(View.GONE);
+                    }else {
+                        item.v.setVisibility(View.VISIBLE);
+                    }
                 }else {
                     item.t3.setText("储");
                 }
@@ -178,6 +190,7 @@ public class ReceivablesDialogView extends Dialog {
         TextView t3;
         ImageView i1;
         ImageView i2;
+        View v;
     }
     public interface backTo{
         void sercsse(String T,JSONObject object);

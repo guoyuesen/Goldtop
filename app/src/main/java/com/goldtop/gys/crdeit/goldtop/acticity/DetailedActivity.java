@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -13,6 +14,8 @@ import com.goldtop.gys.crdeit.goldtop.Adapters.DetailedAdapter;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.DetailedModel;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
@@ -34,12 +37,31 @@ import butterknife.ButterKnife;
 public class DetailedActivity extends BaseActivity {
     @Bind(R.id.detailed_list)
     ListView detailedList;
-    boolean in = true;
+    String title = "";
+    int type = 1;
     DetailedAdapter adapter;
-    public static void inActivity(Context context,boolean t,String id){
+    public static void inActivity(Context context,String title,int type){
         Intent intent = new Intent(context,DetailedActivity.class);
-        intent.putExtra("mx",t);
+        intent.putExtra("title",title);
+        intent.putExtra("type",type);
+        context.startActivity(intent);
+    }
+    public static void inActivity(Context context,String title,int type,String id){
+        Intent intent = new Intent(context,DetailedActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("type",type);
         intent.putExtra("id",id);
+        context.startActivity(intent);
+    }
+    public static void inActivity(Context context,String title,String time){
+        Intent intent = new Intent(context,DetailedActivity.class);
+        intent.putExtra("title",title);
+        if (time.length()==7) {
+            intent.putExtra("type", 2);
+        }else {
+            intent.putExtra("type", 3);
+        }
+        intent.putExtra("time",time);
         context.startActivity(intent);
     }
     @Override
@@ -48,46 +70,63 @@ public class DetailedActivity extends BaseActivity {
         setContentView(R.layout.activity_detailed);
         ButterKnife.bind(this);
         hiedBar(this);
-        in = getIntent().getBooleanExtra("mx",true);
+        title = getIntent().getStringExtra("title");
+        type = getIntent().getIntExtra("type",1);
         detailedList.setEmptyView(findViewById(R.id.order_empty));
-        String title = "";
-        if (in){
-            title = "积分明细";
-        }else {
-            title = "红包明细";
-        }
         new TitleBuder(this).setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         }).setTitleText(title);
-        JSONArray array = new JSONArray();
-        adapter = new DetailedAdapter(this,array,in);
+        DetailedModel model = new DetailedModel(new JSONArray(),type);
+        adapter = new DetailedAdapter(this,model);
         detailedList.setAdapter(adapter);
         initA();
     }
 
     private void initA() {
-        if (!in) {
-            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.redPackDetail + "?redpackId=" + getIntent().getStringExtra("id"), new HashMap<String, String>(), new MyVolleyCallback() {
-                @Override
-                public void CallBack(JSONObject jsonObject) {
-                    try {
-                        if (jsonObject.getString("code").equals("1")) {
-                            adapter.notifyDataSetChanged(jsonObject.getJSONArray("data"));
-                        } else {
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            }));
+        String url = "";
+        switch (type){
+            case 0:
+                url = Action.redPackDetail + "?redpackId=" + getIntent().getStringExtra("id");
+                break;
+            case 1:
+                url = Action.tradeDetailmsg + "?custId=" + UserModel.custId;
+                break;
+            case 2:
+                url = Action.incomeDetail + "?custId=" + UserModel.custId+"&time="+getIntent().getStringExtra("time")+"&type=M";
+                break;
+            case 3:
+                url = Action.incomeDetail + "?custId=" + UserModel.custId+"&time="+getIntent().getStringExtra("time");
+                break;
+            case 4:
+                url = Action.detail+"?bonusId="+getIntent().getStringExtra("id");
+                break;
         }
+        getType0(url);
     }
+    void getType0(String url){
+        Log.d("访问地址",url);
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getString("code").equals("1")) {
+                        DetailedModel model = new DetailedModel(jsonObject.getJSONArray("data"),type);
+                        adapter.notifyDataSetChanged(model);
+                    } else {
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
+    }
+
 }

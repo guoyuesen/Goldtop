@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.model.DetailedModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by 郭月森 on 2018/7/17.
@@ -21,32 +24,29 @@ import org.json.JSONObject;
 
 public class DetailedAdapter extends BaseAdapter {
     Context context;
-    JSONArray array;
-    boolean T;
+    DetailedModel detailed;
 
-    public DetailedAdapter(Context context, JSONArray array,boolean T) {
+
+    public DetailedAdapter(Context context,DetailedModel detailed) {
         this.context = context;
-        this.array = array;
-        this.T = T;
+        this.detailed = detailed;
     }
 
-    public void notifyDataSetChanged(JSONArray array) {
-        this.array = array;
+    public void notifyDataSetChanged(DetailedModel detailed) {
+        this.detailed = detailed;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return array.length();
+        return detailed.list.size();
     }
 
     @Override
     public Object getItem(int i) {
-        try {
-            return array.get(i);
-        } catch (JSONException e) {
-            return 0;
-        }
+
+            return detailed.list.get(i);
+
     }
 
     @Override
@@ -67,19 +67,12 @@ public class DetailedAdapter extends BaseAdapter {
         }else {
             item = (ThisItem) view.getTag();
         }
-        try {
-            JSONObject object = array.getJSONObject(i);
-            if (T){
-                item.t1.setText("获得积分");
-            }else {
-                item.t1.setText("获得金额");
-                item.t2.setText(object.getInt("sum")/100d+"元");
-                item.t3.setText(ContextUtil.dataTostr(object.getLong("createTime"),"yyyy-MM-dd HH:mm"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
+            DetailedModel.Detailed object = detailed.list.get(i);
+
+                item.t1.setText(object.getName());
+                item.t2.setText(object.getNumber());
+                item.t3.setText(object.getTime());
         return view;
     }
     class ThisItem{

@@ -81,10 +81,8 @@ public class TransactionStatisticsActivity extends BaseActivity {
             mTitles.add(titles[i]);
         }
         mFragments = new ArrayList<>();
-        //for (int i = 0; i < mTitles.size(); i++) {
         mFragments.add(TransactionTabFragment.newInstance("D"));
         mFragments.add(TransactionTabFragment.newInstance("M"));
-        //}
         adapter = new MycardFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         mViewPager.setAdapter(adapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来
@@ -95,53 +93,7 @@ public class TransactionStatisticsActivity extends BaseActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        /*adapter1 = new TransactionAdapter(this,Dobj);
-        adapter2 = new TransactionAdapter(this,Yobj);
-        staticticsTabb.setTranslationX(ContextUtil.getX(this) / 6 + ContextUtil.dip2px(this, 30));
-        list.setAdapter(adapter1);
-        list1.setAdapter(adapter2);
-        Map<String,String> mapd = new HashMap<String, String>();
-        mapd.put("custId", UserModel.custId);
-        mapd.put("analysisType","D");
-        MyVolley.addRequest(new formRequest(Action.tradeDetail, mapd, new MyVolleyCallback() {
-            @Override
-            public void CallBack(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.getString("code").equals("1")){
-                        Dobj = jsonObject.getJSONArray("data");
-                        adapter1.notifyDataSetChanged(Dobj);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }));
-        Map<String,String> mapm = new HashMap<String, String>();
-        mapm.put("custId", UserModel.custId);
-        mapm.put("analysisType","M");
-        MyVolley.addRequest(new formRequest(Action.tradeDetail, mapm, new MyVolleyCallback() {
-            @Override
-            public void CallBack(JSONObject jsonObject) {
-                try {
-                    if (jsonObject.getString("code").equals("1")){
-                        Yobj = jsonObject.getJSONArray("data");
-                        adapter2.notifyDataSetChanged(Yobj);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }));*/
     }
     private void settab() throws NoSuchFieldException, IllegalAccessException {
         Class<?> tablayout = mTabLayout.getClass();
@@ -158,21 +110,4 @@ public class TransactionStatisticsActivity extends BaseActivity {
             child.invalidate();
         }
     }
-
-
-   /* @OnClick({R.id.statictics_tabhost1, R.id.statictics_tabhost3})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.statictics_tabhost1:
-                staticticsTabb.setTranslationX(ContextUtil.getX(this) / 6 + ContextUtil.dip2px(this, 20));
-                list.setVisibility(View.VISIBLE);
-                list1.setVisibility(View.GONE);
-                break;
-            case R.id.statictics_tabhost3:
-                staticticsTabb.setTranslationX(ContextUtil.getX(this) / 2 + ContextUtil.dip2px(this, 80));
-                list1.setVisibility(View.VISIBLE);
-                list.setVisibility(View.GONE);
-                break;
-        }
-    }*/
 }

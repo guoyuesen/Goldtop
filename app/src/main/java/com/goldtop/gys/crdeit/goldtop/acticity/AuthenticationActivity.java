@@ -90,6 +90,8 @@ public class AuthenticationActivity extends BaseActivity {
     ProgressBar pbLoad;
     @Bind(R.id.pb_text)
     TextView pbText;
+    @Bind(R.id.like)
+    EditText like;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -161,6 +163,40 @@ public class AuthenticationActivity extends BaseActivity {
         });
         initzhxz();
         getList();
+        like.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (index == 2) {
+                    String l = editable.toString();
+                    JSONArray ar = new JSONArray();
+                    if (!l.isEmpty()) {
+                        for (int a = 0; a < array3.length(); a++) {
+                            try {
+                                if (array3.getJSONObject(a).getString("name").indexOf(l) != -1) {
+                                    ar.put(array3.getJSONObject(a));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        zhxzSs.setAdapter(new ZhxzAdapter(ar));
+                    }else {
+                        zhxzSs.setAdapter(new ZhxzAdapter(array3));
+                    }
+                }
+
+            }
+        });
     }
 
 
@@ -323,6 +359,7 @@ public class AuthenticationActivity extends BaseActivity {
                 index = 0;
                 zhxzT2.setText("");
                 zhxzSs.setAdapter(new ZhxzAdapter(array1));
+                like.setVisibility(View.GONE);
             }
         });
         zhxzT2.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +369,7 @@ public class AuthenticationActivity extends BaseActivity {
                 index = 1;
                 authenKhh.setText("");
                 zhxzSs.setAdapter(new ZhxzAdapter(array2));
+                like.setVisibility(View.GONE);
             }
         });
         zhxzSs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -359,6 +397,10 @@ public class AuthenticationActivity extends BaseActivity {
 
                         }
                         index++;
+                        if (index==2) {
+                            like.setVisibility(View.VISIBLE);
+                            like.setText("");
+                        }
                         getList();
                     }
                 } catch (JSONException e) {

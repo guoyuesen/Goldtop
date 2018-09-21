@@ -115,6 +115,8 @@ public class VipActivity extends BaseActivity {
             case "VIP":
                 textView.setText("您是尊贵的VIP会员");
                 ins.add(R.mipmap.vip__01);
+                /*textView.setText("");
+                ins.add(R.mipmap.testpayimg);*/
                 break;
             case "NORMAL":
                 textView.setText("您的级别是普通用户");

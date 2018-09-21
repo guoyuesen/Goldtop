@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.Utils.MoneyUtils;
+import com.goldtop.gys.crdeit.goldtop.acticity.DetailedActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,11 +69,21 @@ public class TransactionAdapter extends BaseAdapter {
             item = (ThisItem) view.getTag();
         }
         try {
-            JSONObject object = array.getJSONObject(i);
-            item.t1.setText(object.getString("tradeTime")+"交易额度（元）");
-            item.t2.setText(object.getString("amount"));
+            final JSONObject object = array.getJSONObject(i);
+            item.t1.setText(object.getString("tradeTime")+"收益（元）");
+            item.t2.setText(MoneyUtils.getShowMoney(object.getDouble("amount")/100.00d));
             item.t3.setText(""+object.getInt("tradeCount"));
             item.t4.setText(""+object.getInt("addedNum"));
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        DetailedActivity.inActivity(context,"交易明细",object.getString("tradeTime"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }

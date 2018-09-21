@@ -55,19 +55,16 @@ public class DownFileHelper {
             bar.setProgress(msg.what);
         }
     };
-
     public DownFileHelper(Context mContext, Handler handler) {
         this.handler = handler;
         this.mContext = mContext;
     }
-
     /**
      * 下载最新版本的apk
      *
      * @param path apk下载地址
      */
     public void downFile(final String path,String str) {
-        Log.d("", "=======================================================");
         mNotifyManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Bitmap btm = BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.logo1_80);//可以换成你的app的logo
         dialog = new AlertDialog.Builder(mContext).create();
@@ -79,7 +76,6 @@ public class DownFileHelper {
         dialog.setCancelable(false);
         dialog.show();
         if (Build.VERSION.SDK_INT >= 26) {
-
             //创建 通知通道  channelid和channelname是必须的（自己命名就好）
             NotificationChannel channel = new NotificationChannel("123",
                     "金陀螺", NotificationManager.IMPORTANCE_DEFAULT);
@@ -153,7 +149,6 @@ public class DownFileHelper {
                                 builder.setContentText("下载进度：" + result + "%");
                                 builder.setProgress(length, process, false);
                                 mNotifyManager.notify(1, builder.build());
-
                             }
                         }
                         if (fileOutputStream != null) {

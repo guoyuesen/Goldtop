@@ -490,10 +490,10 @@ public class ReceivablesActivity extends BaseActivity {
                 Toast.makeText(this, "请选择储蓄卡", Toast.LENGTH_LONG).show();
                 return;
             }
-            if (!objectout.getString("bindStatus").equals("REG_SUCCESS")) {
+            /*if (!objectin.getString("bindStatus").equals("REG_SUCCESS")) {
                 Toast.makeText(this, "储蓄卡未绑定商户，请联系客服", Toast.LENGTH_LONG).show();
                 return;
-            }
+            }*/
             if (objectout == null) {
                 Toast.makeText(this, "请选择信用卡", Toast.LENGTH_LONG).show();
                 return;

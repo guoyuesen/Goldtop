@@ -72,6 +72,14 @@ public class Action {
     public static String withdrawFromIncome= url+"/income/withdrawFromIncome";
     //红包明细
     public static String redPackDetail= url+"/income/redPackDetail";
+    //钱包明细
+    public static String tradeDetailmsg= url+"/income/tradeDetail";
+    //日报月报
+    public static String incomeDetail= url+"/income/incomeDetail";
+    //积分明细
+    public static String detail= url+"/bonus/detail";
+    //积分
+    public static String bonus= url+"/bonus";
     //历史计划
     public static String history= url+"/apply/history";
     //计划详情（applayid）

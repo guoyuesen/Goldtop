@@ -41,7 +41,6 @@ public class RedEnvelopesActivity extends BaseActivity {
     @Bind(R.id.envelopes_ktx_money)
     TextView envelopesKtxMoney;
     private float money = 0.00f;
-    private float ktx = 0.00f;
     private Object m;
     String id = "";
 
@@ -59,11 +58,11 @@ public class RedEnvelopesActivity extends BaseActivity {
         }).setTitleText("红包").setRightText("红包明细").setRightListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DetailedActivity.inActivity(RedEnvelopesActivity.this,false,id);
+                DetailedActivity.inActivity(RedEnvelopesActivity.this,"红包明细",0,id);
             }
         });
-        envelopesKtxMoney.setText("" + ktx);
-        envelopesMoney.setText("" + money);
+        envelopesKtxMoney.setText("" + money);
+        //envelopesMoney.setText("" + money);
         getM();
 
     }
@@ -72,21 +71,19 @@ public class RedEnvelopesActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.envelopes_money_all:
-                envelopesOutMoney.setText(""+ktx);
+                //envelopesOutMoney.setText(""+ktx);
                 break;
             case R.id.envelopes_submit:
-                String m = envelopesOutMoney.getText().toString().trim();
-                if (m.isEmpty()){
-                    Toast.makeText(this,"请输入金额",Toast.LENGTH_LONG).show();
-                    return;
-                }//http://47.106.103.104/income/transfer
-                if (Float.parseFloat(m)>ktx||ktx<0.01){
-                    Toast.makeText(this,"请输入有效金额",Toast.LENGTH_LONG).show();
+                //String m = envelopesOutMoney.getText().toString().trim();
+                if (money==0.00){
+                    Toast.makeText(this,"没有可提现金额",Toast.LENGTH_LONG).show();
                     return;
                 }
-                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"?custId="+UserModel.custId+"&money="+Integer.parseInt(m)*100, new HashMap<String, String>(), new MyVolleyCallback() {
+                Httpshow(this);
+                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"?custId="+UserModel.custId+"&money="+money*100, new HashMap<String, String>(), new MyVolleyCallback() {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
+                        Httpdismiss();
                         try {
                             if (jsonObject.getInt("code") == 1){
                                 Toast.makeText(RedEnvelopesActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
@@ -101,7 +98,7 @@ public class RedEnvelopesActivity extends BaseActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Httpdismiss();
                     }
                 }));
                 /*Toast.makeText(this,"转入成功",Toast.LENGTH_LONG).show();
@@ -117,11 +114,10 @@ public class RedEnvelopesActivity extends BaseActivity {
                 try {
                     if (jsonObject.getInt("code")==1){
                         money = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
-                        ktx = jsonObject.getJSONObject("data").getInt("balance")/100.00f;
-                        envelopesKtxMoney.setText(MoneyUtils.getShowMoney(ktx));
+
+                        //envelopesKtxMoney.setText(MoneyUtils.getShowMoney(ktx));
                         envelopesMoney.setText(MoneyUtils.getShowMoney(money));
                         id = jsonObject.getJSONObject("data").getString("id");
-                        envelopesOutMoney.setText(""+ktx);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

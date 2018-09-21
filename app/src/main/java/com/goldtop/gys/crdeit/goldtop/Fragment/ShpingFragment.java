@@ -13,7 +13,10 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -21,6 +24,11 @@ import com.goldtop.gys.crdeit.goldtop.Adapters.HomeShpingAdapter;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.DetailedActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
+import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.Action;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
+import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 import com.goldtop.gys.crdeit.goldtop.view.ButtomDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.HeaderGridView;
 
@@ -29,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -44,7 +53,7 @@ public class ShpingFragment extends Fragment {
     HeaderGridView homeShpingGrid;
     private View view;
     private View bommView;
-
+    private String id;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +71,6 @@ public class ShpingFragment extends Fragment {
     private void intActivity() {
 
         JSONArray array = new JSONArray();
-
         try {
             JSONObject object = new JSONObject();
             object.put("img",R.mipmap.shangc1);
@@ -168,13 +176,33 @@ public class ShpingFragment extends Fragment {
         },ins).setPageIndicator(new int[]  {R.drawable.button_r_c,R.drawable.button_r_f})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setPointViewVisible(true)
-                .startTurning(3000); //设置指示器的方向水平  居中
+                .startTurning(3000); //设置指示器的方向水平  居中-
         view1.findViewById(R.id.sp_top_jf).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().startActivity(new Intent(getContext(), DetailedActivity.class));
+                //getActivity().startActivity(new Intent(getContext(), DetailedActivity.class));
+                if (id!=null){
+                    DetailedActivity.inActivity(getContext(),"积分明细",4,id);
+                }
             }
         });
+        final TextView textView = view1.findViewById(R.id.shping_f_jf);
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.bonus + "?custId=" + UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    textView.setText(jsonObject.getJSONObject("data").getString("sum"));
+                    id = jsonObject.getJSONObject("data").getString("id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
         view1.findViewById(R.id.sp_heard_gz).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
