@@ -86,5 +86,14 @@ public class Action {
     public static String applyDetail = url+"/payment/applyDetail";
     //解绑银行卡
     public static String unbindCard = url+"/cust/unbindCard";
-
+    //分享图片数组
+    public static String invitationList = url + "/app/invitationList";
+    //直推用户列表
+    public static String ztList = url+"/cust/ztList";
+    //下级Vip用户列表
+    public static String vipList = url+"/cust/vipList";
+    //直推用户列表
+    public static String packNum = url+"/redpack/packNum/";
+    //下级Vip用户列表
+    public static String unpack = url+"/redpack/unpack/";
 }

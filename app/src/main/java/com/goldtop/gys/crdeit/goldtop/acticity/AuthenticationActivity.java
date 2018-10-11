@@ -92,7 +92,7 @@ public class AuthenticationActivity extends BaseActivity {
     TextView pbText;
     @Bind(R.id.like)
     EditText like;
-
+    JSONArray ar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,7 +178,7 @@ public class AuthenticationActivity extends BaseActivity {
             public void afterTextChanged(Editable editable) {
                 if (index == 2) {
                     String l = editable.toString();
-                    JSONArray ar = new JSONArray();
+                    ar = new JSONArray();
                     if (!l.isEmpty()) {
                         for (int a = 0; a < array3.length(); a++) {
                             try {
@@ -191,7 +191,8 @@ public class AuthenticationActivity extends BaseActivity {
                         }
                         zhxzSs.setAdapter(new ZhxzAdapter(ar));
                     }else {
-                        zhxzSs.setAdapter(new ZhxzAdapter(array3));
+                        ar = array3;
+                        zhxzSs.setAdapter(new ZhxzAdapter(ar));
                     }
                 }
 
@@ -382,7 +383,7 @@ public class AuthenticationActivity extends BaseActivity {
                         TextView textView = (TextView) view;
                         textView.setTextColor(Color.parseColor("#FECE00"));
                         a2 = i;
-                        authenKhh.setText(array3.getJSONObject(i).getString("name"));
+                        authenKhh.setText(ar.getJSONObject(i).getString("name"));
                         zhxzBg.setVisibility(View.GONE);
                     } else {
                         switch (index) {
@@ -445,7 +446,8 @@ public class AuthenticationActivity extends BaseActivity {
                                 zhxzSs.setAdapter(new ZhxzAdapter(array2));
                             } else {
                                 array3 = jsonObject.getJSONArray("data");
-                                zhxzSs.setAdapter(new ZhxzAdapter(array3));
+                                ar = array3;
+                                zhxzSs.setAdapter(new ZhxzAdapter(ar));
                             }
 
                         } else {

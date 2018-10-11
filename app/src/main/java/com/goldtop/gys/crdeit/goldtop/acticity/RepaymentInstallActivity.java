@@ -252,4 +252,10 @@ public class RepaymentInstallActivity extends BaseActivity {
             }
         }));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dialogView.dismiss();
+    }
 }

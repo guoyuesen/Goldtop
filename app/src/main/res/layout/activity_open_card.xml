@@ -166,7 +166,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="10dip"
-            android:text="有效期"
+            android:text="验证码"
             />
         <EditText
             android:id="@+id/open_card_e3"

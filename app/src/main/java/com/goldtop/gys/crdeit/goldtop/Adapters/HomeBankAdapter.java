@@ -115,11 +115,11 @@ public class HomeBankAdapter extends BaseAdapter {
                         }*/
                     }
                 });
+
             }else if(object.getString("openStatus").equals("OPEN_FAIL")){
                 item.button.setText("认证失败");
             }else{
-                item.money1.setText(MoneyUtils.getShowMoney(""+object.getDouble("applyAmt")));
-                item.money2.setText(MoneyUtils.getShowMoney(""+object.getDouble("balanceAmt")));
+
                 if (!"".equals(object.getString("applyId"))){
                     item.button.setText("查看详情");
                     item.button.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +160,8 @@ public class HomeBankAdapter extends BaseAdapter {
                     });
                 }
             }
+            item.money1.setText(MoneyUtils.getShowMoney(""+object.getDouble("applyAmt")));
+            item.money2.setText(MoneyUtils.getShowMoney(""+object.getDouble("balanceAmt")));
         } catch (JSONException e) {
             e.printStackTrace();
         }

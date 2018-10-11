@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeBankAdapter;
 import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
@@ -32,6 +34,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.HistoryPlanActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.NewsActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.OpenRedActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.ReceivablesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
@@ -66,6 +69,8 @@ public class HomeFragment extends Fragment {
     @Bind(R.id.home_frame_list)
     ListView homeFrameList;
     private View view;
+    @Bind(R.id.home_f_gif)
+    ImageView homeFGif;
     HomeBankAdapter adapter;
     JSONArray array;
 
@@ -89,6 +94,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AddCard01Activity.initActivity(getContext(),"CC");
+            }
+        });
+        homeFGif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //开红包
+                startActivity(new Intent(getContext(), OpenRedActivity.class));
             }
         });
         array = new JSONArray();
@@ -253,6 +265,9 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         if (!UserModel.custId.isEmpty()) {
             getcards();
+            if (UserModel.shiMrenz.equals("REG_SUCCESS")){
+                Glide.with(this).load(R.drawable.homegif).into(homeFGif);
+            }
         }
         super.onStart();
     }

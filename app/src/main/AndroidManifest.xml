@@ -113,7 +113,15 @@
         <activity android:name=".acticity.OpenCardActivity" />
         <!--历史计划-->
         <activity android:name=".acticity.HistoryPlanActivity" />
+        <!--银行卡详情-->
         <activity android:name=".acticity.BankCardMessgeActivity" />
+        <!--我的邀请码列表-->
+        <activity android:name=".acticity.ShareListActivity" />
+        <!--我的邀请码-->
+        <activity android:name=".acticity.ShareActivity" />
+        <!--开红包-->
+        <activity android:name=".acticity.OpenRedActivity"
+            />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

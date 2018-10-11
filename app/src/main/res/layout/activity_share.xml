@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#cccccc"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginBottom="48dip"
+        >
+    <RelativeLayout
+        android:id="@+id/share_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:id="@+id/share_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            />
+        <RelativeLayout
+            android:id="@+id/share_imgview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/transparent"
+            >
+            <ImageView
+                android:id="@+id/share_qrcode"
+                android:layout_width="95dip"
+                android:layout_height="96dip"
+                android:scaleType="fitXY"
+                android:background="#cccccc"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dip"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/share_imgview2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@color/transparent"
+            >
+            <ImageView
+                android:id="@+id/share_qrcode2"
+                android:layout_width="95dip"
+                android:layout_height="96dip"
+                android:scaleType="fitXY"
+                android:background="#cccccc"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dip"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+    <include layout="@layout/base_title_layout"/>
+
+    <LinearLayout
+        android:id="@+id/share_fx"
+        android:layout_width="match_parent"
+        android:layout_height="47dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:src="@mipmap/fenxiang"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:text="分享"
+            android:gravity="center"
+            android:textSize="20dip"
+            android:layout_marginLeft="5dip"
+            />
+    </LinearLayout>
+</RelativeLayout>

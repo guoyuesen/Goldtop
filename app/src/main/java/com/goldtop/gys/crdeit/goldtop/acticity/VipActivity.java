@@ -1,25 +1,22 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.android.volley.VolleyError;
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
+import com.goldtop.gys.crdeit.goldtop.Adapters.CardAdapter;
+import com.goldtop.gys.crdeit.goldtop.Adapters.CardTransformer;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
-import com.goldtop.gys.crdeit.goldtop.Fragment.ShpingFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.Utils.PayResult;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
@@ -32,10 +29,11 @@ import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by 郭月森 on 2018/7/9.
@@ -44,6 +42,20 @@ import java.util.Map;
 public class VipActivity extends BaseActivity {
 
     private static final int SDK_PAY_FLAG = 1;
+    @Bind(R.id.viewpager)
+    ViewPager viewPager;
+    @Bind(R.id.vip_text)
+    TextView vipText;
+    @Bind(R.id.vip_layout_vip)
+    LinearLayout vipLayoutVip;
+    @Bind(R.id.vip_layout_hy)
+    LinearLayout vipLayoutHy;
+    @Bind(R.id.vip_layout_qyzh)
+    LinearLayout vipLayoutQyzh;
+    @Bind(R.id.vip_submit)
+    TextView vipSubmit;
+    @Bind(R.id.vip_vip)
+    TextView vipVip;
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -68,107 +80,154 @@ public class VipActivity extends BaseActivity {
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseActivity.hiedBar(this);
         setContentView(R.layout.activity_vip);
-        new TitleBuder(this).setTitleText("会员").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
+        ButterKnife.bind(this);
+        new TitleBuder(this).setTitleText("会员特权").setLeftImage(R.mipmap.back_to).setLeftListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        }).setBackgrund(Color.parseColor("#20ffffff"));
-        findViewById(R.id.vip_submit).setOnClickListener(new View.OnClickListener() {
+        }).setBackgrund(Color.parseColor("#ffffff"));
+        vipSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getPayinfo(0);
             }
         });
-        findViewById(R.id.vip_vip).setOnClickListener(new View.OnClickListener() {
+        vipVip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getPayinfo(1);
             }
         });
-        TextView phone = findViewById(R.id.vip_phone);
-        phone.setText(UserModel.custMobile);
-        /*if (UserModel.custLevelSample.equals("VIP")){
-
-
-            findViewById(R.id.vip_submit).setVisibility(View.GONE);
-        }*/
-        TextView textView = findViewById(R.id.vip_text);
-        List<Integer> ins = new ArrayList<>();
-        switch (UserModel.custLevelSample){
+        int[] ins = new int[0];
+        switch (UserModel.custLevelSample) {
             case "AGENT":
-                textView.setText("您是尊贵的企业账户");
-                ins.add(R.mipmap.vip__03);
+                vipText.setText("尊敬的企业账号用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您将享受以下专属权益");
+                ins = new int[]{R.mipmap.vip__03};
+                vipLayoutVip.setVisibility(View.GONE);
+                vipLayoutHy.setVisibility(View.GONE);
+                vipLayoutQyzh.setVisibility(View.VISIBLE);
                 break;
             case "MEMBER":
-                textView.setText("您的级别是会员");
-                ins.add(R.mipmap.vip__02);
-                ins.add(R.mipmap.vip__01);
+                vipText.setText("尊敬的会员用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您将享受以下专属权益");
+                ins = new int[]{R.mipmap.vip__02, R.mipmap.vip__01};
+                vipLayoutVip.setVisibility(View.GONE);
+                vipLayoutHy.setVisibility(View.VISIBLE);
+                vipLayoutQyzh.setVisibility(View.GONE);
                 break;
             case "VIP":
-                textView.setText("您是尊贵的VIP会员");
-                ins.add(R.mipmap.vip__01);
-                /*textView.setText("");
-                ins.add(R.mipmap.testpayimg);*/
+                vipText.setText("尊敬的VIP用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您将享受以下专属权益");
+                ins = new int[]{R.mipmap.vip__01};
+                vipLayoutVip.setVisibility(View.VISIBLE);
+                vipLayoutHy.setVisibility(View.GONE);
+                vipLayoutQyzh.setVisibility(View.GONE);
                 break;
             case "NORMAL":
-                textView.setText("您的级别是普通用户");
-                ins.add(R.mipmap.vip__02);
-                ins.add(R.mipmap.vip__01);
+                vipText.setText("尊敬的用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您还不是会员 如果开通会员，您将享受以下专属权益");
+                ins = new int[]{R.mipmap.vip__02, R.mipmap.vip__01};
+                vipLayoutVip.setVisibility(View.GONE);
+                vipLayoutHy.setVisibility(View.VISIBLE);
+                vipLayoutQyzh.setVisibility(View.GONE);
+                vipSubmit.setVisibility(View.VISIBLE);
                 break;
         }
-
-
-        ConvenientBanner<Integer> convenientBanner = findViewById(R.id.vip_f_t_img);
-        convenientBanner.setPages(new CBViewHolderCreator<VipActivity.ImageViewHolder>() {
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setPageTransformer(false, new CardTransformer());
+        viewPager.setOffscreenPageLimit(5);
+        viewPager.setPageMargin(-200);
+        viewPager.setAdapter(new CardAdapter(this, ins));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public VipActivity.ImageViewHolder createHolder() {
-                return new VipActivity.ImageViewHolder();
-            }
-        },ins).setPageIndicator(new int[]  {R.drawable.button_r_c,R.drawable.button_r_f})
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setPointViewVisible(true)
-        ; //设置指示器的方向水平  居中
-    }
-    public class ImageViewHolder implements Holder<Integer> {
-        private ImageView imageView;
-        @Override
-        public View createView(Context context) {
-            imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            return imageView;
-        }
-        @Override
-        public void UpdateUI(Context context, int position, Integer data) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            imageView.setImageResource(data);
-        }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        switch (UserModel.custLevelSample) {
+                            case "MEMBER":
+                                vipText.setText("尊敬的会员用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您将享受以下专属权益");
+                                vipLayoutVip.setVisibility(View.GONE);
+                                vipLayoutHy.setVisibility(View.VISIBLE);
+                                vipLayoutQyzh.setVisibility(View.GONE);
+                                vipSubmit.setVisibility(View.GONE);
+                                vipVip.setVisibility(View.GONE);
+                                break;
+                            case "NORMAL":
+                                vipText.setText("尊敬的用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您还不是会员 如果开通会员，您将享受以下专属权益");
+                                vipLayoutVip.setVisibility(View.GONE);
+                                vipLayoutHy.setVisibility(View.VISIBLE);
+                                vipLayoutQyzh.setVisibility(View.GONE);
+                                vipSubmit.setVisibility(View.VISIBLE);
+                                vipVip.setVisibility(View.GONE);
+                                break;
+                        }
+                        vipLayoutVip.setVisibility(View.GONE);
+                        vipLayoutHy.setVisibility(View.VISIBLE);
+                        vipLayoutQyzh.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        switch (UserModel.custLevelSample) {
+                            case "MEMBER":
+                                vipText.setText("尊敬的会员用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您还不是VIP 如果开通，您将享受以下专属权益");
+                                vipLayoutVip.setVisibility(View.VISIBLE);
+                                vipLayoutHy.setVisibility(View.GONE);
+                                vipLayoutQyzh.setVisibility(View.GONE);
+                                break;
+                            case "NORMAL":
+                                vipText.setText("尊敬的用户" + UserModel.custMobile.substring(0, 3) + "****" + UserModel.custMobile.substring(UserModel.custMobile.length() - 4, UserModel.custMobile.length()) + "，您还不是VIP 如果开通，您将享受以下专属权益");
+                                vipLayoutVip.setVisibility(View.VISIBLE);
+                                vipLayoutHy.setVisibility(View.GONE);
+                                vipLayoutQyzh.setVisibility(View.GONE);
+                                break;
+                        }
+                        vipLayoutVip.setVisibility(View.VISIBLE);
+                        vipLayoutHy.setVisibility(View.GONE);
+                        vipLayoutQyzh.setVisibility(View.GONE);
+                        vipSubmit.setVisibility(View.GONE);
+                        vipVip.setVisibility(View.VISIBLE);
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
-    private void getPayinfo(int i){
-        if (UserModel.custId.isEmpty()){
-            Toast.makeText(this,"请登录",Toast.LENGTH_LONG).show();
+
+    private void getPayinfo(int i) {
+        if (UserModel.custId.isEmpty()) {
+            Toast.makeText(this, "请登录", Toast.LENGTH_LONG).show();
             return;
         }
-        if (i == 0&&(!UserModel.custLevelSample.equals("MEMBER")&&!UserModel.custLevelSample.equals("NORMAL"))){
-            Toast.makeText(this,"您已是VIP或以上级别，升级请拨打招商电话",Toast.LENGTH_LONG).show();
+        if (i == 0 && (!UserModel.custLevelSample.equals("MEMBER") && !UserModel.custLevelSample.equals("NORMAL"))) {
+            Toast.makeText(this, "您已是VIP或以上级别，升级请拨打招商电话", Toast.LENGTH_LONG).show();
             return;
         }
-        if (i==1&&!UserModel.custLevelSample.equals("NORMAL")){
-            Toast.makeText(this,"您已是会员或以上级别，升级VIP或拨打招商电话",Toast.LENGTH_LONG).show();
+        if (i == 1 && !UserModel.custLevelSample.equals("NORMAL")) {
+            Toast.makeText(this, "您已是会员或以上级别，升级VIP或拨打招商电话", Toast.LENGTH_LONG).show();
             return;
         }
-        Map<String,String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("custId", UserModel.custId);
-        if (i==0) {
+        if (i == 0) {
             map.put("type", "V");
-        }else {
+        } else {
             map.put("type", "M");
         }
         Httpshow(this);
@@ -176,13 +235,13 @@ public class VipActivity extends BaseActivity {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
-                    if (jsonObject.getInt("status")==0){
+                    if (jsonObject.getInt("status") == 0) {
                         pay(jsonObject.getString("result"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                    Httpdismiss();
+                Httpdismiss();
             }
 
             @Override
@@ -191,7 +250,8 @@ public class VipActivity extends BaseActivity {
             }
         }));
     }
-    private void pay(final String orderInfo){
+
+    private void pay(final String orderInfo) {
         Runnable authRunnable = new Runnable() {
 
             @Override

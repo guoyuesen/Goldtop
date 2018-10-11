@@ -58,7 +58,8 @@ public class DateDialogView extends Dialog {
         view.findViewById(R.id.date_dialog_close).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                //dismiss();
+                hide();
             }
         });
 
@@ -67,7 +68,8 @@ public class DateDialogView extends Dialog {
             public void onClick(View v) {
                 if (choice.getContent().length()>0) {
                     back.callback(choice.getContent());
-                    dismiss();
+                    //dismiss();
+                    hide();
                 }
             }
         });

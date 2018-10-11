@@ -103,6 +103,12 @@ public class DetailedActivity extends BaseActivity {
             case 4:
                 url = Action.detail+"?bonusId="+getIntent().getStringExtra("id");
                 break;
+            case 5:
+                url = Action.ztList+"?mobile="+UserModel.custMobile;
+                break;
+            case 6:
+                url = Action.vipList+"?mobile="+UserModel.custMobile;
+                break;
         }
         getType0(url);
     }

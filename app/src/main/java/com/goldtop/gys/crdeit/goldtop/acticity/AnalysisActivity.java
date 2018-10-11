@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by 郭月森 on 2018/7/12.
@@ -53,13 +54,13 @@ public class AnalysisActivity extends BaseActivity {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
-                    if (jsonObject.getString("code").equals("1")){
+                    if (jsonObject.getString("code").equals("1")) {
                         JSONObject object = jsonObject.getJSONObject("data");
-                        analysisToonum.setText(""+object.getString("ztNum"));
-                        analysisNex.setText(""+object.getInt("totalNum"));
-                        analysisVip.setText(""+object.getInt("vipNum"));
-                    }else {
-                        Toast.makeText(AnalysisActivity.this,jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                        analysisToonum.setText("" + object.getInt("totalNum"));
+                        analysisNex.setText("" + object.getString("ztNum"));
+                        analysisVip.setText("" + object.getInt("vipNum"));
+                    } else {
+                        Toast.makeText(AnalysisActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -71,5 +72,17 @@ public class AnalysisActivity extends BaseActivity {
 
             }
         }));
+    }
+
+    @OnClick({R.id.zt_cust, R.id.vip_cust})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.zt_cust:
+                DetailedActivity.inActivity(this,"直推用户",5);
+                break;
+            case R.id.vip_cust:
+                DetailedActivity.inActivity(this,"团队VIP",6);
+                break;
+        }
     }
 }

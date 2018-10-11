@@ -38,6 +38,7 @@ import com.goldtop.gys.crdeit.goldtop.acticity.RecommendedAwardsActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RedEnvelopesActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.RegisterActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.SettionsActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.ShareListActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.VipActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WalletActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
@@ -235,8 +236,7 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), RatesActivity.class));
                 break;
             case R.id.me_f_qrcode_l://邀请码
-                Toast.makeText(getContext(),"暂未开通",Toast.LENGTH_LONG).show();
-                //getActivity().startActivity(new Intent(getContext(), SettionsActivity.class));
+                getActivity().startActivity(new Intent(getContext(), ShareListActivity.class));
                 break;
             case R.id.me_f_process_l0://我的客服
                 AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());

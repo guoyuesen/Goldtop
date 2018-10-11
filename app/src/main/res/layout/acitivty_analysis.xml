@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="近90天用户总数"
+            android:text="团队总人数"
             android:textColor="#ff888888"
             android:textSize="14dip"
             android:layout_marginTop="16dp"
@@ -52,6 +52,7 @@
             android:layout_alignParentBottom="true"
             >
             <LinearLayout
+                android:id="@+id/zt_cust"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -120,6 +121,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="1"
+                android:id="@+id/vip_cust"
                 >
                 <TextView
                     android:id="@+id/analysis_vip"

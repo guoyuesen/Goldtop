@@ -66,6 +66,14 @@ public class DetailedModel {
             case 4:
                 d = new Detailed(object.getString("note"),"+"+object.getString("sum")+"积分",ContextUtil.dataTostr(object.getLong("createTime"),"yyyy-MM-dd HH:mm"));
                 break;
+            case 5:
+                d = new Detailed(object.getString("custMobile").substring(0,3)+"****"+object.getString("custMobile").substring(7,11),
+                        getVipType(object.getString("custLevelSample")),ContextUtil.dataTostr(object.getLong("createdTime"),"yyyy-MM-dd HH:mm"));
+                break;
+            case 6:
+                d = new Detailed(object.getString("custMobile").substring(0,3)+"****"+object.getString("custMobile").substring(7,11),
+                        getVipType(object.getString("custLevelSample")),ContextUtil.dataTostr(object.getLong("createdTime"),"yyyy-MM-dd HH:mm"));
+                break;
         }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -113,5 +121,23 @@ public class DetailedModel {
         public void setTime(String time) {
             this.time = time;
         }
+    }
+    public static String getVipType(String code){
+        String type = "";
+        switch (code) {
+            case "AGENT":
+                type= "企业账号";
+                break;
+            case "MEMBER":
+                type= "会员";
+                break;
+            case "VIP":
+                type= "VIP";
+                break;
+            case "NORMAL":
+                type= "普通用户";
+                break;
+        }
+        return type;
     }
 }

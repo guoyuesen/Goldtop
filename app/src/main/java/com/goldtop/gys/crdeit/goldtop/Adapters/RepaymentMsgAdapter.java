@@ -217,9 +217,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int p, long l) {
                             //finalItemI.t3.setText(list.get(i));
                             try {
-                            if (!object.getString("hyName").equals(hylist.get(p))){
                                     setHy(finalItemI.t3,hylist.get(p),object.getString("ID"),index,i);
-                            }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:background="#f9f9f9"
     android:layout_height="match_parent">
     <ScrollView
@@ -312,6 +312,46 @@
                     android:background="#f0f0f0"
                     />
             </RelativeLayout>
+            <!--我的银行卡-->
+            <RelativeLayout
+                android:id="@+id/me_f_card_l"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:paddingRight="20dip"
+                android:visibility="visible"
+                >
+
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="17dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/card"
+                    android:visibility="visible" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的银行卡"
+                    android:textColor="#ff333333"
+                    android:textSize="14dip"
+                    android:layout_marginLeft="30dip"
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/more"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f0f0f0"
+                    />
+            </RelativeLayout>
             <!--邀请有奖-->
             <RelativeLayout
                 android:id="@+id/me_f_invite_l"
@@ -352,6 +392,63 @@
                     android:visibility="visible"
                     />
             </RelativeLayout>
+            <!--我的邀请码-->
+            <RelativeLayout
+                android:id="@+id/me_f_qrcode_l"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:paddingLeft="23dip"
+                android:paddingRight="20dip"
+                >
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/f_me_qecode"
+                    android:visibility="visible" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的邀请码"
+                    android:textColor="#ff333333"
+                    android:textSize="14dip"
+                    android:layout_marginLeft="30dip"
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/more"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="45dip"
+                    android:text="您的专属二维码"
+                    android:textColor="#888888"
+                    android:textSize="12sp"
+                    />
+                <ImageView
+                    android:layout_width="8dip"
+                    android:layout_height="8dip"
+                    android:src="@drawable/me_yqm"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dip"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f0f0f0"
+                    />
+            </RelativeLayout>
             <!--会员特权-->
             <RelativeLayout
                 android:id="@+id/me_f_vip_l"
@@ -373,46 +470,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="会员特权"
-                    android:textColor="#ff333333"
-                    android:textSize="14dip"
-                    android:layout_marginLeft="30dip"
-                    android:layout_centerVertical="true"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@mipmap/more"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:layout_alignParentBottom="true"
-                    android:background="#f0f0f0"
-                    />
-            </RelativeLayout>
-            <!--我的银行卡-->
-            <RelativeLayout
-                android:id="@+id/me_f_card_l"
-                android:layout_width="match_parent"
-                android:layout_height="50dip"
-                android:background="@color/white"
-                android:paddingLeft="23dip"
-                android:paddingRight="20dip"
-                android:visibility="visible"
-                >
-
-                <ImageView
-                    android:layout_width="21dp"
-                    android:layout_height="17dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/card"
-                    android:visibility="visible" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我的银行卡"
                     android:textColor="#ff333333"
                     android:textSize="14dip"
                     android:layout_marginLeft="30dip"
@@ -584,45 +641,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:layout_alignParentBottom="true"
-                    android:background="#f0f0f0"
-                    />
-            </RelativeLayout>
-            <!--我的邀请码-->
-            <RelativeLayout
-                android:id="@+id/me_f_qrcode_l"
-                android:layout_width="match_parent"
-                android:layout_height="50dip"
-                android:background="@color/white"
-                android:paddingLeft="23dip"
-                android:paddingRight="20dip"
-                >
 
-                <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/f_me_qecode"
-                    android:visibility="visible" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我的邀请码"
-                    android:textColor="#ff333333"
-                    android:textSize="14dip"
-                    android:layout_marginLeft="30dip"
-                    android:layout_centerVertical="true"
-                    />
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@mipmap/more"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    />
             </RelativeLayout>
             <!--我的订单-->
             <RelativeLayout
@@ -742,4 +761,4 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -132,18 +132,20 @@ public class DownFileHelper {
                             // 设置精确到小数点后2位
                             numberFormat.setMaximumFractionDigits(2);
                             String result;
+                            float r;
                             while ((ch = is.read(buf)) != -1) {
                                 fileOutputStream.write(buf, 0, ch);
                                 process += ch;
                                 if (process > length) {
                                     //更新进度条
                                     result = numberFormat.format((float) 99.6);
+                                    r = 99.6f;
                                 } else {
                                     //更新进度条
                                     result = numberFormat.format((float) process / (float) length * 100);
+                                    r = (float) process / (float) length * 100;
                                 }
                                 Message m = new Message();
-                                float r = (float) process / (float) length * 100;
                                 m.what = (int) r;
                                 diahandler.sendMessage(m);
                                 builder.setContentText("下载进度：" + result + "%");

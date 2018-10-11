@@ -94,8 +94,17 @@ public class OpenCardActivity extends BaseActivity {
                 if (o == null){
                     Toast.makeText(OpenCardActivity.this,"卡信息有误，请重新登录",Toast.LENGTH_LONG).show();
                 }
-                if (date.isEmpty()||cvv.isEmpty()){
-                    Toast.makeText(OpenCardActivity.this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
+                if (date.isEmpty()){
+                    Toast.makeText(OpenCardActivity.this,"有效期不能为空",Toast.LENGTH_LONG).show();
+                }
+                if (date.length()!=4){
+                    Toast.makeText(OpenCardActivity.this,"有效期为4位，请认真输入",Toast.LENGTH_LONG).show();
+                }
+                if (cvv.isEmpty()){
+                    Toast.makeText(OpenCardActivity.this,"cvv码不能为空",Toast.LENGTH_LONG).show();
+                }
+                if (cvv.length()!=3){
+                    Toast.makeText(OpenCardActivity.this,"cvv码为3位，请认真填写",Toast.LENGTH_LONG).show();
                 }
                 Map<String,String> map = new HashMap<String, String>();
                 map.put("custId", UserModel.custId);
@@ -152,8 +161,20 @@ public class OpenCardActivity extends BaseActivity {
             Toast.makeText(OpenCardActivity.this,"卡信息有误，请重新登录",Toast.LENGTH_LONG).show();
             return;
         }
-        if (date.isEmpty()||cvv.isEmpty()||code.isEmpty()||openOrderId.isEmpty()){
-            Toast.makeText(OpenCardActivity.this,"请认真填写相关信息",Toast.LENGTH_LONG).show();
+        if (date.isEmpty()){
+            Toast.makeText(OpenCardActivity.this,"有效期不能为空",Toast.LENGTH_LONG).show();
+        }
+        if (date.length()!=4){
+            Toast.makeText(OpenCardActivity.this,"有效期为4位，请认真输入",Toast.LENGTH_LONG).show();
+        }
+        if (cvv.isEmpty()){
+            Toast.makeText(OpenCardActivity.this,"cvv码不能为空",Toast.LENGTH_LONG).show();
+        }
+        if (cvv.length()!=3){
+            Toast.makeText(OpenCardActivity.this,"cvv码为3位，请认真填写",Toast.LENGTH_LONG).show();
+        }
+        if (code.isEmpty()){
+            Toast.makeText(OpenCardActivity.this,"验证码不能为空",Toast.LENGTH_LONG).show();
             return;
         }
         Map<String,String> map = new HashMap<String, String>();
