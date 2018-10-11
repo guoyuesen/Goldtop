@@ -31,6 +31,7 @@
         android:text="金陀螺是一款高效、简便、实用、安全的账单管理APP，该产品通过移动端导入信用卡账单，还款提醒等功能保障用户个人征信，让用户轻松管理信用卡。珍爱信用记录，享受财富人生。"
         />
     <TextView
+        android:id="@+id/about_vsion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Version 0.1.1"

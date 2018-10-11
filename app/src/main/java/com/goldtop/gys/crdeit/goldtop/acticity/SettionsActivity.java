@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.ThisApplication;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
 
 import butterknife.ButterKnife;
@@ -30,6 +32,8 @@ public class SettionsActivity extends BaseActivity {
                 finish();
             }
         });
+        TextView textView = findViewById(R.id.settings_vsion);
+        textView.setText("版本 "+ThisApplication.getVersion());
     }
 
     @OnClick({R.id.settings_01, R.id.settings_02, R.id.settings_03, R.id.settings_04})
