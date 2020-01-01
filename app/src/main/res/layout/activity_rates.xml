@@ -22,6 +22,18 @@
         android:layout_marginTop="149dip"
         android:layout_marginLeft="170dip"
         android:src="@mipmap/rates5"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/rates_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="139dip"
+        android:layout_marginLeft="200dip"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:text="用户"
         />
     <TextView
         android:layout_width="141dp"
@@ -35,7 +47,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="260dip"
         android:src="@mipmap/rates2"
         />
     <TextView

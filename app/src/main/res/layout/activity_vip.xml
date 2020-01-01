@@ -16,15 +16,12 @@
     android:gravity="center_horizontal"
     android:clipChildren="false">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <ImageView
+        android:id="@+id/vip_img"
         android:layout_width="match_parent"
         android:layout_height="300dip"
-        android:layout_centerInParent="true"
-        android:overScrollMode="never"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:clipChildren="false"
+        android:src="@mipmap/vip__02"
+        android:layout_marginTop="20dip"
         />
     <TextView
         android:id="@+id/vip_phone"
@@ -42,89 +39,18 @@
         android:text=""
         android:gravity="center"
         android:textColor="#ff262626"
-        android:textSize="14dip"
+        android:textSize="16dip"
         android:layout_marginTop="5dip"
         android:layout_marginBottom="30dip"
         />
-    <!--vip权益-->
-    <LinearLayout
-        android:id="@+id/vip_layout_vip"
-        android:layout_width="match_parent"
-        android:layout_height="135dip"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-                <ImageView
-                    android:layout_width="52dip"
-                    android:layout_height="52dip"
-                    android:src="@mipmap/vip_hy_fl"
-                    />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="刷卡费率0.58%"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="52dip"
-                android:layout_height="52dip"
-                android:src="@mipmap/vip_hy_fy"
-                />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="分享返佣0.10%"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="52dip"
-                android:layout_height="52dip"
-                android:src="@mipmap/vip_hy_jf"
-                />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="积分赠送88积分"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-    </LinearLayout>
+
     <!--会员权益-->
     <LinearLayout
         android:id="@+id/vip_layout_hy"
         android:layout_width="match_parent"
         android:layout_height="135dip"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,11 +60,13 @@
             android:gravity="center"
             >
             <ImageView
+                android:id="@+id/vip_feilv_img"
                 android:layout_width="52dip"
                 android:layout_height="52dip"
                 android:src="@mipmap/vip_vip_fl"
                 />
             <TextView
+                android:id="@+id/vip_feilv_text"
                 android:layout_width="52dip"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -155,11 +83,13 @@
             android:gravity="center"
             >
             <ImageView
+                android:id="@+id/vip_ffanyong_img"
                 android:layout_width="52dip"
                 android:layout_height="52dip"
                 android:src="@mipmap/vip_vip_fy"
                 />
             <TextView
+                android:id="@+id/vip_ffanyong_text"
                 android:layout_width="52dip"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -176,11 +106,13 @@
             android:gravity="center"
             >
             <ImageView
+                android:id="@+id/vip_jifen_img"
                 android:layout_width="52dip"
                 android:layout_height="52dip"
                 android:src="@mipmap/vip_vip_jf"
                 />
             <TextView
+                android:id="@+id/vip_jifen_text"
                 android:layout_width="52dip"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -190,106 +122,6 @@
                 />
         </LinearLayout>
     </LinearLayout>
-    <!--企业账号权益-->
-    <LinearLayout
-        android:id="@+id/vip_layout_qyzh"
-        android:layout_width="match_parent"
-        android:layout_height="135dip"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="52dip"
-                android:layout_height="52dip"
-                android:src="@mipmap/vip_qy_fl"
-                />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="刷卡费率0.58%"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="52dip"
-                android:layout_height="52dip"
-                android:src="@mipmap/vip_qy_fy"
-                />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="分享返佣0.10%"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="52dip"
-                android:layout_height="52dip"
-                android:src="@mipmap/vip_qy_jf"
-                />
-            <TextView
-                android:layout_width="52dip"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="积分赠送88积分"
-                android:textSize="13sp"
-                android:layout_marginTop="10dip"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/vip_submit"
-        android:layout_width="match_parent"
-        android:layout_height="48dip"
-        android:text="立即购买"
-        android:textColor="@color/white"
-        android:textSize="17dip"
-        android:background="#DDC8A4"
-        android:layout_marginLeft="25dip"
-        android:layout_marginRight="25dip"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:visibility="gone"
-        />
-    <TextView
-        android:id="@+id/vip_vip"
-        android:layout_width="match_parent"
-        android:layout_height="48dip"
-        android:text="立即购买"
-        android:textColor="@color/white"
-        android:textSize="17dip"
-        android:background="#B0B4BF"
-        android:layout_marginLeft="25dip"
-        android:layout_marginRight="25dip"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:visibility="gone"
-        />
 </LinearLayout>
     </ScrollView>
     <include layout="@layout/base_title_layout"/>

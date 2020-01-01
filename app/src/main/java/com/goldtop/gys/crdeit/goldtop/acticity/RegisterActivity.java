@@ -96,7 +96,7 @@ public class RegisterActivity extends BaseActivity {
                 if (from)
                     params.put("checkMobile","false");
                 Httpshow(RegisterActivity.this);
-                MyVolley.addRequest(new VolleyRequest(Action.check, params, new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(Action.check, params, new MyVolleyCallback(RegisterActivity.this) {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         try {
@@ -171,7 +171,7 @@ public class RegisterActivity extends BaseActivity {
                 }
                 Httpshow(RegisterActivity.this);
                 //Log.d("<===请求地址====>",Action.register);
-                MyVolley.addRequest(new VolleyRequest(url, params, new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(url, params, new MyVolleyCallback(RegisterActivity.this) {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //Log.d("<=======>",error.getMessage());

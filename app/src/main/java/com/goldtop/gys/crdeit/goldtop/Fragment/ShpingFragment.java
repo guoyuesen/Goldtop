@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.ArrayMap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -21,8 +24,12 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.goldtop.gys.crdeit.goldtop.Adapters.HomeShpingAdapter;
+import com.goldtop.gys.crdeit.goldtop.Adapters.HomeShpingTopAdapter;
+import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.acticity.ConfirmOrderActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.DetailedActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.SpInfoActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.WebUtilActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
@@ -31,6 +38,7 @@ import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 import com.goldtop.gys.crdeit.goldtop.view.ButtomDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.HeaderGridView;
+import com.goldtop.gys.crdeit.goldtop.view.HorizontalListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +62,8 @@ public class ShpingFragment extends Fragment {
     private View view;
     private View bommView;
     private String id;
+    HomeShpingAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,55 +81,27 @@ public class ShpingFragment extends Fragment {
     private void intActivity() {
 
         JSONArray array = new JSONArray();
-        try {
-            JSONObject object = new JSONObject();
-            object.put("img",R.mipmap.shangc1);
-            object.put("text","心相印抽纸茶语丝享3层150抽24包抽纸巾整箱新老包装随机  ");
-            object.put("jf",9);
-            array.put(object);
-            object = new JSONObject();
-            object.put("img",R.mipmap.shangc2);
-            object.put("text","迪奥dior蓝金口红唇膏限量五支520#888#999哑光滋润礼物 礼盒套装 ");
-            object.put("jf",20);
-            array.put(object);
-            object = new JSONObject();
-            object.put("img",R.mipmap.sp_show03);
-            object.put("text","全自动雨伞女韩国小清新晴雨两用折叠遮阳防晒防紫外线黑胶太阳伞 ");
-            object.put("jf",12);
-            array.put(object);
-            object = new JSONObject();
-            object.put("img",R.mipmap.sp_show04);
-            object.put("text","打字机真机械键盘青轴黑轴电脑吃鸡游戏电竞金属复古圆键蒸汽朋克笔记本台式外接usb有线办公网吧网咖外设 ");
-            object.put("jf",30);
-            array.put(object);
-            object = new JSONObject();
-            object.put("img",R.mipmap.sp_show05);
-            object.put("text","ZIPPO打火机正版 芝宝正品原装 贴章翅膀 ZPPO古银飞得更高 定制 ");
-            object.put("jf",42);
-            array.put(object);
-            object = new JSONObject();
-            object.put("img",R.mipmap.sp_show06);
-            object.put("text","资生堂FINO美容复合精华洗发水滋润型550mL 修复染烫受损发质进口 ");
-            object.put("jf",15);
-            array.put(object);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        initHead();
 
+        initHead();
+        adapter = new HomeShpingAdapter(getContext(), array);
         bommView = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_bomm, null);
-        homeShpingGrid.setAdapter(new HeaderViewListAdapter(null, null, new HomeShpingAdapter(getContext(), array)));
-        /*homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        homeShpingGrid.setAdapter(new HeaderViewListAdapter(null, null, adapter));
+
+        MyVolley.addRequest(new VolleyRequest("http://www.tuoluo718.com/product/list/point", new ArrayMap<String, String>(), new MyVolleyCallback(getContext()) {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                *//*JSONArray array1 = new JSONArray();
-                for (int j = 0; j < i; j++) {
-                    array1.put(0);
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    adapter.notifyDataSetChanged(jsonObject.getJSONArray("data"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                ButtomDialogView dialogView = new ButtomDialogView(getContext(), array1);
-                dialogView.show();*//*
             }
-        });*/
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
         homeShpingGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int getLastVisiblePosition = 0, lastVisiblePositionY = 0;
             @Override
@@ -142,7 +124,7 @@ public class ShpingFragment extends Fragment {
                         } else if (absListView.getLastVisiblePosition() == getLastVisiblePosition && lastVisiblePositionY == y)//第二次拖至底部
                         {
                             //mCallback.execute();
-                            homeShpingGrid.addFooterView(bommView);
+                            //homeShpingGrid.addFooterView(bommView);
                         }
                     }
 
@@ -157,16 +139,53 @@ public class ShpingFragment extends Fragment {
 
             }
         });
+        homeShpingGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(),"积分余额不足",Toast.LENGTH_LONG).show();
+            }
+        });
 
         // homeShpingGrid.addView(view1,0);
     }
 
     private void initHead() {
-        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
+        final View view1 = LayoutInflater.from(getContext()).inflate(R.layout.item_home_shping_top, null);
         List<Integer> ins = new ArrayList<>();
         ins.add(R.mipmap.sp_show07);
         ins.add(R.mipmap.shangc3);
         ins.add(R.mipmap.sp_show07);
+        HorizontalListView hlist = view1.findViewById(R.id.hor_list);
+
+        final HomeShpingTopAdapter adapter = new HomeShpingTopAdapter(getContext(),new JSONArray());
+        hlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
+                Intent intent = new Intent(getContext(), SpInfoActivity.class);
+                intent.putExtra("itmeObject",adapter.getItemString(i));
+                getActivity().startActivity(intent);
+            }
+        });
+        hlist.setAdapter(adapter);
+        MyVolley.addRequest(new VolleyRequest("http://www.tuoluo718.com/product/list/money", new HashMap<String, String>(), new MyVolleyCallback(getContext()) {
+            @Override
+            public void CallBack(JSONObject jsonObject) {
+                try {
+                    adapter.notifyDataSetChanged(jsonObject.getJSONArray("data"));
+                    initQiangtui(view1,jsonObject.getJSONArray("data"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }));
         ConvenientBanner<Integer> convenientBanner = view1.findViewById(R.id.shping_f_t_img);
         convenientBanner.setPages(new CBViewHolderCreator<ImageViewHolder>() {
             @Override
@@ -187,7 +206,7 @@ public class ShpingFragment extends Fragment {
             }
         });
         final TextView textView = view1.findViewById(R.id.shping_f_jf);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.bonus + "?custId=" + UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.bonus + "?custId=" + UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(getContext()) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -235,5 +254,80 @@ public class ShpingFragment extends Fragment {
 
             imageView.setImageResource(data);
         }
+    }
+    public void initQiangtui(View v, final JSONArray array){
+        ImageView imageView1 = v.findViewById(R.id.top_list_img1);
+        ImageView imageView2 = v.findViewById(R.id.top_list_img2);
+        ImageView imageView3 = v.findViewById(R.id.top_list_img3);
+        TextView textView1 = v.findViewById(R.id.top_list_name1);
+        TextView textView2 = v.findViewById(R.id.top_list_name2);
+        TextView textView3 = v.findViewById(R.id.top_list_name3);
+        TextView textView4 = v.findViewById(R.id.top_list_money1);
+        TextView textView5 = v.findViewById(R.id.top_list_money2);
+        TextView textView6 = v.findViewById(R.id.top_list_money3);
+        try {
+            JSONObject object1 = array.getJSONObject(array.length()-3);
+            MyVolley.getImage(object1.getString("productPic")+"&token="+ UserModel.token,imageView1);
+            textView1.setText(object1.getString("productName"));
+            textView4.setText("￥"+object1.getInt("price"));
+            JSONObject object2 = array.getJSONObject(array.length()-2);
+            MyVolley.getImage(object2.getString("productPic")+"&token="+ UserModel.token,imageView2);
+            textView2.setText(object2.getString("productName"));
+            textView5.setText("￥"+object2.getInt("price"));
+            JSONObject object3 = array.getJSONObject(array.length()-1);
+            MyVolley.getImage(object3.getString("productPic")+"&token="+ UserModel.token,imageView3);
+            textView3.setText(object3.getString("productName"));
+            textView6.setText("￥"+object3.getInt("price"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        v.findViewById(R.id.sp_sp_01).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
+                Intent intent = new Intent(getContext(), SpInfoActivity.class);
+                try {
+                    intent.putExtra("itmeObject",array.getJSONObject(array.length()-3).toString());
+                    getActivity().startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        v.findViewById(R.id.sp_sp_02).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
+                Intent intent = new Intent(getContext(), SpInfoActivity.class);
+                try {
+                    intent.putExtra("itmeObject",array.getJSONObject(array.length()-2).toString());
+                    getActivity().startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        v.findViewById(R.id.sp_sp_03).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!AppUtil.isLogin(getContext())){
+                    return;
+                }
+                Intent intent = new Intent(getContext(), SpInfoActivity.class);
+                try {
+                    intent.putExtra("itmeObject",array.getJSONObject(array.length()-1).toString());
+                    getActivity().startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 }

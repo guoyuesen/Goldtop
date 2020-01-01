@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <TextView
+        android:id="@+id/address_itme_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="王芳"
+        android:text=""
         android:textColor="#ff333333"
         android:textSize="16dip"
         android:layout_marginTop="11dip"
@@ -16,11 +17,13 @@
         android:background="@mipmap/rectangle25"
         android:layout_marginLeft="54dip"
         android:layout_marginTop="16dip"
+        android:visibility="gone"
         />
     <TextView
+        android:id="@+id/address_itme_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="18823789797"
+        android:text=""
         android:textColor="#ff888888"
         android:textSize="15dip"
         android:layout_marginTop="12dp"
@@ -28,9 +31,10 @@
         android:layout_alignParentRight="true"
         />
     <TextView
+        android:id="@+id/address_itme_address"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="四川省成都市青羊区武侯大道地铁口401号"
+        android:text=""
         android:textColor="#ff888888"
         android:textSize="14dip"
         android:layout_marginRight="94dp"
@@ -38,6 +42,7 @@
         android:layout_marginTop="44dp"
         />
     <ImageView
+        android:id="@+id/address_itme_update"
         android:layout_width="21dip"
         android:layout_height="21dip"
         android:src="@mipmap/address_bianji"

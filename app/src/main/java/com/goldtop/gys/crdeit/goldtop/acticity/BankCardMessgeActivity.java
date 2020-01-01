@@ -103,7 +103,7 @@ public class BankCardMessgeActivity extends BaseActivity {
         Log.d("~~~~~~~~~~~~~~~~~","~~~~~~~~~~~~~~~~~~~~~~");
         Httpshow(this);
         Log.d("Action.unbindCard","?cardNo="+object.getString("accountCode"));
-        MyVolley.addRequest(new formRequest(Request.Method.GET, Action.unbindCard+"?cardNo="+object.getString("accountCode"), new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Request.Method.GET, Action.unbindCard+"?cardNo="+object.getString("accountCode"), new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();

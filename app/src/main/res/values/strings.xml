@@ -11,4 +11,7 @@
     <string name="message_post_succeed">获取SD卡权限成功</string>
     <string name="message_post_failed">获取SD卡权限失败</string>
     <string name="xiugai"><u>更换</u></string>
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="app_tip">提示</string>
 </resources>

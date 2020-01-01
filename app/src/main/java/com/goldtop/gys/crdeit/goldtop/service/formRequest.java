@@ -1,6 +1,7 @@
 package com.goldtop.gys.crdeit.goldtop.service;
 
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -9,7 +10,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.goldtop.gys.crdeit.goldtop.acticity.LoginActivity;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,21 +38,25 @@ public class formRequest extends Request<String>{
 
 
     public formRequest(String url1, Map<String, String> smap, MyVolleyCallback callback) {
-        super(Method.POST, url1, callback);
+        super(Method.POST, url1.indexOf("?")==-1?(url1+"?token="+UserModel.token):(url1+"&token="+UserModel.token), callback);
         this.callback = callback;
         this.smap = smap;
         this.url = url1;
+        Log.d(url+"请求参数：==》",smap.toString());
     }
     public formRequest(int method, String url1, Map<String, String> smap, MyVolleyCallback callback) {
-        super(method, url1, callback);
+        super(method, url1.indexOf("?")==-1?(url1+"?token="+UserModel.token):(url1+"&token="+UserModel.token), callback);
         this.callback = callback;
+        //smap.put("token", UserModel.token);
         this.smap = smap;
         this.url = url1;
+        Log.d(url+"请求参数：==》",smap.toString());
     }
 
     public formRequest(int method, String url, MyVolleyCallback listener) {
-        super(method, url, listener);
+        super(method, url.indexOf("?")==-1?(url+"?token="+UserModel.token):(url+"&token="+UserModel.token), listener);
         this.url = url;
+        //Log.d(url+"请求参数：==》",smap.toString());
     }
     @Override
     protected void onFinish() {
@@ -65,7 +72,11 @@ public class formRequest extends Request<String>{
             if (response.isEmpty()){}else {
                 try {
                     object = new JSONObject(response);
-                    callback.CallBack(object);
+                    if (object.has("msg")){
+                        callback.context.startActivity(new Intent(callback.context, LoginActivity.class));
+                    }else {
+                        callback.CallBack(object);
+                    }
                 } catch (JSONException e) {
                     object = new JSONObject();
                     callback.onErrorResponse(new VolleyError("json转换错误"));
@@ -90,6 +101,7 @@ public class formRequest extends Request<String>{
         if (smap == null || smap.size() <= 0) {
             return super.getBody();
         }
+        Log.d(url+"请求参数：==》",smap.toString());
         // ------WebKitFormBoundarykR96Kta4gvMACHfq                 第一行
         // Content-Disposition: form-data; name="login_username"    第二行
         //                                                          第三行

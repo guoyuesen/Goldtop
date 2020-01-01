@@ -114,7 +114,7 @@ public class DetailedActivity extends BaseActivity {
     }
     void getType0(String url){
         Log.d("访问地址",url);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

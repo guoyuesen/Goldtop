@@ -28,11 +28,14 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Fragment.FindFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.HomeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.MeFragment;
+import com.goldtop.gys.crdeit.goldtop.Fragment.NewHomeFragment;
 import com.goldtop.gys.crdeit.goldtop.Fragment.ShpingFragment;
+import com.goldtop.gys.crdeit.goldtop.Fragment.WealthFragment;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.Utils.Tools;
 import com.goldtop.gys.crdeit.goldtop.interfaces.DialogClick;
@@ -86,14 +89,13 @@ public class HomeActivity extends AppCompatActivity {
     TextView homeBottomText4;
     @Bind(R.id.home_bottom_btn4)
     RelativeLayout homeBottomBtn4;
-
-
     private FragmentManager supportFragmentManager;
     private FragmentTransaction fragmentTransaction;
     private Fragment fragment;
-    private HomeFragment homeFragment;
+    private NewHomeFragment homeFragment;
     private FindFragment findFragment;
     private ShpingFragment shpingFragment;
+    private WealthFragment wealthFragment;
     private MeFragment meFragment;
     private int v = 0;
     Handler handler = new Handler() {
@@ -136,12 +138,8 @@ public class HomeActivity extends AppCompatActivity {
         supportFragmentManager = getSupportFragmentManager();
         //开启事务
         fragmentTransaction = supportFragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(
-                R.anim.activity_in, R.anim.activity_out,
-                R.anim.activity_in, R.anim.activity_out
-        );
         //new TitleBuder(this).setTitleText("首页");
-        homeFragment = new HomeFragment();
+        homeFragment = new NewHomeFragment();
         fragment = homeFragment;
         fragmentTransaction.add(R.id.home_frame, homeFragment).commit();
     }
@@ -154,8 +152,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick({R.id.home_bottom_btn1, R.id.home_bottom_btn2, R.id.home_bottom_btn3, R.id.home_bottom_btn4})
     public void onClick(View view) {
-
-        //fragmentTransaction.setCustomAnimations(R.anim.activity_in,R.anim.activity_out);
         switch (view.getId()) {
             case R.id.home_bottom_btn1:
                 Fragment(0);
@@ -166,12 +162,13 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.home_bottom_btn3:
                 //startActivity(new Intent(this,LoginActivity.class));
-                Fragment(2);
+                if (AppUtil.isLogin(this)) {
+                    Fragment(2);
+                }
                 break;
             case R.id.home_bottom_btn4:
                 Fragment(3);
                 break;
-
         }
     }
 
@@ -183,16 +180,12 @@ public class HomeActivity extends AppCompatActivity {
         supportFragmentManager = getSupportFragmentManager();
         //开启事务
         fragmentTransaction = supportFragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(
-                R.anim.activity_in, R.anim.activity_out,
-                R.anim.activity_in, R.anim.activity_out
-        );
         fragmentTransaction.hide(fragment);
         switch (a) {
             case 0:
                 if (homeFragment == null) {
                     //实例化fragment2
-                    homeFragment = new HomeFragment();
+                    homeFragment = new NewHomeFragment();
                     fragmentTransaction.add(R.id.home_frame, homeFragment).commit();
                 } else {
                     //有的话就显示
@@ -213,11 +206,12 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentTransaction.show(shpingFragment).commit();
                 }
                 fragment = shpingFragment;
+
                 homeBottomImg2.setImageResource(R.mipmap.activity_home_02_1);
                 homeBottomImg2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.img_click));
                 break;
             case 2:
-                if (findFragment == null) {
+                /*if (findFragment == null) {
                     //实例化fragment2
                     findFragment = new FindFragment();
                     fragmentTransaction.add(R.id.home_frame, findFragment).commit();
@@ -225,7 +219,16 @@ public class HomeActivity extends AppCompatActivity {
                     //有的话就显示
                     fragmentTransaction.show(findFragment).commit();
                 }
-                fragment = findFragment;
+                fragment = findFragment;*/
+                if (wealthFragment == null) {
+                    //实例化fragment2
+                    wealthFragment = new WealthFragment();
+                    fragmentTransaction.add(R.id.home_frame, wealthFragment).commit();
+                } else {
+                    //有的话就显示
+                    fragmentTransaction.show(wealthFragment).commit();
+                }
+                fragment = wealthFragment;
                 //Animation animation = getResources().getAnimation(R.anim.img_click);
                 homeBottomImg3.setImageResource(R.mipmap.activity_home_03_1);
                 homeBottomImg3.startAnimation(AnimationUtils.loadAnimation(this, R.anim.img_click));
@@ -272,7 +275,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void getV() {
-        MyVolley.addRequest(new VolleyRequest(Action.version, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Action.version, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

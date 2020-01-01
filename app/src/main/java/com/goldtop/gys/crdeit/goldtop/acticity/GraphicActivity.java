@@ -77,7 +77,7 @@ public class GraphicActivity extends BaseActivity {
                     map.put("mobile",people);
                     map.put("type","2");
                     map.put("sign",pass);
-                    MyVolley.addRequest(new formRequest(Action.loginByType, map, new MyVolleyCallback() {
+                    MyVolley.addRequest(new formRequest(Action.loginByType, map, new MyVolleyCallback(GraphicActivity.this) {
                         @Override
                         public void CallBack(JSONObject jsonObject) {
                             try {
@@ -124,7 +124,7 @@ public class GraphicActivity extends BaseActivity {
         map.put("custId", UserModel.custId);
         map.put("patternPassword",p1);
         Httpshow(this);
-        MyVolley.addRequest(new formRequest(Request.Method.GET,Action.createPatternPassword+"?custId="+UserModel.custId+"&patternPassword="+p1, map, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Request.Method.GET,Action.createPatternPassword+"?custId="+UserModel.custId+"&patternPassword="+p1, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

@@ -58,7 +58,7 @@ public class ShareListActivity extends BaseActivity {
         //设置adapter
         share_recyclerview.setAdapter(adapter);
         Httpshow(this);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.invitationList, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.invitationList, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();

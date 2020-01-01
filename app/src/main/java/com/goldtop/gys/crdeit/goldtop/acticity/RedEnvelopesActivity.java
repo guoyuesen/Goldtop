@@ -80,7 +80,7 @@ public class RedEnvelopesActivity extends BaseActivity {
                     return;
                 }
                 Httpshow(this);
-                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"?custId="+UserModel.custId+"&money="+money*100, new HashMap<String, String>(), new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.transfer+"?custId="+UserModel.custId+"&money="+money*100, new HashMap<String, String>(), new MyVolleyCallback(this) {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         Httpdismiss();
@@ -108,7 +108,7 @@ public class RedEnvelopesActivity extends BaseActivity {
     }
 
     public void getM() {
-        MyVolley.addRequest(new formRequest(Request.Method.GET, Action.myRedpack+"?custId="+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Request.Method.GET, Action.myRedpack+"?custId="+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

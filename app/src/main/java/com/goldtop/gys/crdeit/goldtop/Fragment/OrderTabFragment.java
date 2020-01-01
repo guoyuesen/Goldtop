@@ -36,7 +36,8 @@ import java.util.HashMap;
  */
 public class OrderTabFragment extends Fragment {
     private TextView textView;
-
+    JSONArray array;
+    Orderdapter orderdapter;
     public static OrderTabFragment newInstance(int type){
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
@@ -50,8 +51,29 @@ public class OrderTabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order, null);
         ListView listView = view.findViewById(R.id.order_list);
         View em = view.findViewById(R.id.order_empty);
-        listView.setAdapter(new Orderdapter(getContext(), new JSONArray()));
+        int type = getArguments().getInt("type");
+        array = new JSONArray();
+        orderdapter = new Orderdapter(getContext(), array);
+        listView.setAdapter(orderdapter);
         listView.setEmptyView(em);
+        if (type == 0||type == 1){
+            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.getorderlist+"?custId="+UserModel.custId, new MyVolleyCallback(getContext()) {
+                @Override
+                public void CallBack(JSONObject jsonObject) {
+                    try {
+                        array = jsonObject.getJSONArray("data");
+                        orderdapter.notifyDataSetChanged(array);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }));
+        }
         return view;
     }
 

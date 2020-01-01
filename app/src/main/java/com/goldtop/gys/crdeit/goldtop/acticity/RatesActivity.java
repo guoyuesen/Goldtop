@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
@@ -22,6 +23,8 @@ import butterknife.OnClick;
 public class RatesActivity extends BaseActivity {
     @Bind(R.id.rates_img)
     ImageView ratesImg;
+    @Bind(R.id.rates_name)
+    TextView rates_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,19 +38,59 @@ public class RatesActivity extends BaseActivity {
                 finish();
             }
         }).setTitleText("交易费率");
+
         switch (UserModel.custLevelSample) {
-            case "AGENT":
-                ratesImg.setImageResource(R.mipmap.rates7);
+            case "NORMAL"://普通用户
+                rates_name.setText("普通用户");
                 break;
-            case "MEMBER":
+            case "MEMBER"://会员
+                rates_name.setText("会员");
+                break;
+            case "NEW_MEMBER"://VIP会员
+                rates_name.setText("VIP会员");
+                break;
+            case "MANAGER"://VIP1
+                rates_name.setText("VIP1");
+                break;
+            case "CHIEF"://VIP2
+                rates_name.setText("VIP2");
+                break;
+            case "VIP3"://VIP3
+                rates_name.setText("VIP3");
+                break;
+            case "AGENT"://合伙人VIP4
+                rates_name.setText("合伙人VIP4");
+                break;
+            case "NORMAL1":
+                rates_name.setText("VIP1");
+                break;
+            case "NORMAL2":
+                rates_name.setText("VIP2");
+                break;
+            case "NORMAL3":
+                rates_name.setText("VIP3");
+                break;
+            case "NORMAL4":
+                rates_name.setText("VIP4");
+                break;
+            case "NORMAL5":
+                rates_name.setText("VIP5");
+                break;
+
+            /*case "MEMBER":
                 ratesImg.setImageResource(R.mipmap.rates6);
                 break;
-            case "VIP":
-                ratesImg.setImageResource(R.mipmap.rates4);
+            case "MANAGER":
+                ratesImg.setImageResource(R.mipmap.rates8);
                 break;
-            case "NORMAL":
-                ratesImg.setImageResource(R.mipmap.rates5);
+            case "CHIEF":
+                ratesImg.setImageResource(R.mipmap.rates9);
                 break;
+            case "AGENT":
+                ratesImg.setImageResource(R.mipmap.rates7);
+                break;*/
+            default:
+                rates_name.setText("会员");
         }
     }
 

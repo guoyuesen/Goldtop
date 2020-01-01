@@ -63,7 +63,7 @@ public class WalletActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MyVolley.addRequest(new VolleyRequest(Action.totalIncome+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Action.totalIncome+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -89,7 +89,7 @@ public class WalletActivity extends BaseActivity {
         }));
     }
 
-    @OnClick({R.id.wallet_R_01, R.id.wallet_R_02, R.id.wallet_R_03, R.id.wallet_R_04})
+    @OnClick({R.id.wallet_R_01, R.id.wallet_R_02, R.id.wallet_R_03, R.id.wallet_R_04,R.id.wallet_jiaoyi,R.id.wallet_zhitui})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.wallet_R_01:
@@ -105,6 +105,12 @@ public class WalletActivity extends BaseActivity {
                 Intent intent = new Intent(this,ExpressiveActivity.class);
                 intent.putExtra("money",money);
                 startActivity(intent);
+                break;
+            case R.id.wallet_jiaoyi:
+                DetailedActivity.inActivity(WalletActivity.this,"钱包明细",1);
+                break;
+            case R.id.wallet_zhitui:
+                DetailedActivity.inActivity(this, "直推用户", 5);
                 break;
         }
     }

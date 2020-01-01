@@ -67,11 +67,11 @@ public class DetailedModel {
                 d = new Detailed(object.getString("note"),"+"+object.getString("sum")+"积分",ContextUtil.dataTostr(object.getLong("createTime"),"yyyy-MM-dd HH:mm"));
                 break;
             case 5:
-                d = new Detailed(object.getString("custMobile").substring(0,3)+"****"+object.getString("custMobile").substring(7,11),
+                d = new Detailed(object.getString("custMobile"),
                         getVipType(object.getString("custLevelSample")),ContextUtil.dataTostr(object.getLong("createdTime"),"yyyy-MM-dd HH:mm"));
                 break;
             case 6:
-                d = new Detailed(object.getString("custMobile").substring(0,3)+"****"+object.getString("custMobile").substring(7,11),
+                d = new Detailed(object.getString("custMobile"),
                         getVipType(object.getString("custLevelSample")),ContextUtil.dataTostr(object.getLong("createdTime"),"yyyy-MM-dd HH:mm"));
                 break;
         }

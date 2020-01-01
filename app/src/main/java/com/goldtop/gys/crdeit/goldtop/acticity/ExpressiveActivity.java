@@ -87,9 +87,13 @@ public class ExpressiveActivity extends BaseActivity {
                 break;
             case R.id.tx_submit:
                 String money = txMoney.getText().toString().trim();
-                int m = Integer.parseInt(money);
+                float m = Float.parseFloat(money);
                 if (money.isEmpty() || m < 100) {
                     Toast.makeText(ExpressiveActivity.this, "请输入正确的金额", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (m % 100 != 0) {
+                    Toast.makeText(ExpressiveActivity.this, "请输入100的整数倍", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (number.isEmpty()) {
@@ -101,7 +105,7 @@ public class ExpressiveActivity extends BaseActivity {
                 map.put("money", m * 100 + "");
                 map.put("cardNo", number);
                 Httpshow(this);
-                MyVolley.addRequest(new formRequest(Request.Method.GET,Action.withdrawFromIncome+"?custId="+UserModel.custId+"&money="+m * 100+"&cardNo="+number, map, new MyVolleyCallback() {
+                MyVolley.addRequest(new formRequest(Request.Method.GET,Action.withdrawFromIncome+"?custId="+UserModel.custId+"&money="+m * 100+"&cardNo="+number, map, new MyVolleyCallback(this) {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         Httpdismiss();
@@ -136,7 +140,7 @@ public class ExpressiveActivity extends BaseActivity {
 
     public void getcard(final boolean t) {
         Httpshow(this);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=D", new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=D", new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();

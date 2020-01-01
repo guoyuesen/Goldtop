@@ -22,6 +22,16 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         BaseActivity.hiedBar(this);
         setContentView(R.layout.activity_main);
+        if(!isTaskRoot()){
+            finish();
+            return;
+        }
+        if (getIntent() != null) {
+            if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+                finish();
+                return;
+            }
+        }
         imageView = findViewById(R.id.Main_img);
         SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);//创建sp对象,如果有key为"SP_PEOPLE"的sp就取出
         String peopleJson = sp.getString("KEY_LOGING_DATA","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
@@ -50,7 +60,7 @@ public class MainActivity extends BaseActivity {
             });
             dateButton.Start();
         }else {
-            SharedPreferences.Editor editor = sp.edit();;
+            SharedPreferences.Editor editor = sp.edit();
             editor.putString("KEY_LOGING_DATA", "-------") ; //存入json串
             editor.commit() ; //提交
             startActivity(new Intent(MainActivity.this,ExhibitionActivity.class));

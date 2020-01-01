@@ -88,7 +88,7 @@ Handler handler = new Handler(){
         setContentView(R.layout.activity_openred);
         hiedBar(this);
         ButterKnife.bind(this);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.packNum+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.packNum+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -141,7 +141,7 @@ Handler handler = new Handler(){
     private void open() {
         optime = new Date().getTime();
         Glide.with(this).load(R.drawable.open).into(redOpen);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.unpack+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.unpack+ UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(final JSONObject jsonObject) {
                 OpenRedActivity.this.jsonObject = jsonObject;

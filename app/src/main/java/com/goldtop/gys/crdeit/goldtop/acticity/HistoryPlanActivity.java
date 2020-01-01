@@ -69,7 +69,7 @@ public class HistoryPlanActivity extends BaseActivity {
     private void initActivity() {
         String url = Action.history+"?cardNo="+number;
         Log.d("history?===>",url);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

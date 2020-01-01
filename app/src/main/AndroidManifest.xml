@@ -120,8 +120,18 @@
         <!--我的邀请码-->
         <activity android:name=".acticity.ShareActivity" />
         <!--开红包-->
-        <activity android:name=".acticity.OpenRedActivity"
-            />
+        <activity android:name=".acticity.OpenRedActivity"/>
+        <!-- wxpay -->
+        <activity android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".acticity.ConfirmOrderActivity" />
+        <activity android:name=".Fragment.HomeFragment" />
+        <activity android:name=".acticity.PosActivity" />
+        <activity android:name=".acticity.SpInfoActivity" />
+        <activity android:name=".acticity.CustomizedActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

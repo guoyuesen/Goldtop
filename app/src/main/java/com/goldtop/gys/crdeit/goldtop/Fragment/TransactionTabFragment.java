@@ -63,7 +63,7 @@ public class TransactionTabFragment extends Fragment {
         Map<String,String> mapd = new HashMap<String, String>();
         mapd.put("custId", UserModel.custId);
         mapd.put("analysisType",t);
-        MyVolley.addRequest(new formRequest(Action.tradeDetail, mapd, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Action.tradeDetail, mapd, new MyVolleyCallback(getContext()) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

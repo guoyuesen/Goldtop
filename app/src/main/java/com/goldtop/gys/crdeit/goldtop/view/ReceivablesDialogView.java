@@ -105,23 +105,14 @@ public class ReceivablesDialogView extends Dialog {
                     if (jsonArray.getJSONObject(i).getString("openStatus").equals("OPEN_SUCCESS")){
                         back.sercsse(T,jsonArray.getJSONObject(i));
                     }else {
-                        OpenCardActivity.initActivity(context,jsonArray.getJSONObject(i));
+                        OpenCardActivity.initActivity(context,jsonArray.getJSONObject(i),0);
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
-        /*for (int i = 0;i<jsonArray.length();i++){
-            View lview = LayoutInflater.from(context).inflate(R.layout.item_dialog_address,null);
-            linearLayout.addView(lview);
-        }*/
-        //Log.d("<=======>",""+jsonArray.length());
         setContentView(view);//这行一定要写在前面
-        //setCancelable(iscancelable);//点击外部不可dismiss
-        //setCanceledOnTouchOutside(true);
         Window window = this.getWindow();
         window.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams params = window.getAttributes();

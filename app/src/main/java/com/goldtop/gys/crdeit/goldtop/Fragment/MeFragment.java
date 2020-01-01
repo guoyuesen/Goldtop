@@ -2,6 +2,7 @@ package com.goldtop.gys.crdeit.goldtop.Fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,6 +31,7 @@ import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
 import com.goldtop.gys.crdeit.goldtop.acticity.AddressActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.AuthenticationActivity;
+import com.goldtop.gys.crdeit.goldtop.acticity.HomeActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.LoginActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.MyCardActivity;
 import com.goldtop.gys.crdeit.goldtop.acticity.OrderActivity;
@@ -129,7 +131,7 @@ public class MeFragment extends Fragment {
                 break;
         }
         if (UserModel.shiMrenz.equals("")||UserModel.shiMrenz.equals("REG_ING")){
-            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.smrz+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.smrz+UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(getContext()) {
                 @Override
                 public void CallBack(JSONObject jsonObject) {
                     try {
@@ -203,8 +205,29 @@ public class MeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getContext(), MyCardActivity.class));
                 break;
             case R.id.me_f_vip_l://vip
-                if (HomeFragment.smrzShow(getActivity()))
-                getActivity().startActivity(new Intent(getContext(), VipActivity.class));
+                if (HomeFragment.smrzShow(getActivity())) {
+                    if (UserModel.custLevelSample.indexOf("NORMAL") != -1){
+                        final Dialog dialog = new Dialog(getContext(),R.style.MyDialog);
+                        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.dialog_purchase,null);
+                        TextView textView = view1.findViewById(R.id.purchase_dialog_text);
+                        textView.setText("尊敬的用户"+UserModel.custMobile.substring(0,3)+"****"+UserModel.custMobile.substring(7,11)+"，您还不是会员 在商城任意购买价值满399元的产品");
+                        view1.findViewById(R.id.purchase_dialog_btn).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (click!=null){
+                                    click.onClick(null);
+                                }
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.setContentView(view1);
+                        dialog.show();
+                    }else
+                    {
+                        getActivity().startActivity(new Intent(getContext(), RatesActivity.class));
+                        //getActivity().startActivity(new Intent(getContext(), VipActivity.class));
+                    }
+                }
                 break;
             case R.id.me_f_invite_l://邀请有奖
                 getActivity().startActivity(new Intent(getContext(), RecommendedAwardsActivity.class));

@@ -12,12 +12,12 @@ import android.view.View;
 public class CardTransformer implements ViewPager.PageTransformer {
     String TAG = "CardTransformer";
     private float MAX_SCALE = 1.0f;
-    private float MIN_SCALE = 0.65f;//0.85f
+    private float MIN_SCALE = 0.95f;//0.85f
     private ObjectAnimator animator=null;
     @Override
     public void transformPage(@NonNull View page, float position) {
 //设置了内间距  有0.15的偏差
-        float pos=position -0.15f;
+        float pos=position;
 
         if ( pos <= 1) {
             float scaleFactor = MIN_SCALE + (1 - Math.abs(pos)) * (MAX_SCALE - MIN_SCALE);
@@ -38,4 +38,5 @@ public class CardTransformer implements ViewPager.PageTransformer {
             page.setScaleY(MIN_SCALE);
         }
     }
+
 }

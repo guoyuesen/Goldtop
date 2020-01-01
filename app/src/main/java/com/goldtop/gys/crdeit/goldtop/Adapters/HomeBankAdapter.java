@@ -109,7 +109,7 @@ public class HomeBankAdapter extends BaseAdapter {
                     public void onClick(View view) {
                         //try {
                             //WebUtilActivity.InWeb(context,Action.openCard+"?custId="+UserModel.custId+"&cardId="+object.getString("id"),"",null);
-                            OpenCardActivity.initActivity(context,object);
+                            OpenCardActivity.initActivity(context,object,0);
                         /*} catch (JSONException e) {
                             e.printStackTrace();
                         }*/

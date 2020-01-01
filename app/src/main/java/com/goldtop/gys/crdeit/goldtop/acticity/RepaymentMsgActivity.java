@@ -214,7 +214,7 @@ public class RepaymentMsgActivity extends BaseActivity {
         Map<String,String> map = new HashMap<String, String>();
         map.put("applyId",playId);
         map.put("custId",UserModel.custId);
-        MyVolley.addRequest(new VolleyRequest(Action.closePlan, map, new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Action.closePlan, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -244,7 +244,7 @@ public class RepaymentMsgActivity extends BaseActivity {
         map.put("applyId",playId);
         Httpshow(this);
         Log.d("==》",Action.applyDetail+"?custId="+UserModel.custId+"&applyId="+playId);
-        VolleyRequest request = new VolleyRequest(Request.Method.GET, Action.applyDetail+"?custId="+UserModel.custId+"&applyId="+playId, map, new MyVolleyCallback() {
+        VolleyRequest request = new VolleyRequest(Request.Method.GET, Action.applyDetail+"?custId="+UserModel.custId+"&applyId="+playId, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Log.d("==》",jsonObject.toString());

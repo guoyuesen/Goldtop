@@ -73,10 +73,8 @@ public class MyCardActivity extends BaseActivity {
             mTitles.add(titles[i]);
         }
         mFragments = new ArrayList<>();
-        //for (int i = 0; i < mTitles.size(); i++) {
             mFragments.add(MycardTabFragment.newInstance("D"));
             mFragments.add(MycardTabFragment.newInstance("C"));
-        //}
         adapter = new MycardFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         mViewPager.setAdapter(adapter);//给ViewPager设置适配器
         mTabLayout.setupWithViewPager(mViewPager);//将TabLayout和ViewPager关联起来

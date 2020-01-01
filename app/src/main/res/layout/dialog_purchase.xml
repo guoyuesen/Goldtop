@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dip" android:layout_height="440dip"
+    android:background="@mipmap/purchase_dialog"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="50dip"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/purchase_dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尊敬的用户199****1231，您还不是会员 在商城任意购买价值满399元的产品"
+            android:layout_marginTop="40dip"
+            android:gravity="center"
+            android:textColor="#ff333333"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="免费赠送会员给您"
+            android:textColor="#ff333333"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="享受以下会员专属权益"
+            android:textColor="#ff333333"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/purchase_dialog_btn"
+        android:layout_width="match_parent"
+        android:layout_height="36dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginTop="400dip"
+        android:layout_marginRight="50dip"
+        android:text="立即前往"
+        android:gravity="center"
+        android:textColor="#ffffffff"
+        android:textSize="15sp"
+        android:background="#b02c2f3f"
+        />
+</RelativeLayout>

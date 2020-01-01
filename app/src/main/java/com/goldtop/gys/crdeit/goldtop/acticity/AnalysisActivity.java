@@ -37,6 +37,8 @@ public class AnalysisActivity extends BaseActivity {
     TextView analysisNex;
     @Bind(R.id.analysis_vip)
     TextView analysisVip;
+    @Bind(R.id.real_num)
+    TextView realNum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class AnalysisActivity extends BaseActivity {
                 finish();
             }
         });
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.customerAnalysis + UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.customerAnalysis + UserModel.custId, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -59,6 +61,7 @@ public class AnalysisActivity extends BaseActivity {
                         analysisToonum.setText("" + object.getInt("totalNum"));
                         analysisNex.setText("" + object.getString("ztNum"));
                         analysisVip.setText("" + object.getInt("vipNum"));
+                        realNum.setText(object.getString("realNum"));
                     } else {
                         Toast.makeText(AnalysisActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
                     }
@@ -78,10 +81,10 @@ public class AnalysisActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.zt_cust:
-                DetailedActivity.inActivity(this,"直推用户",5);
+                DetailedActivity.inActivity(this, "直推用户", 5);
                 break;
             case R.id.vip_cust:
-                DetailedActivity.inActivity(this,"团队VIP",6);
+                DetailedActivity.inActivity(this, "团队VIP", 6);
                 break;
         }
     }

@@ -57,6 +57,50 @@
         android:textColor="#ffcacaca"
         android:textSize="12dip"
         />
+        <RelativeLayout
+            android:id="@+id/install_picker"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:background="@color/white"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账单日期"
+                android:textColor="#ff333333"
+                android:textSize="15dip"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:id="@+id/install_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="请选择"
+                android:layout_marginRight="10dip"
+                android:textColor="#ee888888"
+                android:gravity="right"
+                android:textSize="15dip"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+            <ImageView
+                android:layout_width="6dip"
+                android:layout_height="12dip"
+                android:src="@mipmap/next"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f0f0f0"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
     <RelativeLayout
         android:id="@+id/install_xuanze"
         android:layout_width="match_parent"

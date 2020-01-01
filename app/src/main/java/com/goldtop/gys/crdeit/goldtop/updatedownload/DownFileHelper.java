@@ -78,7 +78,7 @@ public class DownFileHelper {
         if (Build.VERSION.SDK_INT >= 26) {
             //创建 通知通道  channelid和channelname是必须的（自己命名就好）
             NotificationChannel channel = new NotificationChannel("123",
-                    "金陀螺", NotificationManager.IMPORTANCE_DEFAULT);
+                    "金陀螺", NotificationManager.IMPORTANCE_DEFAULT);//+mContext.getResources().getString(R.string.app_name)
             channel.enableLights(true);//是否在桌面icon右上角展示小红点
             channel.setLightColor(Color.GREEN);//小红点颜色
             channel.setShowBadge(true); //是否在久按桌面图标时显示此渠道的通知
@@ -116,7 +116,7 @@ public class DownFileHelper {
                     con.setRequestProperty("Accept-Encoding", "identity");
                     con.setRequestProperty("User-Agent", " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36");
                     if (con.getResponseCode() == 200) {
-                        int length = 7000000;// 获取文件大小
+                        int length = 8886272;// 获取文件大小
                         InputStream is = con.getInputStream();
 
                         FileOutputStream fileOutputStream = null;

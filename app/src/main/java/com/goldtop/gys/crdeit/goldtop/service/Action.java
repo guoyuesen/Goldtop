@@ -96,4 +96,16 @@ public class Action {
     public static String packNum = url+"/redpack/packNum/";
     //下级Vip用户列表
     public static String unpack = url+"/redpack/unpack/";
+    //银行限额
+    public static String hyimg = url+"/app/guide.png?fileName=limit";
+    //微信支付
+    public static String wxpay = url+"/wechat/wxpay";
+    //添加地址
+    public static String addaddress = url+"/address/addOrUpdate";
+    //查询收货地址
+    public static String getaddress = url+"/address/list/";
+    //查询订单列表
+    public static String getorderlist = url+"/order/list";
+    //申请pos
+    public static String business=url +"/business/add?";
 }

@@ -31,6 +31,7 @@ public class UserModel {
     public static String roleList="";//
     public static String menuList="";//
     public static String shiMrenz="";//
+    public static String token="";
 public static void setInfo(JSONObject object){
     try {
         id=object.getString("id").equals("null")?"":object.getString("id");
@@ -51,6 +52,7 @@ public static void setInfo(JSONObject object){
     createdTime=object.getString("createdTime").equals("null")?"":object.getString("createdTime");
     bankCards=object.getString("bankCards").equals("null")?"":object.getString("bankCards");
     identifyingCode=object.getString("identifyingCode").equals("null")?"":object.getString("identifyingCode");
+        token=object.getString("token").equals("null")?"":object.getString("token");
     } catch (JSONException e) {
         Log.d("","json格式错误");
     }
@@ -76,5 +78,6 @@ public static void remov(){
     identifyingCode="";//
     roleList="";//
     menuList="";//
+    token="";
 }
 }

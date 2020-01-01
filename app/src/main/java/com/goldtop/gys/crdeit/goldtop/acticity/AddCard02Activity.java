@@ -66,7 +66,7 @@ public class AddCard02Activity extends BaseActivity {
         number = getIntent().getStringExtra("number") == null ? "" : getIntent().getStringExtra("number");
         String yh = getBankName(number.substring(0, 6));
         if (yh == null || yh.equals("")) {
-            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBank + "?bankNo=" + number, new HashMap<String, String>(), new MyVolleyCallback() {
+            MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBank + "?bankNo=" + number, new HashMap<String, String>(), new MyVolleyCallback(this) {
                 @Override
                 public void CallBack(JSONObject jsonObject) {
                     try {
@@ -144,7 +144,9 @@ public class AddCard02Activity extends BaseActivity {
                                 if (MycardTabFragment.p.equals("-1")){
                                     MycardTabFragment.p = map.get("bankCardType");
                                 }
+                                AddCard01Activity.f = true;
                                 finish();
+
                             }
                         });
                     } else {
@@ -1272,6 +1274,7 @@ public class AddCard02Activity extends BaseActivity {
             map.put("940049", "哈尔滨银行·丁香一卡通(银联卡)");
             map.put("622425", "哈尔滨银行·丁香借记卡(银联卡)");
             map.put("622425", "哈尔滨银行·丁香卡");
+            map.put("625952", "哈尔滨银行·信用卡");
             map.put("621577", "哈尔滨银行·福农借记卡");
             map.put("622485", "无锡市商业银行·太湖金保卡(银联卡)");
             map.put("623098", "丹东银行·借记IC卡");

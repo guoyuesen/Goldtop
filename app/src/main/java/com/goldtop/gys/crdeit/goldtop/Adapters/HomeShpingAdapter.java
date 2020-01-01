@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.goldtop.gys.crdeit.goldtop.Base.AppUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.model.UserModel;
+import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,33 +51,38 @@ public class HomeShpingAdapter extends BaseAdapter {
         return i;
     }
 
+    public void notifyDataSetChanged(JSONArray array) {
+        this.array = array;
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ThisItem item = null;
         if (view == null) {
             item = new ThisItem();
-            view = LayoutInflater.from(context).inflate(R.layout.item_home_shping, null);
+            view = LayoutInflater.from(context).inflate(R.layout.item_spf_list, null);
             item.img = view.findViewById(R.id.item_sp_img);
             item.text = view.findViewById(R.id.item_sp_text);
             item.jf = view.findViewById(R.id.item_sp_jf);
-            item.dh = view.findViewById(R.id.sp_dh);
+            //item.dh = view.findViewById(R.id.sp_dh);
             view.setTag(item);
         }else {
             item = (ThisItem) view.getTag();
         }
         try {
             JSONObject object = array.getJSONObject(i);
-            item.img.setImageResource(object.getInt("img"));
-            item.text.setText(object.getString("text"));
-            item.jf.setText(""+object.getInt("jf"));
-            item.dh.setOnClickListener(new View.OnClickListener() {
+            MyVolley.getImage(object.getString("productPic")+"&token="+ UserModel.token,item.img);
+            item.text.setText(object.getString("description"));
+            item.jf.setText(""+object.getInt("price"));
+            /*item.dh.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (AppUtil.isLogin(context)){
                         Toast.makeText(context,"积分不足",Toast.LENGTH_LONG).show();
                     }
                 }
-            });
+            });*/
         } catch (JSONException e) {
             e.printStackTrace();
         }

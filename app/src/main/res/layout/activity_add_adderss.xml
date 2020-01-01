@@ -19,6 +19,7 @@
             android:layout_centerVertical="true"
             />
         <EditText
+            android:id="@+id/address_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -44,6 +45,7 @@
             android:layout_centerVertical="true"
             />
         <EditText
+            android:id="@+id/address_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -52,6 +54,7 @@
             android:hint="请输入联系电话"
             android:textSize="16dip"
             android:inputType="number"
+            android:maxLength="11"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -70,6 +73,7 @@
             android:layout_centerVertical="true"
             />
         <TextView
+            android:id="@+id/address_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -95,6 +99,7 @@
             android:layout_centerVertical="true"
             />
         <EditText
+            android:id="@+id/address_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -119,9 +124,21 @@
             android:layout_marginLeft="14dip"
             android:layout_centerVertical="true"
             />
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="关"
+            android:textOff="开"
+            android:switchMinWidth="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dip"
+            />
 
     </RelativeLayout>
     <TextView
+        android:id="@+id/address_submit"
         android:layout_width="match_parent"
         android:layout_height="48dip"
         android:background="@drawable/home_repay_r"

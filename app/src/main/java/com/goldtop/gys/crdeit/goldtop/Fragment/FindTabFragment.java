@@ -62,7 +62,7 @@ public class FindTabFragment extends Fragment {
                 }
             }
         });
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, "http://120.79.172.84:8080/UEditorMe/GetList?type="+getArguments().getInt("type"), new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, "http://120.79.172.84:8080/UEditorMe/GetList?type="+getArguments().getInt("type"), new HashMap<String, String>(), new MyVolleyCallback(getContext()) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class LoginActivity extends BaseActivity {
     ImageView loginClose;
     @Bind(R.id.login_show)
     ImageView loginShow;
+    @Bind(R.id.login_checkbox)
+    CheckBox checkBox;
      boolean show = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +73,11 @@ public class LoginActivity extends BaseActivity {
         SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
         String pass = sp.getString("KEY_LOGING_PASS","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
         String people = sp.getString("KEY_LOGING_PHONE","");  //取出key为"KEY_PEOPLE_DATA"的值，如果值为空，则将第二个参数作为默认值赋值
+        if (pass.isEmpty()){
+            checkBox.setChecked(false);
+        }else {
+            checkBox.setChecked(true);
+        }
         loginPhone.setText(people);
         loginPass.setText(pass);
         loginClose.setAlpha(170);
@@ -89,7 +97,7 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
                 if (pass.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "请输入手机号", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
                     return;
                 }
                 Map<String, String> params = new HashMap<String, String>();
@@ -97,7 +105,7 @@ public class LoginActivity extends BaseActivity {
                 params.put("password", pass);
                 Httpshow(LoginActivity.this);
 
-                MyVolley.addRequest(new VolleyRequest(Action.login, params, new MyVolleyCallback() {
+                MyVolley.addRequest(new VolleyRequest(Action.login, params, new MyVolleyCallback(LoginActivity.this) {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         try {
@@ -107,7 +115,11 @@ public class LoginActivity extends BaseActivity {
                                 SharedPreferences sp = getSharedPreferences("SP_PEOPLE", Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("KEY_LOGING_PHONE", user) ; //存入json串
-                                editor.putString("KEY_LOGING_PASS", pass) ;
+                                if (checkBox.isChecked()) {
+                                    editor.putString("KEY_LOGING_PASS", pass);
+                                }else {
+                                    editor.putString("KEY_LOGING_PASS", "");
+                                }
                                 editor.commit() ; //提交
                                 finish();
                             } else {

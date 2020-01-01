@@ -7,14 +7,16 @@
     android:paddingBottom="15dip"
     >
     <TextView
+        android:id="@+id/orderNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="订单编号：4636543534254325"
+        android:text="订单编号："
         android:textColor="#ff333333"
         android:textSize="14dip"
         android:layout_marginLeft="15dip"
         />
     <TextView
+        android:id="@+id/ordertype"
         android:layout_width="65dp"
         android:layout_height="18dp"
         android:text="买家已付款"
@@ -30,6 +32,7 @@
         android:layout_marginTop="30dip"
         />
     <ImageView
+        android:id="@+id/orderimg"
         android:layout_width="68dp"
         android:layout_height="68dp"
         android:src="@mipmap/fragment_shping_03"
@@ -37,24 +40,27 @@
         android:layout_marginLeft="15dip"
         />
     <TextView
+        android:id="@+id/ordername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="智能温度计"
+        android:text=""
         android:textColor="#ff333333"
         android:textSize="14dip"
         android:layout_marginTop="46dip"
         android:layout_marginLeft="90dip"
         />
     <TextView
+        android:id="@+id/ordermoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="共1件商品 合计：9积分"
+        android:text="共1件商品 合计："
         android:textColor="#ff888888"
         android:textSize="12dip"
         android:layout_marginTop="86dip"
         android:layout_marginLeft="90dip"
         />
     <TextView
+        android:id="@+id/ordertime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2018-6-25"
@@ -88,6 +94,7 @@
         android:layout_marginTop="130dip"
         android:background="@drawable/button_transparent_yl"
         android:gravity="center"
+        android:visibility="gone"
         />
     <TextView
         android:layout_width="75dip"
@@ -97,5 +104,6 @@
         android:layout_marginTop="130dip"
         android:background="@drawable/button_transparent_yl"
         android:gravity="center"
+        android:visibility="gone"
         />
 </RelativeLayout>

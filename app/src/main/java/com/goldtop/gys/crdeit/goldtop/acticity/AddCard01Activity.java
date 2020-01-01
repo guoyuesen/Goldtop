@@ -41,6 +41,7 @@ public class AddCard01Activity extends BaseActivity {
     public static String CType = "信用卡";
     @Bind(R.id.addcardt1)
     TextView addcardt1;
+    public static boolean f = false;
 
     public static void initActivity(Context context, String cd) {
         type = cd;
@@ -95,10 +96,19 @@ public class AddCard01Activity extends BaseActivity {
         startActivity(new Intent(intent));
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (f){
+            f = false;
+            finish();
+        }
+    }
+
     public void queryBankNo(final String bankNo) {
         //银行代码请求接口 url
         String url = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=" + bankNo + "&cardBinCheck=true";
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {

@@ -112,7 +112,7 @@ public class CSxzDialogView extends Dialog {
                     getList();
                 }else {
                     csxzDialogT2.setText(array2.getJSONObject(i).getString("name"));
-                    back.Back(array1.getJSONObject(a0).getString("name")+array2.getJSONObject(i).getString("name"),array1.getJSONObject(a0).getString("code"),array2.getJSONObject(i).getString("code"));
+                    back.Back(array1.getJSONObject(a0).getString("name"),array2.getJSONObject(i).getString("name"),array1.getJSONObject(a0).getString("code"),array2.getJSONObject(i).getString("code"));
                     dismiss();
                 }
                 } catch (JSONException e) {
@@ -145,7 +145,7 @@ public class CSxzDialogView extends Dialog {
             pbLoad.setVisibility(View.VISIBLE);
             pbText.setVisibility(View.GONE);
             csxzDialogSs.setAdapter(new ZhxzAdapter(context,new JSONArray()));
-            MyVolley.addRequest(new formRequest(url, map, new MyVolleyCallback() {
+            MyVolley.addRequest(new formRequest(url, map, new MyVolleyCallback(context) {
                 @Override
                 public void CallBack(JSONObject jsonObject) {
                     pbLoad.setVisibility(View.GONE);
@@ -180,7 +180,7 @@ public class CSxzDialogView extends Dialog {
         }
     }
     public interface CsBack{
-        void Back(String c,String S,String s);
+        void Back(String c,String C,String S,String s);
     }
 }
 

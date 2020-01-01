@@ -57,7 +57,9 @@ public class OpenCardActivity extends BaseActivity {
     DateButton openCardB1;
     JSONObject o;
     String openOrderId= "";
-    public static void initActivity(Context context, JSONObject object){
+    static int type;
+    public static void initActivity(Context context, JSONObject object,int type){
+        OpenCardActivity.type = type;
         Intent intent = new Intent(context,OpenCardActivity.class);
         intent.putExtra("obj",object.toString());
         context.startActivity(intent);
@@ -112,11 +114,14 @@ public class OpenCardActivity extends BaseActivity {
                     map.put("cardId",o.getString("id"));
                     map.put("cvn2",cvv);
                     map.put("expired",date);
+                    if (OpenCardActivity.type ==1) {
+                        map.put("tx", "true");
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 Httpshow(OpenCardActivity.this);
-                MyVolley.addRequest(new formRequest(Action.openSms, map, new MyVolleyCallback() {
+                MyVolley.addRequest(new formRequest(Action.openSms, map, new MyVolleyCallback(OpenCardActivity.this) {
                     @Override
                     public void CallBack(JSONObject jsonObject) {
                         Httpdismiss();
@@ -134,7 +139,7 @@ public class OpenCardActivity extends BaseActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(OpenCardActivity.this,"获取验证码失败",Toast.LENGTH_LONG).show();
                         Httpdismiss();
                     }
                 }));
@@ -181,8 +186,11 @@ public class OpenCardActivity extends BaseActivity {
         map.put("custId", UserModel.custId);
         map.put("smsCode",code);
         map.put("openOrderId",openOrderId);
+        if (OpenCardActivity.type ==1) {
+            map.put("tx", "true");
+        }
         Httpshow(OpenCardActivity.this);
-        MyVolley.addRequest(new formRequest(Action.openCard, map, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Action.openCard, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();

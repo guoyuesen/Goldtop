@@ -243,7 +243,7 @@ public class RepaymentMsgAdapter extends BaseAdapter {
         m.put("mccCode",PayIndustryUtills.Creat(s));
         final HttpsDialogView dialog = new HttpsDialogView(context);
         dialog.show();
-        MyVolley.addRequest(new formRequest(Action.updateMcc, m, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Action.updateMcc, m, new MyVolleyCallback(context) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 dialog.dismiss();

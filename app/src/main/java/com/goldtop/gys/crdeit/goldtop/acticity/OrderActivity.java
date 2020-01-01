@@ -37,19 +37,6 @@ import butterknife.OnClick;
  */
 
 public class OrderActivity extends BaseActivity{
-    /*@Bind(R.id.order_tabb)
-    View orderTabb;
-    @Bind(R.id.order_tab1)
-    ListView orderTab1;
-    @Bind(R.id.order_tab2)
-    ListView orderTab2;
-    @Bind(R.id.order_tab3)
-    ListView orderTab3;
-    @Bind(R.id.order_tab4)
-    ListView orderTab4;
-    private ListView listView;
-    int W;
-    int a = 1;*/
     private String[] titles = new String[]{"全部", "待发货","待收货","已完成"};
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -90,22 +77,6 @@ public class OrderActivity extends BaseActivity{
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        /*orderTab1.setVisibility(View.VISIBLE);
-        JSONArray array = new JSONArray();
-
-        orderTab1.setAdapter(new Orderdapter(this, array));
-        JSONArray array1 = new JSONArray();
-
-        orderTab2.setAdapter(new Orderdapter(this, array1));
-        JSONArray array2 = new JSONArray();
-
-        orderTab3.setAdapter(new Orderdapter(this, array2));
-        JSONArray array3 = new JSONArray();
-
-        orderTab4.setAdapter(new Orderdapter(this, array3));
-        listView = orderTab1;
-        W = ContextUtil.getX(this)/8+ContextUtil.dip2px(this,15);
-        orderTabb.setTranslationX(W);*/
     }
 
     private void settab() throws NoSuchFieldException, IllegalAccessException {
@@ -123,32 +94,5 @@ public class OrderActivity extends BaseActivity{
             child.invalidate();
         }
     }
-    /*@OnClick({R.id.order_tabhost1, R.id.order_tabhost2, R.id.order_tabhost3, R.id.order_tabhost4})
-    public void onClick(View view) {
-        listView.setVisibility(View.GONE);
-        orderTabb.setTranslationX(W);
-        switch (view.getId()){
-            case R.id.order_tabhost1:
-                orderTab1.setVisibility(View.VISIBLE);
-                listView = orderTab1;
-                orderTabb.setTranslationX(W);
-                break;
-            case R.id.order_tabhost2:
-                orderTab2.setVisibility(View.VISIBLE);
-                listView = orderTab2;
-                orderTabb.setTranslationX(W+ContextUtil.getX(this)/4);
-                break;
-            case R.id.order_tabhost3:
-                orderTab3.setVisibility(View.VISIBLE);
-                listView = orderTab3;
-                orderTabb.setTranslationX(W+ContextUtil.getX(this)/2);
-                break;
-            case R.id.order_tabhost4:
-                orderTab4.setVisibility(View.VISIBLE);
-                listView = orderTab4;
-                orderTabb.setTranslationX(W+ContextUtil.getX(this)/4*3);
-                break;
-        }
-    }*/
 
 }

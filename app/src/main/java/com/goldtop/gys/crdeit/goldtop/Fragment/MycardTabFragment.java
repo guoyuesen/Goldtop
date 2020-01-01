@@ -119,7 +119,7 @@ public class MycardTabFragment extends Fragment {
     public void getcard(final String t, final ListView listView) {
         final HttpsDialogView view = new HttpsDialogView(getContext());
         view.show();
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType="+t, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType="+t, new HashMap<String, String>(), new MyVolleyCallback(getContext()) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 view.dismiss();

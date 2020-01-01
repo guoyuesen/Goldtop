@@ -141,7 +141,7 @@ public class AuthenticationActivity extends BaseActivity {
                 String n = authenCardnumber.getText().toString().trim();
                 String yh = thmc.getText().toString().trim();
                 if (yh == null || yh.equals("")) {
-                    MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBank + "?bankNo=" + n, new HashMap<String, String>(), new MyVolleyCallback() {
+                    MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBank + "?bankNo=" + n, new HashMap<String, String>(), new MyVolleyCallback(AuthenticationActivity.this) {
                         @Override
                         public void CallBack(JSONObject jsonObject) {
                             try {
@@ -240,7 +240,6 @@ public class AuthenticationActivity extends BaseActivity {
             JSONObject jsonObject = new JSONObject(params);
             jsonObject.put("bankCards", array);
             Httpshow(AuthenticationActivity.this);
-            //Log.d("<===请求地址====>",Action.register);
             Log.d("请求参数：==》", jsonObject.toString());
             MyVolley.addRequest(new JsonObjectRequest(Request.Method.POST, Action.authentication, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
@@ -294,7 +293,7 @@ public class AuthenticationActivity extends BaseActivity {
     public void queryBankNo(final String bankNo) {
         //银行代码请求接口 url
         String url = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=" + bankNo + "&cardBinCheck=true";
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, url, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 try {
@@ -431,7 +430,7 @@ public class AuthenticationActivity extends BaseActivity {
             pbLoad.setVisibility(View.VISIBLE);
             pbText.setVisibility(View.GONE);
             zhxzSs.setAdapter(new ZhxzAdapter(new JSONArray()));
-            MyVolley.addRequest(new formRequest(url, map, new MyVolleyCallback() {
+            MyVolley.addRequest(new formRequest(url, map, new MyVolleyCallback(this) {
                 @Override
                 public void CallBack(JSONObject jsonObject) {
                     pbLoad.setVisibility(View.GONE);

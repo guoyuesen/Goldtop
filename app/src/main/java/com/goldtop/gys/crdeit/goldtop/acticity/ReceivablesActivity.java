@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.Base.ContextUtil;
 import com.goldtop.gys.crdeit.goldtop.R;
@@ -64,12 +66,14 @@ public class ReceivablesActivity extends BaseActivity {
     JSONObject objectout;
     @Bind(R.id.shouxuf)
     TextView shouxuf;
-    Double sxf;
+    Double sxf = 0.00;
     String card;
     @Bind(R.id.yhxetext)
     TextView yhxetext;
     @Bind(R.id.yhxeimg)
     ScrollView yhxeimg;
+    @Bind(R.id.yhxeimg1)
+    ImageView imageView;
     /*@Bind(R.id.receivables_cvn)
     EditText receivablesCvn;*/
 
@@ -105,26 +109,76 @@ public class ReceivablesActivity extends BaseActivity {
                     receivablesMoney.setText("" + 50000);
                 }
                 switch (UserModel.custLevelSample) {
-                    case "AGENT":
-                        sxf = money * 55 / 10000.00d;
-                        break;
-                    case "MEMBER":
-                        sxf = money * 58 / 10000.00d;
-                        break;
-                    case "VIP":
-                        sxf = money * 55 / 10000.00d;
-                        break;
-                    case "NORMAL":
+                    case "NORMAL"://普通用户
                         sxf = money * 60 / 10000.00d;
                         break;
+                    case "MEMBER"://会员
+                        sxf = money * 60 / 10000.00d;
+                        break;
+                    case "NEW_MEMBER"://VIP会员
+                        sxf = money * 57 / 10000.00d;
+                        break;
+                    case "MANAGER"://VIP1
+                        sxf = money * 56 / 10000.00d;
+                        break;
+                    case "CHIEF"://VIP2
+                        sxf = money * 56 / 10000.00d;
+                        break;
+                    case "VIP3"://VIP3
+                        sxf = money * 55 / 10000.00d;
+                        break;
+                    case "AGENT"://合伙人VIP4
+                        sxf = money * 55 / 10000.00d;
+                        break;
+
+
+
+                    /*case "NORMAL":
+                        sxf = money * 75 / 10000.00d;
+                        break;*/
+                    case "NORMAL1":
+                        sxf = money * 76 / 10000.00d;
+                        break;
+                    case "NORMAL2":
+                        sxf = money * 74 / 10000.00d;
+                        break;
+                    case "NORMAL3":
+                        sxf = money * 72 / 10000.00d;
+                        break;
+                    case "NORMAL4":
+                        sxf = money * 70 / 10000.00d;
+                        break;
+                    case "NORMAL5":
+                        sxf = money * 68 / 10000.00d;
+                        break;
+                    /*case "MEMBER"://会员
+                        sxf = money * 68 / 10000.00d;
+                        break;
+                    case "MANAGER"://经理
+                        sxf = money * 62 / 10000.00d;
+                        break;
+                    case "CHIEF"://总监
+                        sxf = money * 56 / 10000.00d;
+                        break;
+                    case "AGENT"://代理
+                        sxf = money * 52 / 10000.00d;
+                        break;*/
+                    default:
+                        sxf = money * 60 / 10000.00d;
                 }
-                sxf++;
+                sxf+=2;
                 shouxuf.setText("实时到账，需支付" + MoneyUtils.getShowMoney(sxf) + "元手续费");
             }
         });
+        MyVolley.getImage(Action.hyimg,imageView);
+        //Glide.with(this).load(Action.hyimg).into(imageView);
+       /* ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+        layoutParams.width = ContextUtil.getX(this);
+        layoutParams.height = ContextUtil.getY(this);
+        imageView.setLayoutParams(layoutParams);*/
     }
 
-    @OnClick({R.id.receivables_submit, R.id.receivables_incard, R.id.receivables_outcard, R.id.yhxetext, R.id.yhxeimg, R.id.yhxeimg1})
+    @OnClick({R.id.receivables_submit, R.id.receivables_incard, R.id.receivables_outcard, R.id.yhxetext, R.id.yhxeimg, R.id.yhxeimg1})//, R.id.yhxeimg
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.receivables_submit:
@@ -151,7 +205,7 @@ public class ReceivablesActivity extends BaseActivity {
 
     public void getcard(final String t) {
         Httpshow(this);
-        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=" + t, new HashMap<String, String>(), new MyVolleyCallback() {
+        MyVolley.addRequest(new VolleyRequest(Request.Method.GET, Action.queryBankCard + "?custId=" + UserModel.custId + "&cardType=" + t, new HashMap<String, String>(), new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();
@@ -199,7 +253,7 @@ public class ReceivablesActivity extends BaseActivity {
 
     private void showCode(Map<String, String> map) throws JSONException {
         Httpshow(this);
-        MyVolley.addRequest(new formRequest(Action.bigPaySms, map, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Action.bigPaySms, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();
@@ -431,7 +485,7 @@ public class ReceivablesActivity extends BaseActivity {
         map.put("workId", id);
         map.put("smsCode", code);
         Httpshow(this);
-        MyVolley.addRequest(new formRequest(Action.bigPay, map, new MyVolleyCallback() {
+        MyVolley.addRequest(new formRequest(Action.bigPay, map, new MyVolleyCallback(this) {
             @Override
             public void CallBack(JSONObject jsonObject) {
                 Httpdismiss();
