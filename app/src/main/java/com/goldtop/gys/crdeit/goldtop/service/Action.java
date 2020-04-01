@@ -108,4 +108,8 @@ public class Action {
     public static String getorderlist = url+"/order/list";
     //申请pos
     public static String business=url +"/business/add?";
+    //新大额开卡
+    public static String openCardSms = url +"/bankCard/openCardSms/";
+    //新大额开卡
+    public static String openCardDe = url +"/bankCard/openCard/";
 }

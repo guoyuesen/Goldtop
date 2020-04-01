@@ -1,6 +1,7 @@
 package com.goldtop.gys.crdeit.goldtop.acticity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,9 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.goldtop.gys.crdeit.goldtop.Base.BaseActivity;
 import com.goldtop.gys.crdeit.goldtop.R;
+import com.goldtop.gys.crdeit.goldtop.interfaces.DateButtonListener;
 import com.goldtop.gys.crdeit.goldtop.interfaces.MyVolleyCallback;
 import com.goldtop.gys.crdeit.goldtop.model.Pickers;
 import com.goldtop.gys.crdeit.goldtop.model.UserModel;
@@ -29,6 +33,7 @@ import com.goldtop.gys.crdeit.goldtop.service.Action;
 import com.goldtop.gys.crdeit.goldtop.service.MyVolley;
 import com.goldtop.gys.crdeit.goldtop.service.VolleyRequest;
 import com.goldtop.gys.crdeit.goldtop.view.CSxzDialogView;
+import com.goldtop.gys.crdeit.goldtop.view.DateButton;
 import com.goldtop.gys.crdeit.goldtop.view.DateDialogView;
 import com.goldtop.gys.crdeit.goldtop.view.PickerDialog;
 import com.goldtop.gys.crdeit.goldtop.view.TitleBuder;
@@ -219,7 +224,11 @@ public class RepaymentInstallActivity extends BaseActivity {
                         intent.putExtra("applyId", object.getString("applyId"));
                         startActivity(intent);
                         finish();
-                    } else {
+                    }else if ("NOC".equals(response.getString("code"))){
+
+                        openCardMsg(cardid);
+                    }else {
+
                         Toast.makeText(RepaymentInstallActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
                     }
                     s = true;
@@ -234,6 +243,29 @@ public class RepaymentInstallActivity extends BaseActivity {
                 Log.d("错误参数：==》", "error.getMessage()");
                 s = true;
                 Httpdismiss();
+            }
+        });
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
+        MyVolley.addRequest(request);
+    }
+
+    private void openCardMsg(String cardid) {
+        JsonRequest<JSONObject> request = new JsonObjectRequest(Action.openCardSms + cardid, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if ("1".equals(response.getString("code"))){
+                        JSONObject object = response.getJSONObject("data");
+                        showDialogmy(cardid,object.getString("bizOrderNumber"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
         request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
@@ -276,5 +308,233 @@ public class RepaymentInstallActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         dialogView.dismiss();
+    }
+
+    private void showDialogmy(String acid,String bizOrderNumber) throws JSONException {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_showcode, null);
+        final EditText e1 = view.findViewById(R.id.edit_01);
+        final EditText e2 = view.findViewById(R.id.edit_02);
+        final EditText e3 = view.findViewById(R.id.edit_03);
+        final EditText e4 = view.findViewById(R.id.edit_04);
+        final EditText e5 = view.findViewById(R.id.edit_05);
+        final EditText e6 = view.findViewById(R.id.edit_06);
+        addTextChange(e1, e2, e3, e4, e5, e6);
+        setN(e1);
+        view.findViewById(R.id.show_dissmis).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.show_dissmis1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        DateButton btn = view.findViewById(R.id.show_getcode);
+        btn.setText("重新获取验证");
+        btn.setNum(60);
+        btn.setOnClick(new DateButtonListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onStop() {
+
+            }
+        });
+        TextView phone = view.findViewById(R.id.show_codephone);
+        phone.setText("短信验证码已发送");
+
+        view.findViewById(R.id.show_submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String code = e1.getText().toString().trim() + e2.getText().toString().trim() + e3.getText().toString().trim() + e4.getText().toString().trim() + e5.getText().toString().trim() + e6.getText().toString().trim();
+                if (code.length() != 6) {
+                    Toast.makeText(RepaymentInstallActivity.this, "请认真输入验证码", Toast.LENGTH_LONG).show();
+                } else {
+                    openCardMsg(acid,bizOrderNumber,code);
+                }
+            }
+        });
+        btn.Start();
+        dialog.setView(view);
+        dialog.show();
+    }
+    private void addTextChange(final EditText e1, final EditText e2, final EditText e3, final EditText e4, final EditText e5, final EditText e6) {
+        e1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    setN(e2);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        e2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    setN(e3);
+                }
+                if (charSequence.length() == 0 && i == 0) {
+                    e1.setText("");
+                    setN(e1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        e3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    setN(e4);
+                }
+                if (charSequence.length() == 0 && i == 0) {
+                    e2.setText("");
+                    setN(e1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        e4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    setN(e5);
+                }
+                if (charSequence.length() == 0 && i == 0) {
+                    e3.setText("");
+                    setN(e1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        e5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    setN(e6);
+                }
+                if (charSequence.length() == 0 && i == 0) {
+                    e4.setText("");
+                    setN(e1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        e6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 1 && i == 0) {
+                    e1.setFocusable(false);
+                    e1.setFocusableInTouchMode(false);
+                    e1.requestFocus();
+                    View view = getWindow().peekDecorView();
+                    if (view != null) {
+                        InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                }
+                if (charSequence.length() == 0 && i == 0) {
+                    e5.setText("");
+                    setN(e1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+    public void setN(EditText e1) {
+        e1.setFocusable(true);
+        e1.setFocusableInTouchMode(true);
+        e1.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(e1, 0);
+    }
+    private void openCardMsg(String cardid,String bizOrderNumber,String code){
+        JsonRequest<JSONObject> request = new JsonObjectRequest(Action.openCardDe + cardid+"?bizOrderNumber="+bizOrderNumber+"&smsCode="+code, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if ("1".equals(response.getString("code"))){
+                        submit();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
+        MyVolley.addRequest(request);
     }
 }
