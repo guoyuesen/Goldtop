@@ -109,33 +109,19 @@ public class ReceivablesActivity extends BaseActivity {
                     receivablesMoney.setText("" + 50000);
                 }
                 switch (UserModel.custLevelSample) {
-                    case "NORMAL"://普通用户
-                        sxf = money * 60 / 10000.00d;
-                        break;
-                    case "MEMBER"://会员
-                        sxf = money * 60 / 10000.00d;
-                        break;
+                    //普通用户
+                    //会员
                     case "NEW_MEMBER"://VIP会员
                         sxf = money * 57 / 10000.00d;
                         break;
                     case "MANAGER"://VIP1
-                        sxf = money * 56 / 10000.00d;
-                        break;
                     case "CHIEF"://VIP2
                         sxf = money * 56 / 10000.00d;
                         break;
                     case "VIP3"://VIP3
-                        sxf = money * 55 / 10000.00d;
-                        break;
                     case "AGENT"://合伙人VIP4
                         sxf = money * 55 / 10000.00d;
                         break;
-
-
-
-                    /*case "NORMAL":
-                        sxf = money * 75 / 10000.00d;
-                        break;*/
                     case "NORMAL1":
                         sxf = money * 76 / 10000.00d;
                         break;
@@ -151,18 +137,6 @@ public class ReceivablesActivity extends BaseActivity {
                     case "NORMAL5":
                         sxf = money * 68 / 10000.00d;
                         break;
-                    /*case "MEMBER"://会员
-                        sxf = money * 68 / 10000.00d;
-                        break;
-                    case "MANAGER"://经理
-                        sxf = money * 62 / 10000.00d;
-                        break;
-                    case "CHIEF"://总监
-                        sxf = money * 56 / 10000.00d;
-                        break;
-                    case "AGENT"://代理
-                        sxf = money * 52 / 10000.00d;
-                        break;*/
                     default:
                         sxf = money * 60 / 10000.00d;
                 }
@@ -574,7 +548,8 @@ public class ReceivablesActivity extends BaseActivity {
 
             map.put(" custId", UserModel.custId);
             map.put(" cardId", objectout.getString("id"));
-            map.put("payAmount", "" + (m * 100));
+            map.put("payAmount", "" + (m));
+            map.put(" cardId2",objectin.getString("id"));
             showCode(map);
         } catch (JSONException e) {
             e.printStackTrace();

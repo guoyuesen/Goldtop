@@ -5,7 +5,7 @@ package com.goldtop.gys.crdeit.goldtop.service;
  */
 
 public class Action {
-    private static String url = "http://www.tuoluo718.com";
+    private static String url = "http://www.tuoluo718.com:8080";
     //登录
     public static String login = url+"/login";
     //注册
@@ -112,4 +112,6 @@ public class Action {
     public static String openCardSms = url +"/bankCard/openCardSms/";
     //新大额开卡
     public static String openCardDe = url +"/bankCard/openCard/";
+    //获取银行卡列表（新）
+    public static String  listDCards = url = "/bankCard/listDCards/";
 }
