@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Goldtop.iml" filepath="$PROJECT_DIR$/Goldtop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-volley-master/Goldtop-android-volley-master.iml" filepath="$PROJECT_DIR$/android-volley-master/Goldtop-android-volley-master.iml" group="Goldtop/android-volley-master" />
+      <module fileurl="file://$PROJECT_DIR$/app/Goldtop-app.iml" filepath="$PROJECT_DIR$/app/Goldtop-app.iml" group="Goldtop/app" />
       <module fileurl="file://$PROJECT_DIR$/android-volley-master/android-volley-master.iml" filepath="$PROJECT_DIR$/android-volley-master/android-volley-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidStudioProject-Goldtop.iml" filepath="$PROJECT_DIR$/androidStudioProject-Goldtop.iml" group="Goldtop" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -5,7 +5,7 @@ package com.goldtop.gys.crdeit.goldtop.service;
  */
 
 public class Action {
-    private static String url = "http://www.tuoluo718.com:8080";
+    private static String url = "http://www.tuoluo718.com";
     //登录
     public static String login = url+"/login";
     //注册
